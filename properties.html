@@ -171,9 +171,9 @@
   </div>
 
   <div class="lang-switch">
-    <span class="lang-item active">🇰🇬</span>
-    <span class="lang-item">🇷🇺</span>
-    <span class="lang-item">🇬🇧</span>
+    <span class="lang-item active" data-lang="ky">🇰🇬</span>
+    <span class="lang-item" data-lang="ru">🇷🇺</span>
+    <span class="lang-item" data-lang="en">🇬🇧</span>
   </div>
 </header>
 
@@ -217,6 +217,25 @@
     </section>
   </section>
 </main>
+
+<!-- ================= PASO B — HEREDAR IDIOMA DESDE INDEX ================= -->
+<script>
+  const savedLang = localStorage.getItem("nurgul_lang");
+
+  if (savedLang) {
+    document.documentElement.lang = savedLang;
+
+    document.querySelectorAll(".lang-item").forEach(b =>
+      b.classList.remove("active")
+    );
+
+    const activeBtn = document.querySelector(
+      `.lang-item[data-lang="${savedLang}"]`
+    );
+
+    if (activeBtn) activeBtn.classList.add("active");
+  }
+</script>
 
 </body>
 </html>
