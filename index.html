@@ -4,75 +4,120 @@
   <meta charset="UTF-8">
   <title>Nurgul Realty Hub</title>
 
-  <!-- Meta SEO -->
-  <meta name="description" content="Нургул тарабынан башкарылган кыймылсыз мүлк объектилерин кесипкөй көрсөтүү жана кардарлар менен байланыш борбору.">
+  <!-- SEO -->
+  <meta name="description" content="Нургул тарабынан башкарылган кыймылсыз мүлк боюнча премиум платформа. Ишеним, сапат жана жеке мамиле.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Basic Styles -->
+  <!-- STYLE — Qatar Luxury (Real Estate Edition) -->
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #f5f5f5;
-      color: #222;
+    :root {
+      --bg-dark: #0E1A1F;
+      --bg-light: #F7F7F7;
+      --accent-gold: #C9B37E;
+      --accent-green: #2F5D50;
+      --text-light: #EDEDED;
+      --text-muted: #AEB4B7;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    /* HEADER */
     header {
-      background-color: #ffffff;
-      border-bottom: 1px solid #ddd;
-      padding: 16px 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 24px 40px;
     }
 
     .brand {
       font-size: 20px;
-      font-weight: bold;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
-    .tagline {
+    .lang-switch {
       font-size: 13px;
-      color: #666;
-      margin-top: 4px;
+      color: var(--text-muted);
     }
 
-    .contact-btn {
-      background-color: #0b6b3a;
-      color: #fff;
-      border: none;
-      padding: 10px 16px;
-      font-size: 14px;
+    .lang-switch span {
+      margin-left: 12px;
       cursor: pointer;
-      border-radius: 4px;
     }
 
-    .contact-btn:hover {
-      background-color: #095c32;
+    .lang-switch span.active {
+      color: var(--accent-gold);
     }
 
-    main {
-      padding: 32px 24px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
+    /* HERO */
     .hero {
-      background-color: #ffffff;
-      padding: 32px;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    .hero-content {
+      max-width: 700px;
     }
 
     .hero h1 {
-      margin-top: 0;
-      font-size: 28px;
+      font-size: 48px;
+      line-height: 1.2;
+      margin: 0 0 24px 0;
+      font-weight: 500;
     }
 
     .hero p {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #444;
+      font-size: 18px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border: 1px solid var(--accent-gold);
+      color: var(--accent-gold);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .hero-btn:hover {
+      background-color: var(--accent-gold);
+      color: #000;
+    }
+
+    /* INTRO SECTION */
+    .intro {
+      background-color: var(--bg-light);
+      color: #222;
+      padding: 100px 40px;
+    }
+
+    .intro p {
+      max-width: 800px;
+      font-size: 22px;
+      line-height: 1.8;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 40px;
+      font-size: 12px;
+      color: var(--text-muted);
     }
   </style>
 </head>
@@ -81,24 +126,41 @@
 
   <!-- HEADER -->
   <header>
-    <div>
-      <div class="brand">Nurgul Realty Hub</div>
-      <div class="tagline">Кыймылсыз мүлк боюнча ишенимдүү платформа</div>
+    <div class="brand">Nurgul Realty Hub</div>
+    <div class="lang-switch">
+      <span class="active">KG</span>
+      <span>RU</span>
+      <span>EN</span>
     </div>
-    <button class="contact-btn">WhatsApp</button>
   </header>
 
-  <!-- MAIN CONTENT -->
-  <main>
-    <section class="hero">
-      <h1>Үйүңүздү ишенимдүү тандаңыз</h1>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Ишеним — биздин негизги баалуулугубуз</h1>
       <p>
-        Биз сизге Бишкек жана анын айланасындагы эң мыкты кыймылсыз мүлк объектилерин
-        кесипкөй түрдө сунуштайбыз. Сатып алуу, ижарага алуу жана консультация үчүн
-        биз менен байланышыңыз.
+        Кыймылсыз мүлк — бул жөн гана объект эмес.  
+        Бул тынчтык, коопсуздук жана туура тандоо.
       </p>
-    </section>
-  </main>
+      <a href="properties.html" class="hero-btn">
+        ОБЪЕКТТЕРДИ КӨРҮҮ
+      </a>
+    </div>
+  </section>
+
+  <!-- INTRO / MANIFEST -->
+  <section class="intro">
+    <p>
+      Биз ар бир кардарга жеке мамиле жасайбыз.  
+      Нургул Realty Hub — бул ишенимге негизделген,
+      заманбап жана сапаттуу кыймылсыз мүлк чечимдери.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © Nurgul Realty Hub — All rights reserved
+  </footer>
 
 </body>
 </html>
