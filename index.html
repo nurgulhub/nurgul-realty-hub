@@ -31,55 +31,54 @@
 header{
   position:fixed;
   top:0; left:0; right:0;
-  height:108px; /* ⬅️ MÁS ALTO */
-  padding:0 28px;
+  height:120px;
+  padding:0 36px;
   display:flex;
   align-items:center;
   justify-content:space-between;
   z-index:50;
-  background:rgba(8,27,23,0.72);
+  background:rgba(8,27,23,0.88);
   backdrop-filter: blur(10px);
 }
 
-/* === BRAND — NURGUL REALTY HUB (LUXURY) === */
+/* === BRAND — NURGUL REALTY HUB (PROTAGONIST) === */
 .brand{
   display:flex;
   align-items:center;
   position:relative;
-  line-height:1;
 }
 
-/* LOGO IMAGE */
+/* Logo image */
 .brand-logo{
-  height:72px; /* ⬅️ MÁS GRANDE */
+  height:88px;               /* PROTAGONISTA */
   width:auto;
   display:block;
   position:relative;
   z-index:2;
 }
 
-/* GOLD HALO — ENHANCED */
+/* Gold halo */
 .brand::before{
   content:"";
   position:absolute;
-  left:-26px;
+  left:-34px;
   top:50%;
   transform:translateY(-50%);
-  width:140px;
-  height:140px;
+  width:160px;
+  height:160px;
   background:radial-gradient(
     circle,
-    rgba(201,179,126,0.55) 0%,
-    rgba(201,179,126,0.25) 35%,
-    rgba(201,179,126,0.10) 55%,
+    rgba(201,179,126,0.38) 0%,
+    rgba(201,179,126,0.18) 35%,
+    rgba(201,179,126,0.08) 55%,
     transparent 72%
   );
-  filter:blur(12px);
+  filter:blur(14px);
   z-index:1;
   pointer-events:none;
 }
 
-/* ================= LANGUAGE ================= */
+/* === LANGUAGE SWITCHER === */
 .lang-switch{
   display:flex;
   align-items:center;
@@ -89,8 +88,8 @@ header{
 .lang-world svg{
   width:22px;
   height:22px;
-  stroke:var(--text-main);
-  opacity:.9;
+  stroke:#ffffff;
+  opacity:.85;
 }
 
 .lang-item{
@@ -100,79 +99,31 @@ header{
   transition:.25s ease;
 }
 
+.lang-item:hover{
+  opacity:.8;
+}
+
 .lang-item.active{
   opacity:1;
-  filter:drop-shadow(0 0 6px rgba(242,201,76,.35));
+  filter:drop-shadow(0 0 6px rgba(201,179,126,.45));
 }
 
-/* ================= HERO ================= */
-.hero{
-  min-height:100svh;
-  padding:140px 20px 80px; /* ⬅️ compensación header */
-  display:flex;
-  align-items:center;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(242,201,76,.15), transparent 45%),
-    linear-gradient(180deg, var(--green-main), var(--green-dark));
-}
-
-.hero-content{
-  max-width:760px;
-  margin:0 auto;
-}
-
-.hero h1{
-  font-size:clamp(36px, 7vw, 64px);
-  line-height:1.1;
-  font-weight:500;
-  margin-bottom:24px;
-}
-
-.hero p{
-  font-size:clamp(16px, 3.8vw, 20px);
-  line-height:1.6;
-  color:var(--text-muted);
-  max-width:620px;
-  margin-bottom:48px;
-}
-
-.hero-btn{
-  display:inline-block;
-  padding:16px 38px;
-  border:1px solid var(--yellow-main);
-  color:var(--yellow-main);
-  text-decoration:none;
-  letter-spacing:2px;
-  font-size:13px;
-  transition:.3s ease;
-}
-
-.hero-btn:hover{
-  background:var(--yellow-main);
-  color:#000;
-}
-
-/* ===== desktop breathing ===== */
-@media(min-width:1024px){
-  .hero{padding-left:60px;padding-right:60px}
-}
-
-/* ================= RESPONSIVE HEADER ================= */
+/* ===== RESPONSIVE ===== */
 @media (max-width:768px){
-  header{height:96px}
-  .brand-logo{height:60px}
+  header{height:104px}
+  .brand-logo{height:72px}
   .brand::before{
-    width:110px;
-    height:110px;
+    width:130px;
+    height:130px;
   }
 }
 
 @media (max-width:420px){
-  header{height:88px}
-  .brand-logo{height:52px}
+  header{height:92px}
+  .brand-logo{height:64px}
   .brand::before{
-    width:96px;
-    height:96px;
+    width:110px;
+    height:110px;
   }
 }
     
@@ -181,29 +132,32 @@ header{
 
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
+
+  <!-- BRAND -->
   <div class="brand">
-  <img 
-    src="logo/nurgul-realty-hub-header.png"
-    alt="Nurgul Realty Hub"
-    class="brand-logo"
-  />
-</div>
+    <img 
+      src="/logo/nurgul-realty-hub-header.png" 
+      alt="Nurgul Realty Hub" 
+      class="brand-logo"
+    >
+  </div>
 
-
+  <!-- LANGUAGES -->
   <div class="lang-switch">
     <span class="lang-world" aria-hidden="true">
       <svg viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="9" stroke-width="1.4"/>
-        <ellipse cx="12" cy="12" rx="4" ry="9" stroke-width="1.2"/>
-        <path d="M3 12h18" stroke-width="1.2"/>
+        <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.4"/>
+        <ellipse cx="12" cy="12" rx="4" ry="9" stroke="currentColor" stroke-width="1.2"/>
+        <path d="M3 12h18" stroke="currentColor" stroke-width="1.2"/>
       </svg>
     </span>
+
     <span class="lang-item active" data-lang="ky">🇰🇬</span>
     <span class="lang-item" data-lang="ru">🇷🇺</span>
     <span class="lang-item" data-lang="en">🇬🇧</span>
   </div>
+
 </header>
 
 <!-- ================= HERO ================= -->
