@@ -27,175 +27,152 @@
       overflow-x:hidden;
     }
 
-    /* ================= HEADER ================= */
-    header{
-      position:fixed;
-      top:0; left:0; right:0;
-      height:72px;
-      padding:0 20px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      z-index:50;
-      background:rgba(8,27,23,0.65);
-      backdrop-filter: blur(8px);
-    }
-
-    /* === BRAND — NURGUL REALTY HUB (LUXURY) === */
-    
-.brand {
-  display: flex;
-  flex-direction: column;
-  line-height: 1;
+   /* ================= HEADER ================= */
+header{
+  position:fixed;
+  top:0; left:0; right:0;
+  height:108px; /* ⬅️ MÁS ALTO */
+  padding:0 28px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  z-index:50;
+  background:rgba(8,27,23,0.72);
+  backdrop-filter: blur(10px);
 }
 
-.brand-main {
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  color: #ffffff;
+/* === BRAND — NURGUL REALTY HUB (LUXURY) === */
+.brand{
+  display:flex;
+  align-items:center;
+  position:relative;
+  line-height:1;
 }
 
-.brand-sub {
-  margin-top: 4px;
-  font-size: 11px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--accent-gold);
-  opacity: 0.85;
+/* LOGO IMAGE */
+.brand-logo{
+  height:72px; /* ⬅️ MÁS GRANDE */
+  width:auto;
+  display:block;
+  position:relative;
+  z-index:2;
 }
 
-    .lang-switch{
-      display:flex;
-      align-items:center;
-      gap:14px;
-    }
-
-    .lang-world svg{
-      width:22px;
-      height:22px;
-      stroke:var(--text-main);
-      opacity:.9;
-    }
-
-    .lang-item{
-      font-size:18px;
-      cursor:pointer;
-      opacity:.45;
-      transition:.25s ease;
-    }
-
-    .lang-item.active{
-      opacity:1;
-      filter:drop-shadow(0 0 6px rgba(242,201,76,.35));
-    }
-
-    /* ================= HERO ================= */
-    .hero{
-      min-height:100svh;
-      padding:120px 20px 80px;
-      display:flex;
-      align-items:center;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(242,201,76,.15), transparent 45%),
-        linear-gradient(180deg, var(--green-main), var(--green-dark));
-    }
-
-    .hero-content{
-      max-width:760px;
-      margin:0 auto;
-    }
-
-    .hero h1{
-      font-size:clamp(36px, 7vw, 64px);
-      line-height:1.1;
-      font-weight:500;
-      margin-bottom:24px;
-    }
-
-    .hero p{
-      font-size:clamp(16px, 3.8vw, 20px);
-      line-height:1.6;
-      color:var(--text-muted);
-      max-width:620px;
-      margin-bottom:48px;
-    }
-
-    .hero-btn{
-      display:inline-block;
-      padding:16px 38px;
-      border:1px solid var(--yellow-main);
-      color:var(--yellow-main);
-      text-decoration:none;
-      letter-spacing:2px;
-      font-size:13px;
-      transition:.3s ease;
-    }
-
-    .hero-btn:hover{
-      background:var(--yellow-main);
-      color:#000;
-    }
-
-    /* ===== desktop breathing ===== */
-    @media(min-width:1024px){
-      .hero{padding-left:60px;padding-right:60px}
-    }
-    
-/* === HEADER LOGO — NURGUL REALTY HUB (GOLD HALO) === */
-.brand {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.brand-logo {
-  height: 56px;
-  width: auto;
-  display: block;
-  position: relative;
-  z-index: 2;
-}
-
-/* Gold illumination behind logo */
-.brand::before {
-  content: "";
-  position: absolute;
-  left: -18px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 90px;
-  height: 90px;
-  background: radial-gradient(
+/* GOLD HALO — ENHANCED */
+.brand::before{
+  content:"";
+  position:absolute;
+  left:-26px;
+  top:50%;
+  transform:translateY(-50%);
+  width:140px;
+  height:140px;
+  background:radial-gradient(
     circle,
-    rgba(201,179,126,0.45) 0%,
-    rgba(201,179,126,0.18) 35%,
-    rgba(201,179,126,0.05) 55%,
-    transparent 70%
+    rgba(201,179,126,0.55) 0%,
+    rgba(201,179,126,0.25) 35%,
+    rgba(201,179,126,0.10) 55%,
+    transparent 72%
   );
-  filter: blur(6px);
-  z-index: 1;
-  pointer-events: none;
+  filter:blur(12px);
+  z-index:1;
+  pointer-events:none;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .brand-logo {
-    height: 48px;
-  }
-  .brand::before {
-    width: 76px;
-    height: 76px;
+/* ================= LANGUAGE ================= */
+.lang-switch{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
+
+.lang-world svg{
+  width:22px;
+  height:22px;
+  stroke:var(--text-main);
+  opacity:.9;
+}
+
+.lang-item{
+  font-size:18px;
+  cursor:pointer;
+  opacity:.45;
+  transition:.25s ease;
+}
+
+.lang-item.active{
+  opacity:1;
+  filter:drop-shadow(0 0 6px rgba(242,201,76,.35));
+}
+
+/* ================= HERO ================= */
+.hero{
+  min-height:100svh;
+  padding:140px 20px 80px; /* ⬅️ compensación header */
+  display:flex;
+  align-items:center;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(242,201,76,.15), transparent 45%),
+    linear-gradient(180deg, var(--green-main), var(--green-dark));
+}
+
+.hero-content{
+  max-width:760px;
+  margin:0 auto;
+}
+
+.hero h1{
+  font-size:clamp(36px, 7vw, 64px);
+  line-height:1.1;
+  font-weight:500;
+  margin-bottom:24px;
+}
+
+.hero p{
+  font-size:clamp(16px, 3.8vw, 20px);
+  line-height:1.6;
+  color:var(--text-muted);
+  max-width:620px;
+  margin-bottom:48px;
+}
+
+.hero-btn{
+  display:inline-block;
+  padding:16px 38px;
+  border:1px solid var(--yellow-main);
+  color:var(--yellow-main);
+  text-decoration:none;
+  letter-spacing:2px;
+  font-size:13px;
+  transition:.3s ease;
+}
+
+.hero-btn:hover{
+  background:var(--yellow-main);
+  color:#000;
+}
+
+/* ===== desktop breathing ===== */
+@media(min-width:1024px){
+  .hero{padding-left:60px;padding-right:60px}
+}
+
+/* ================= RESPONSIVE HEADER ================= */
+@media (max-width:768px){
+  header{height:96px}
+  .brand-logo{height:60px}
+  .brand::before{
+    width:110px;
+    height:110px;
   }
 }
 
-@media (max-width: 420px) {
-  .brand-logo {
-    height: 40px;
-  }
-  .brand::before {
-    width: 64px;
-    height: 64px;
+@media (max-width:420px){
+  header{height:88px}
+  .brand-logo{height:52px}
+  .brand::before{
+    width:96px;
+    height:96px;
   }
 }
     
