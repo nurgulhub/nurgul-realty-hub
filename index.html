@@ -207,6 +207,20 @@
   color: #000;
 }
     
+/* === WORLD ICON — QATAR LUXURY WHITE === */
+    
+.lang-world {
+  color: rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+  pointer-events: none;
+}
+
+.lang-world svg {
+  display: block;
+}
+
 </style>
 </head>
 
@@ -216,9 +230,21 @@
   <header>
     <div class="brand">Nurgul Realty Hub</div>
     <div class="lang-switch">
-  <span class="lang-item active" data-lang="ky" title="Кыргызча">🇰🇬</span>
-  <span class="lang-item" data-lang="ru" title="Русский">🇷🇺</span>
-  <span class="lang-item" data-lang="en" title="English">🇬🇧</span>
+  <span class="lang-world" aria-hidden="true">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+         xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="9"
+              stroke="currentColor" stroke-width="1.4"/>
+      <ellipse cx="12" cy="12" rx="4" ry="9"
+               stroke="currentColor" stroke-width="1.2"/>
+      <path d="M3 12h18"
+            stroke="currentColor" stroke-width="1.2"/>
+    </svg>
+  </span>
+
+  <span class="lang-item active" data-lang="ky">🇰🇬</span>
+  <span class="lang-item" data-lang="ru">🇷🇺</span>
+  <span class="lang-item" data-lang="en">🇬🇧</span>
 </div>
   </header>
 
