@@ -225,6 +225,55 @@
   filter: drop-shadow(0 0 8px rgba(255,255,255,0.25));
 }
 
+/* === TRUST / SIGNATURE — QATAR LUXURY === */
+.trust-section {
+  background-color: var(--bg-light);
+  color: #111;
+  padding: 120px 60px;
+}
+
+.trust-intro {
+  max-width: 720px;
+  margin-bottom: 80px;
+}
+
+.trust-intro h2 {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.trust-intro p {
+  font-size: 18px;
+  color: #444;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
+}
+
+.trust-item h3 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.trust-item p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+    
 </style>
 </head>
 
@@ -342,7 +391,38 @@ const translations = {
     hero_btn: "VIEW PROPERTIES"
   }
 };
-
+  
+ky: {
+  trust_title: "Ишеним. Купуялуулук. Сапат.",
+  trust_sub: "Кыймылсыз мүлк — бул ишенимге негизделген чечим.",
+  trust_1_title: "Ишеним",
+  trust_1_text: "Ар бир кардар менен ачык, так жана чынчыл иш алып барабыз.",
+  trust_2_title: "Купуялуулук",
+  trust_2_text: "Сиздин маалыматыңыз жана чечимдериңиз ар дайым корголот.",
+  trust_3_title: "Сапат",
+  trust_3_text: "Биз сапаттуу объекттерди жана туура тандоону сунуштайбыз."
+},
+ru: {
+  trust_title: "Доверие. Конфиденциальность. Качество.",
+  trust_sub: "Недвижимость — это решение, основанное на доверии.",
+  trust_1_title: "Доверие",
+  trust_1_text: "Мы работаем открыто, честно и прозрачно с каждым клиентом.",
+  trust_2_title: "Конфиденциальность",
+  trust_2_text: "Ваша информация и решения всегда под защитой.",
+  trust_3_title: "Качество",
+  trust_3_text: "Мы предлагаем качественные объекты и правильный выбор."
+},
+en: {
+  trust_title: "Trust. Privacy. Quality.",
+  trust_sub: "Real estate is a decision built on trust.",
+  trust_1_title: "Trust",
+  trust_1_text: "We work transparently and honestly with every client.",
+  trust_2_title: "Privacy",
+  trust_2_text: "Your information and decisions are always protected.",
+  trust_3_title: "Quality",
+  trust_3_text: "We offer quality properties and the right choices."
+}
+  
 const langButtons = document.querySelectorAll(".lang-item");
 
 langButtons.forEach(btn => {
