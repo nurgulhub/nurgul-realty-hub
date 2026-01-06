@@ -54,36 +54,33 @@
       position:relative;
       z-index:2;
     }
-
-    /* GOLD SUN — PROPORTIONAL TO 250px LOGO */
+    
+.brand-logo{
+  filter:
+    drop-shadow(0 0 2px rgba(242,201,76,0.35))
+    drop-shadow(0 0 10px rgba(242,201,76,0.18));
+}
+  /* GOLD SUN — PROPORTIONAL TO 250px LOGO */
+    
 .brand::before{
-  content: "";
-  position: absolute;
-
-  /* equilibrio visual hacia la izquierda */
-  
-  left: -140px;
-  top: 58%;
-  transform: translateY(-50%);
-
-  /* ☀️ debe ser MÁS GRANDE que el logo */
-  width: 460px;
-  height: 460px;
-
-  background: radial-gradient(
-    circle,
-    rgba(242,201,76,0.50) 0%,
-    rgba(242,201,76,0.32) 20%,
-    rgba(242,201,76,0.18) 40%,
-    rgba(242,201,76,0.08) 60%,
-    transparent 80%
+  content:"";
+  position:absolute;
+  left:-90px;                 /* abarca TODO el logo */
+  top:50%;
+  transform:translateY(-50%);
+  width:340px;                /* sol grande */
+  height:200px;               /* óvalo horizontal */
+  background:radial-gradient(
+    ellipse,
+    rgba(242,201,76,0.42) 0%,
+    rgba(242,201,76,0.22) 30%,
+    rgba(242,201,76,0.12) 52%,
+    rgba(242,201,76,0.05) 65%,
+    transparent 78%
   );
-
-  /* suavidad premium, no foco */
-  filter: blur(46px);
-
-  z-index: 1;
-  pointer-events: none;
+  filter:blur(26px);
+  z-index:1;
+  pointer-events:none;
 }
     
 @media (max-width: 768px){
