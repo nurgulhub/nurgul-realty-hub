@@ -142,32 +142,40 @@
       .hero{padding-left:60px;padding-right:60px}
     }
     
-/* === HEADER LOGO — NURGUL REALTY HUB === */
+/* === HEADER LOGO — NURGUL REALTY HUB (POWER) === */
 .brand {
   display: flex;
   align-items: center;
 }
 
 .brand-logo {
-  height: 42px;
+  height: 64px;          /* DESKTOP — presencia real */
   width: auto;
   display: block;
 }
 
-/* Responsive fine tuning */
-@media (max-width: 768px) {
+/* Tablet */
+@media (max-width: 1024px) {
   .brand-logo {
-    height: 36px;
+    height: 56px;
   }
 }
 
+/* Mobile */
+@media (max-width: 768px) {
+  .brand-logo {
+    height: 48px;
+  }
+}
+
+/* Small mobile */
 @media (max-width: 420px) {
   .brand-logo {
-    height: 32px;
+    height: 44px;
   }
 }
     
-  </style>
+</style>
 </head>
 
 <body>
