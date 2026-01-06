@@ -142,48 +142,62 @@
       .hero{padding-left:60px;padding-right:60px}
     }
     
-/* === HEADER LOGO — NURGUL REALTY HUB (PREMIUM) === */
+/* === HEADER LOGO — NURGUL REALTY HUB (GOLD HALO) === */
 .brand {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .brand-logo {
-  height: 64px;
+  height: 56px;
   width: auto;
   display: block;
-
-  /* PREMIUM PRESENCE */
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.45));
-  transition: transform 0.3s ease, filter 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
-.brand-logo:hover {
-  transform: translateY(-1px);
-  filter: drop-shadow(0 6px 18px rgba(201,179,126,0.45));
+/* Gold illumination behind logo */
+.brand::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(
+    circle,
+    rgba(201,179,126,0.45) 0%,
+    rgba(201,179,126,0.18) 35%,
+    rgba(201,179,126,0.05) 55%,
+    transparent 70%
+  );
+  filter: blur(6px);
+  z-index: 1;
+  pointer-events: none;
 }
 
-/* Tablet */
-@media (max-width: 1024px) {
-  .brand-logo {
-    height: 56px;
-  }
-}
-
-/* Mobile */
+/* Responsive */
 @media (max-width: 768px) {
   .brand-logo {
     height: 48px;
   }
-}
-
-/* Small mobile */
-@media (max-width: 420px) {
-  .brand-logo {
-    height: 44px;
+  .brand::before {
+    width: 76px;
+    height: 76px;
   }
 }
 
+@media (max-width: 420px) {
+  .brand-logo {
+    height: 40px;
+  }
+  .brand::before {
+    width: 64px;
+    height: 64px;
+  }
+}
     
 </style>
 </head>
