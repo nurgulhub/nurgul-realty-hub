@@ -65,23 +65,25 @@
 .brand::before{
   content:"";
   position:absolute;
-  left:-90px;                 /* abarca TODO el logo */
+  left:-80px;                 /* empuja el sol hacia la izquierda */
   top:50%;
   transform:translateY(-50%);
-  width:340px;                /* sol grande */
-  height:200px;               /* óvalo horizontal */
+  width:420px;                /* MUCHO más grande */
+  height:260px;
   background:radial-gradient(
     ellipse,
-    rgba(242,201,76,0.42) 0%,
-    rgba(242,201,76,0.22) 30%,
-    rgba(242,201,76,0.12) 52%,
-    rgba(242,201,76,0.05) 65%,
-    transparent 78%
+    rgba(242,201,76,0.75) 0%,   /* núcleo fuerte */
+    rgba(242,201,76,0.55) 25%,
+    rgba(242,201,76,0.32) 45%,
+    rgba(242,201,76,0.16) 60%,
+    rgba(242,201,76,0.06) 72%,
+    transparent 85%
   );
-  filter:blur(26px);
+  filter:blur(34px);          /* expansión tipo sol */
   z-index:1;
   pointer-events:none;
 }
+
     
 @media (max-width: 768px){
   .brand::before{
