@@ -373,56 +373,55 @@
   
 <script>
   
-/* === QATAR LUXURY LANGUAGE ENGINE === */
+/* === QATAR LUXURY LANGUAGE ENGINE — FIXED === */
+  
 const translations = {
   ky: {
     hero_title: "Ишеним — биздин негизги баалуулугубуз",
     hero_text: "Үй — бул жөн гана мүлк эмес. Бул тынчтык, коопсуздук жана келечек.",
-    hero_btn: "ОБЪЕКТТЕРДИ КӨРҮҮ"
+    hero_btn: "ОБЪЕКТТЕРДИ КӨРҮҮ",
+
+    trust_title: "Ишеним. Купуялуулук. Сапат.",
+    trust_sub: "Кыймылсыз мүлк — бул ишенимге негизделген чечим.",
+    trust_1_title: "Ишеним",
+    trust_1_text: "Ар бир кардар менен ачык, так жана чынчыл иш алып барабыз.",
+    trust_2_title: "Купуялуулук",
+    trust_2_text: "Сиздин маалыматыңыз жана чечимдериңиз ар дайым корголот.",
+    trust_3_title: "Сапат",
+    trust_3_text: "Биз сапаттуу объекттерди жана туура тандоону сунуштайбыз."
   },
+
   ru: {
     hero_title: "Доверие — основа нашей философии",
     hero_text: "Дом — это не просто недвижимость. Это спокойствие, безопасность и будущее.",
-    hero_btn: "СМОТРЕТЬ ОБЪЕКТЫ"
+    hero_btn: "СМОТРЕТЬ ОБЪЕКТЫ",
+
+    trust_title: "Доверие. Конфиденциальность. Качество.",
+    trust_sub: "Недвижимость — это решение, основанное на доверии.",
+    trust_1_title: "Доверие",
+    trust_1_text: "Мы работаем открыто, честно и прозрачно с каждым клиентом.",
+    trust_2_title: "Конфиденциальность",
+    trust_2_text: "Ваша информация и решения всегда под защитой.",
+    trust_3_title: "Качество",
+    trust_3_text: "Мы предлагаем качественные объекты и правильный выбор."
   },
+
   en: {
     hero_title: "Trust is our foundation",
     hero_text: "A home is not just property. It is peace, security, and the future.",
-    hero_btn: "VIEW PROPERTIES"
+    hero_btn: "VIEW PROPERTIES",
+
+    trust_title: "Trust. Privacy. Quality.",
+    trust_sub: "Real estate is a decision built on trust.",
+    trust_1_title: "Trust",
+    trust_1_text: "We work transparently and honestly with every client.",
+    trust_2_title: "Privacy",
+    trust_2_text: "Your information and decisions are always protected.",
+    trust_3_title: "Quality",
+    trust_3_text: "We offer quality properties and the right choices."
   }
 };
-  
-ky: {
-  trust_title: "Ишеним. Купуялуулук. Сапат.",
-  trust_sub: "Кыймылсыз мүлк — бул ишенимге негизделген чечим.",
-  trust_1_title: "Ишеним",
-  trust_1_text: "Ар бир кардар менен ачык, так жана чынчыл иш алып барабыз.",
-  trust_2_title: "Купуялуулук",
-  trust_2_text: "Сиздин маалыматыңыз жана чечимдериңиз ар дайым корголот.",
-  trust_3_title: "Сапат",
-  trust_3_text: "Биз сапаттуу объекттерди жана туура тандоону сунуштайбыз."
-},
-ru: {
-  trust_title: "Доверие. Конфиденциальность. Качество.",
-  trust_sub: "Недвижимость — это решение, основанное на доверии.",
-  trust_1_title: "Доверие",
-  trust_1_text: "Мы работаем открыто, честно и прозрачно с каждым клиентом.",
-  trust_2_title: "Конфиденциальность",
-  trust_2_text: "Ваша информация и решения всегда под защитой.",
-  trust_3_title: "Качество",
-  trust_3_text: "Мы предлагаем качественные объекты и правильный выбор."
-},
-en: {
-  trust_title: "Trust. Privacy. Quality.",
-  trust_sub: "Real estate is a decision built on trust.",
-  trust_1_title: "Trust",
-  trust_1_text: "We work transparently and honestly with every client.",
-  trust_2_title: "Privacy",
-  trust_2_text: "Your information and decisions are always protected.",
-  trust_3_title: "Quality",
-  trust_3_text: "We offer quality properties and the right choices."
-}
-  
+
 const langButtons = document.querySelectorAll(".lang-item");
 
 langButtons.forEach(btn => {
@@ -431,15 +430,17 @@ langButtons.forEach(btn => {
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.dataset.i18n;
-      el.textContent = translations[lang][key];
+      if (translations[lang] && translations[lang][key]) {
+        el.textContent = translations[lang][key];
+      }
     });
 
     langButtons.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
   });
 });
-  
 </script>
+
   
 </body>
 </html>
