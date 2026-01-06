@@ -146,6 +146,103 @@
   border-color: var(--accent-gold);
   background-color: rgba(201, 179, 126, 0.15);
 }
+
+/* === HERO CINEMATIC QATAR LUXURY === */
+.hero {
+  position: relative;
+  min-height: calc(100vh - 90px);
+  display: flex;
+  align-items: center;
+  padding: 0 60px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(201,179,126,0.08), transparent 40%),
+    linear-gradient(180deg, #0B171C 0%, #050D10 100%);
+  overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.6)
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+
+.hero h1 {
+  font-size: 54px;
+  line-height: 1.15;
+  font-weight: 500;
+  margin-bottom: 24px;
+}
+
+.hero p {
+  font-size: 19px;
+  color: var(--text-muted);
+  max-width: 560px;
+  margin-bottom: 48px;
+}
+
+/* === CTA BUTTON — SIGNATURE === */
+.hero-btn {
+  display: inline-block;
+  padding: 16px 36px;
+  border: 1px solid var(--accent-gold);
+  color: var(--accent-gold);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 2px;
+  transition: all 0.35s ease;
+}
+
+.hero-btn:hover {
+  background-color: var(--accent-gold);
+  color: #000;
+}
+
+/* === LANGUAGE FLAGS — PREMIUM === */
+.lang-switch {
+  display: flex;
+  gap: 14px;
+}
+
+.lang-flag {
+  font-size: 20px;
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 6px 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.35s ease;
+  animation: flagWave 4s ease-in-out infinite;
+}
+
+.lang-flag:hover {
+  transform: scale(1.15);
+}
+
+.lang-flag.active {
+  border-color: var(--accent-gold);
+  background-color: rgba(201,179,126,0.15);
+  animation: none;
+}
+
+@keyframes flagWave {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  50% { transform: rotate(0deg); }
+  75% { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
     
 </style>
 </head>
@@ -156,24 +253,27 @@
   <header>
     <div class="brand">Nurgul Realty Hub</div>
     <div class="lang-switch">
-    <button class="lang-btn active" data-lang="ky" title="Кыргызча">🇰🇬</button>
-    <button class="lang-btn" data-lang="ru" title="Русский">🇷🇺</button>
-    <button class="lang-btn" data-lang="en" title="English">🇬🇧</button>
-   </div>
+  <button class="lang-flag active" data-lang="ky" title="Кыргызча">🇰🇬</button>
+  <button class="lang-flag" data-lang="ru" title="Русский">🇷🇺</button>
+  <button class="lang-flag" data-lang="en" title="English">🇬🇧</button>
+</div>
   </header>
 
   <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
-      <h1>Ишеним — биздин негизги баалуулугубуз</h1>
-      <p>
-        Кыймылсыз мүлк — бул жөн гана объект эмес.  
-        Бул тынчтык, коопсуздук жана туура тандоо.
-      </p>
-      <a href="properties.html" class="hero-btn">
-        ОБЪЕКТТЕРДИ КӨРҮҮ
-      </a>
-    </div>
+  <h1 data-i18n="hero_title">
+    Ишеним — биздин негизги баалуулугубуз
+  </h1>
+
+  <p data-i18n="hero_text">
+    Үй — бул жөн гана мүлк эмес. Бул тынчтык, коопсуздук жана келечек.
+  </p>
+
+  <a href="properties.html" class="hero-btn" data-i18n="hero_btn">
+    ОБЪЕКТТЕРДИ КӨРҮҮ
+  </a>
+</div>
   </section>
 
   <!-- INTRO / MANIFEST -->
@@ -189,6 +289,45 @@
   <footer>
     © Nurgul Realty Hub — All rights reserved
   </footer>
+  
+<script>
+  
+/* === QATAR LUXURY LANGUAGE ENGINE === */
+const translations = {
+  ky: {
+    hero_title: "Ишеним — биздин негизги баалуулугубуз",
+    hero_text: "Үй — бул жөн гана мүлк эмес. Бул тынчтык, коопсуздук жана келечек.",
+    hero_btn: "ОБЪЕКТТЕРДИ КӨРҮҮ"
+  },
+  ru: {
+    hero_title: "Доверие — основа нашей философии",
+    hero_text: "Дом — это не просто недвижимость. Это спокойствие, безопасность и будущее.",
+    hero_btn: "СМОТРЕТЬ ОБЪЕКТЫ"
+  },
+  en: {
+    hero_title: "Trust is our foundation",
+    hero_text: "A home is not just property. It is peace, security, and the future.",
+    hero_btn: "VIEW PROPERTIES"
+  }
+};
 
+const langButtons = document.querySelectorAll(".lang-flag");
+
+langButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const lang = btn.dataset.lang;
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.dataset.i18n;
+      el.textContent = translations[lang][key];
+    });
+
+    langButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  });
+});
+  
+</script>
+  
 </body>
 </html>
