@@ -227,50 +227,71 @@
 
 /* === TRUST / SIGNATURE — QATAR LUXURY === */
 .trust-section {
-  background-color: var(--bg-light);
-  color: #111;
-  padding: 120px 60px;
+/* === TRUST / SIGNATURE — QATAR LUXURY DARK === */
+.trust-section {
+  position: relative;
+  background:
+    linear-gradient(
+      180deg,
+      #050D10 0%,
+      #0E1A1F 100%
+    );
+  color: var(--text-light);
+  padding: 160px 60px 140px;
+}
+
+.trust-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 60px;
+  width: 80px;
+  height: 1px;
+  background-color: var(--accent-gold);
+  opacity: 0.6;
 }
 
 .trust-intro {
-  max-width: 720px;
-  margin-bottom: 80px;
+  max-width: 760px;
+  margin-bottom: 90px;
 }
 
 .trust-intro h2 {
-  font-size: 36px;
+  font-size: 40px;
   font-weight: 500;
-  margin-bottom: 16px;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
 }
 
 .trust-intro p {
   font-size: 18px;
-  color: #444;
+  color: var(--text-muted);
 }
 
 .trust-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 60px;
+  gap: 70px;
 }
 
 .trust-item h3 {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 500;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  color: var(--accent-gold);
 }
 
 .trust-item p {
   font-size: 16px;
-  line-height: 1.6;
-  color: #333;
+  line-height: 1.7;
+  color: var(--text-muted);
 }
 
 /* Responsive */
 @media (max-width: 900px) {
   .trust-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 48px;
   }
 }
     
