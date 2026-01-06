@@ -112,16 +112,18 @@
 
     /* --- Back button --- */
     .back-link{
-      display:inline-block;
-      margin-bottom:48px;
-      font-size:13px;
-      letter-spacing:2px;
-      text-decoration:none;
-      color:var(--yellow-main);
-      border:1px solid var(--yellow-main);
-      padding:10px 22px;
-      transition:.25s ease;
-    }
+  position:relative;
+  z-index:60; /* 🔑 por encima del header (50) */
+  display:inline-block;
+  margin-bottom:48px;
+  font-size:13px;
+  letter-spacing:2px;
+  text-decoration:none;
+  color:var(--yellow-main);
+  border:1px solid var(--yellow-main);
+  padding:10px 22px;
+  transition:.25s ease;
+}
 
     .back-link:hover{
       background:var(--yellow-main);
