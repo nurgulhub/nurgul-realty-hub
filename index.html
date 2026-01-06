@@ -12,16 +12,12 @@
   <style>
     :root {
       --bg-dark: #0E1A1F;
-      --bg-light: #F7F7F7;
       --accent-gold: #C9B37E;
-      --accent-green: #2F5D50;
       --text-light: #EDEDED;
       --text-muted: #AEB4B7;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -44,424 +40,226 @@
       letter-spacing: 0.5px;
     }
 
+    /* LANGUAGE SELECTOR */
     .lang-switch {
-      font-size: 13px;
-      color: var(--text-muted);
+      display: flex;
+      gap: 16px;
+      align-items: center;
     }
 
-    .lang-switch span {
-      margin-left: 12px;
+    .lang-item {
+      font-size: 18px;
       cursor: pointer;
+      opacity: 0.45;
+      transition: all 0.3s ease;
     }
 
-    .lang-switch span.active {
-      color: var(--accent-gold);
+    .lang-item.active {
+      opacity: 1;
+      filter: drop-shadow(0 0 6px rgba(201,179,126,0.25));
+    }
+
+    .lang-world svg {
+      width: 22px;
+      height: 22px;
+      color: rgba(255,255,255,0.95);
+      margin-right: 8px;
     }
 
     /* HERO */
     .hero {
-      min-height: calc(100vh - 80px);
+      position: relative;
+      min-height: calc(100vh - 90px);
       display: flex;
       align-items: center;
-      padding: 0 40px;
+      padding: 0 60px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(201,179,126,0.08), transparent 40%),
+        linear-gradient(180deg, #0B171C 0%, #050D10 100%);
     }
 
     .hero-content {
-      max-width: 700px;
+      max-width: 720px;
+      position: relative;
+      z-index: 2;
     }
 
     .hero h1 {
-      font-size: 48px;
-      line-height: 1.2;
-      margin: 0 0 24px 0;
+      font-size: 54px;
+      line-height: 1.15;
       font-weight: 500;
+      margin-bottom: 24px;
     }
 
     .hero p {
-      font-size: 18px;
-      line-height: 1.7;
+      font-size: 19px;
       color: var(--text-muted);
       margin-bottom: 48px;
     }
 
     .hero-btn {
-      display: inline-block;
-      padding: 14px 28px;
+      padding: 16px 36px;
       border: 1px solid var(--accent-gold);
       color: var(--accent-gold);
       text-decoration: none;
-      font-size: 14px;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
+      letter-spacing: 2px;
     }
 
     .hero-btn:hover {
-      background-color: var(--accent-gold);
+      background: var(--accent-gold);
       color: #000;
     }
 
-    /* INTRO SECTION */
+    /* INTRO / MANIFEST — FIXED */
     .intro {
-      background-color: var(--bg-light);
-      color: #222;
-      padding: 100px 40px;
+      position: relative;
+      background: linear-gradient(180deg, #050D10 0%, #0E1A1F 100%);
+      padding: 140px 40px;
+      text-align: center;
+    }
+
+    .intro::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 120px;
+      height: 1px;
+      background: var(--accent-gold);
+      transform: translateX(-50%);
+      opacity: 0.6;
     }
 
     .intro p {
-      max-width: 800px;
-      font-size: 22px;
-      line-height: 1.8;
+      max-width: 780px;
+      margin: 0 auto;
+      font-size: 21px;
+      line-height: 1.85;
+      color: var(--text-muted);
     }
 
-    /* FOOTER */
+    /* TRUST SECTION */
+    .trust-section {
+      background: linear-gradient(180deg, #050D10 0%, #0E1A1F 100%);
+      padding: 160px 60px 140px;
+    }
+
+    .trust-intro {
+      max-width: 760px;
+      margin-bottom: 90px;
+    }
+
+    .trust-intro h2 {
+      font-size: 40px;
+      margin-bottom: 18px;
+    }
+
+    .trust-intro p {
+      color: var(--text-muted);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 70px;
+    }
+
+    .trust-item h3 {
+      color: var(--accent-gold);
+    }
+
+    .trust-item p {
+      color: var(--text-muted);
+    }
+
     footer {
       padding: 40px;
       font-size: 12px;
       color: var(--text-muted);
     }
-    
-/* === LANGUAGE SELECTOR — QATAR LUXURY MINIMAL === */
-.lang-switch {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-
-.lang-item {
-  font-size: 18px;
-  cursor: pointer;
-  opacity: 0.45;
-  transition: all 0.3s ease;
-}
-
-.lang-item:hover {
-  opacity: 0.8;
-  transform: translateY(-1px);
-}
-
-.lang-item.active {
-  opacity: 1;
-  transform: translateY(-1px);
-  filter: drop-shadow(0 0 6px rgba(201,179,126,0.25));
-}
-
-/* === HERO CINEMATIC QATAR LUXURY === */
-.hero {
-  position: relative;
-  min-height: calc(100vh - 90px);
-  display: flex;
-  align-items: center;
-  padding: 0 60px;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(201,179,126,0.08), transparent 40%),
-    linear-gradient(180deg, #0B171C 0%, #050D10 100%);
-  overflow: hidden;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.2),
-    rgba(0,0,0,0.6)
-  );
-  pointer-events: none;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 720px;
-}
-
-.hero h1 {
-  font-size: 54px;
-  line-height: 1.15;
-  font-weight: 500;
-  margin-bottom: 24px;
-}
-
-.hero p {
-  font-size: 19px;
-  color: var(--text-muted);
-  max-width: 560px;
-  margin-bottom: 48px;
-}
-
-/* === CTA BUTTON — SIGNATURE === */
-.hero-btn {
-  display: inline-block;
-  padding: 16px 36px;
-  border: 1px solid var(--accent-gold);
-  color: var(--accent-gold);
-  text-decoration: none;
-  font-size: 14px;
-  letter-spacing: 2px;
-  transition: all 0.35s ease;
-}
-
-.hero-btn:hover {
-  background-color: var(--accent-gold);
-  color: #000;
-}
-    
-/* === WORLD ICON — QATAR LUXURY EMPHASIS === */
-    
-.lang-world {
-  color: rgba(255, 255, 255, 0.95);
-  display: flex;
-  align-items: center;
-  margin-right: 12px;
-  transform: translateY(-1px);
-  pointer-events: none;
-}
-
-.lang-world svg {
-  width: 22px;
-  height: 22px;
-  display: block;
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.25));
-}
-
-/* === TRUST / SIGNATURE — QATAR LUXURY === */
-.trust-section {
-/* === TRUST / SIGNATURE — QATAR LUXURY DARK === */
-.trust-section {
-  position: relative;
-  background:
-    linear-gradient(
-      180deg,
-      #050D10 0%,
-      #0E1A1F 100%
-    );
-  color: var(--text-light);
-  padding: 160px 60px 140px;
-}
-
-.trust-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 60px;
-  width: 80px;
-  height: 1px;
-  background-color: var(--accent-gold);
-  opacity: 0.6;
-}
-
-.trust-intro {
-  max-width: 760px;
-  margin-bottom: 90px;
-}
-
-.trust-intro h2 {
-  font-size: 40px;
-  font-weight: 500;
-  margin-bottom: 18px;
-  letter-spacing: 0.5px;
-}
-
-.trust-intro p {
-  font-size: 18px;
-  color: var(--text-muted);
-}
-
-.trust-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 70px;
-}
-
-.trust-item h3 {
-  font-size: 22px;
-  font-weight: 500;
-  margin-bottom: 14px;
-  color: var(--accent-gold);
-}
-
-.trust-item p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--text-muted);
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .trust-grid {
-    grid-template-columns: 1fr;
-    gap: 48px;
-  }
-}
-    
-</style>
+  </style>
 </head>
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <div class="brand">Nurgul Realty Hub</div>
-    <div class="lang-switch">
-  <span class="lang-world" aria-hidden="true">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-         xmlns="http://www.w3.org/2000/svg">
-      <circle cx="12" cy="12" r="9"
-              stroke="currentColor" stroke-width="1.4"/>
-      <ellipse cx="12" cy="12" rx="4" ry="9"
-               stroke="currentColor" stroke-width="1.2"/>
-      <path d="M3 12h18"
-            stroke="currentColor" stroke-width="1.2"/>
-    </svg>
-  </span>
-
-  <span class="lang-item active" data-lang="ky">🇰🇬</span>
-  <span class="lang-item" data-lang="ru">🇷🇺</span>
-  <span class="lang-item" data-lang="en">🇬🇧</span>
-</div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-content">
-  <h1 data-i18n="hero_title">
-    Ишеним — биздин негизги баалуулугубуз
-  </h1>
-
-  <p data-i18n="hero_text">
-    Үй — бул жөн гана мүлк эмес. Бул тынчтык, коопсуздук жана келечек.
-  </p>
-
-  <a href="properties.html" class="hero-btn" data-i18n="hero_btn">
-    ОБЪЕКТТЕРДИ КӨРҮҮ
-  </a>
-</div>
-  </section>
-
-  <!-- INTRO / MANIFEST -->
-  <section class="intro">
-    <p>
-      Биз ар бир кардарга жеке мамиле жасайбыз.  
-      Нургул Realty Hub — бул ишенимге негизделген,
-      заманбап жана сапаттуу кыймылсыз мүлк чечимдери.
-    </p>
-  </section>
-
-<!-- === TRUST / SIGNATURE SECTION === -->
-<section class="trust-section">
-
-  <div class="trust-intro">
-    <h2 data-i18n="trust_title">
-      Ишеним. Купуялуулук. Сапат.
-    </h2>
-    <p data-i18n="trust_sub">
-      Кыймылсыз мүлк — бул ишенимге негизделген чечим.
-    </p>
+<header>
+  <div class="brand">Nurgul Realty Hub</div>
+  <div class="lang-switch">
+    <span class="lang-world">
+      <svg viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="9" stroke="currentColor"/>
+        <ellipse cx="12" cy="12" rx="4" ry="9" stroke="currentColor"/>
+        <path d="M3 12h18" stroke="currentColor"/>
+      </svg>
+    </span>
+    <span class="lang-item active" data-lang="ky">🇰🇬</span>
+    <span class="lang-item" data-lang="ru">🇷🇺</span>
+    <span class="lang-item" data-lang="en">🇬🇧</span>
   </div>
+</header>
 
-  <div class="trust-grid">
-
-    <div class="trust-item">
-      <h3 data-i18n="trust_1_title">Ишеним</h3>
-      <p data-i18n="trust_1_text">
-        Ар бир кардар менен ачык, так жана чынчыл иш алып барабыз.
-      </p>
-    </div>
-
-    <div class="trust-item">
-      <h3 data-i18n="trust_2_title">Купуялуулук</h3>
-      <p data-i18n="trust_2_text">
-        Сиздин маалыматыңыз жана чечимдериңиз ар дайым корголот.
-      </p>
-    </div>
-
-    <div class="trust-item">
-      <h3 data-i18n="trust_3_title">Сапат</h3>
-      <p data-i18n="trust_3_text">
-        Биз сапаттуу объекттерди жана туура тандоону сунуштайбыз.
-      </p>
-    </div>
-
+<section class="hero">
+  <div class="hero-content">
+    <h1 data-i18n="hero_title">Ишеним — биздин негизги баалуулугубуз</h1>
+    <p data-i18n="hero_text">Үй — бул жөн гана мүлк эмес.</p>
+    <a href="properties.html" class="hero-btn" data-i18n="hero_btn">ОБЪЕКТТЕРДИ КӨРҮҮ</a>
   </div>
-
 </section>
-  
-  <!-- FOOTER -->
-  <footer>
-    © Nurgul Realty Hub — All rights reserved
-  </footer>
-  
+
+<section class="intro">
+  <p>
+    Биз ар бир кардарга жеке мамиле жасайбыз.  
+    Nurgul Realty Hub — ишенимге негизделген заманбап чечимдер.
+  </p>
+</section>
+
+<section class="trust-section">
+  <div class="trust-intro">
+    <h2 data-i18n="trust_title">Ишеним. Купуялуулук. Сапат.</h2>
+    <p data-i18n="trust_sub">Кыймылсыз мүлк — бул ишенимге негизделген чечим.</p>
+  </div>
+</section>
+
+<footer>
+  © Nurgul Realty Hub — All rights reserved
+</footer>
+
 <script>
-  
-/* === QATAR LUXURY LANGUAGE ENGINE — FIXED === */
-  
 const translations = {
   ky: {
     hero_title: "Ишеним — биздин негизги баалуулугубуз",
-    hero_text: "Үй — бул жөн гана мүлк эмес. Бул тынчтык, коопсуздук жана келечек.",
+    hero_text: "Үй — бул жөн гана мүлк эмес.",
     hero_btn: "ОБЪЕКТТЕРДИ КӨРҮҮ",
-
     trust_title: "Ишеним. Купуялуулук. Сапат.",
-    trust_sub: "Кыймылсыз мүлк — бул ишенимге негизделген чечим.",
-    trust_1_title: "Ишеним",
-    trust_1_text: "Ар бир кардар менен ачык, так жана чынчыл иш алып барабыз.",
-    trust_2_title: "Купуялуулук",
-    trust_2_text: "Сиздин маалыматыңыз жана чечимдериңиз ар дайым корголот.",
-    trust_3_title: "Сапат",
-    trust_3_text: "Биз сапаттуу объекттерди жана туура тандоону сунуштайбыз."
+    trust_sub: "Кыймылсыз мүлк — бул ишенимге негизделген чечим."
   },
-
   ru: {
     hero_title: "Доверие — основа нашей философии",
-    hero_text: "Дом — это не просто недвижимость. Это спокойствие, безопасность и будущее.",
+    hero_text: "Дом — это не просто недвижимость.",
     hero_btn: "СМОТРЕТЬ ОБЪЕКТЫ",
-
     trust_title: "Доверие. Конфиденциальность. Качество.",
-    trust_sub: "Недвижимость — это решение, основанное на доверии.",
-    trust_1_title: "Доверие",
-    trust_1_text: "Мы работаем открыто, честно и прозрачно с каждым клиентом.",
-    trust_2_title: "Конфиденциальность",
-    trust_2_text: "Ваша информация и решения всегда под защитой.",
-    trust_3_title: "Качество",
-    trust_3_text: "Мы предлагаем качественные объекты и правильный выбор."
+    trust_sub: "Недвижимость — это решение, основанное на доверии."
   },
-
   en: {
     hero_title: "Trust is our foundation",
-    hero_text: "A home is not just property. It is peace, security, and the future.",
+    hero_text: "A home is not just property.",
     hero_btn: "VIEW PROPERTIES",
-
     trust_title: "Trust. Privacy. Quality.",
-    trust_sub: "Real estate is a decision built on trust.",
-    trust_1_title: "Trust",
-    trust_1_text: "We work transparently and honestly with every client.",
-    trust_2_title: "Privacy",
-    trust_2_text: "Your information and decisions are always protected.",
-    trust_3_title: "Quality",
-    trust_3_text: "We offer quality properties and the right choices."
+    trust_sub: "Real estate is a decision built on trust."
   }
 };
 
-const langButtons = document.querySelectorAll(".lang-item");
-
-langButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
+document.querySelectorAll(".lang-item").forEach(btn => {
+  btn.onclick = () => {
     const lang = btn.dataset.lang;
-
     document.querySelectorAll("[data-i18n]").forEach(el => {
-      const key = el.dataset.i18n;
-      if (translations[lang] && translations[lang][key]) {
-        el.textContent = translations[lang][key];
-      }
+      el.textContent = translations[lang][el.dataset.i18n];
     });
-
-    langButtons.forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".lang-item").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-  });
+  };
 });
 </script>
 
-  
 </body>
 </html>
