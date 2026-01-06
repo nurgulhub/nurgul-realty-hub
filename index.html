@@ -141,6 +141,32 @@
     @media(min-width:1024px){
       .hero{padding-left:60px;padding-right:60px}
     }
+    
+/* === HEADER LOGO — NURGUL REALTY HUB === */
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo {
+  height: 42px;
+  width: auto;
+  display: block;
+}
+
+/* Responsive fine tuning */
+@media (max-width: 768px) {
+  .brand-logo {
+    height: 36px;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand-logo {
+    height: 32px;
+  }
+}
+    
   </style>
 </head>
 
@@ -149,9 +175,13 @@
 <!-- ================= HEADER ================= -->
 <header>
   <div class="brand">
-  <span class="brand-main">NURGUL</span>
-  <span class="brand-sub">REALTY HUB</span>
-  </div>
+  <img 
+    src="logo/nurgul-realty-hub-header.png"
+    alt="Nurgul Realty Hub"
+    class="brand-logo"
+  />
+</div>
+
 
   <div class="lang-switch">
     <span class="lang-world" aria-hidden="true">
