@@ -120,31 +120,29 @@
       color: var(--text-muted);
     }
     
-/* === LANGUAGE SWITCHER — QATAR LUXURY === */
-    
+/* === LANGUAGE SELECTOR — QATAR LUXURY MINIMAL === */
 .lang-switch {
   display: flex;
-  gap: 10px;
+  gap: 16px;
+  align-items: center;
 }
 
-.lang-btn {
-  background: transparent;
-  border: 1px solid transparent;
+.lang-item {
   font-size: 18px;
   cursor: pointer;
-  padding: 6px 8px;
-  border-radius: 6px;
-  transition: all 0.25s ease;
-  color: var(--text-muted);
+  opacity: 0.45;
+  transition: all 0.3s ease;
 }
 
-.lang-btn:hover {
-  border-color: var(--accent-gold);
+.lang-item:hover {
+  opacity: 0.8;
+  transform: translateY(-1px);
 }
 
-.lang-btn.active {
-  border-color: var(--accent-gold);
-  background-color: rgba(201, 179, 126, 0.15);
+.lang-item.active {
+  opacity: 1;
+  transform: translateY(-1px);
+  filter: drop-shadow(0 0 6px rgba(201,179,126,0.25));
 }
 
 /* === HERO CINEMATIC QATAR LUXURY === */
@@ -208,41 +206,6 @@
   background-color: var(--accent-gold);
   color: #000;
 }
-
-/* === LANGUAGE FLAGS — PREMIUM === */
-.lang-switch {
-  display: flex;
-  gap: 14px;
-}
-
-.lang-flag {
-  font-size: 20px;
-  background: transparent;
-  border: 1px solid transparent;
-  padding: 6px 8px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.35s ease;
-  animation: flagWave 4s ease-in-out infinite;
-}
-
-.lang-flag:hover {
-  transform: scale(1.15);
-}
-
-.lang-flag.active {
-  border-color: var(--accent-gold);
-  background-color: rgba(201,179,126,0.15);
-  animation: none;
-}
-
-@keyframes flagWave {
-  0% { transform: rotate(0deg); }
-  25% { transform: rotate(2deg); }
-  50% { transform: rotate(0deg); }
-  75% { transform: rotate(-2deg); }
-  100% { transform: rotate(0deg); }
-}
     
 </style>
 </head>
@@ -253,9 +216,9 @@
   <header>
     <div class="brand">Nurgul Realty Hub</div>
     <div class="lang-switch">
-  <button class="lang-flag active" data-lang="ky" title="Кыргызча">🇰🇬</button>
-  <button class="lang-flag" data-lang="ru" title="Русский">🇷🇺</button>
-  <button class="lang-flag" data-lang="en" title="English">🇬🇧</button>
+  <span class="lang-item active" data-lang="ky" title="Кыргызча">🇰🇬</span>
+  <span class="lang-item" data-lang="ru" title="Русский">🇷🇺</span>
+  <span class="lang-item" data-lang="en" title="English">🇬🇧</span>
 </div>
   </header>
 
@@ -311,7 +274,7 @@ const translations = {
   }
 };
 
-const langButtons = document.querySelectorAll(".lang-flag");
+const langButtons = document.querySelectorAll(".lang-item");
 
 langButtons.forEach(btn => {
   btn.addEventListener("click", () => {
