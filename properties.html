@@ -26,7 +26,7 @@
       overflow-x:hidden;
     }
 
-    /* ================= HEADER (IDENTICO AL INDEX) ================= */
+    /* ================= HEADER ================= */
     header{
       position:fixed;
       top:0; left:0; right:0;
@@ -90,13 +90,14 @@
       font-size:18px;
       cursor:pointer;
       opacity:.45;
+      transition:.2s;
     }
 
     .lang-item.active{
       opacity:1;
     }
 
-    /* ================= PROPERTIES PAGE ================= */
+    /* ================= MAIN ================= */
 
     main{
       padding-top:180px;
@@ -107,6 +108,24 @@
       max-width:1400px;
       margin:0 auto;
       padding:0 6%;
+    }
+
+    /* --- Back button --- */
+    .back-link{
+      display:inline-block;
+      margin-bottom:48px;
+      font-size:13px;
+      letter-spacing:2px;
+      text-decoration:none;
+      color:var(--yellow-main);
+      border:1px solid var(--yellow-main);
+      padding:10px 22px;
+      transition:.25s ease;
+    }
+
+    .back-link:hover{
+      background:var(--yellow-main);
+      color:#000;
     }
 
     .properties-grid{
@@ -179,38 +198,44 @@
 
 <main>
   <section class="properties-page">
+
+    <!-- 🔙 BOTÓN RETORNO -->
+    <a href="index.html" class="back-link" data-i18n="back">
+      ← КАЙРА БАРУУ
+    </a>
+
     <section class="properties-grid">
 
       <article class="property-card">
         <div class="property-image"></div>
         <div class="property-content">
-          <h3>Турак жай</h3>
-          <p class="property-location">Жайгашкан жери</p>
-          <p class="property-info">Маалымат</p>
-          <p class="property-price">Баасы</p>
-          <button class="property-btn">Толугураак</button>
+          <h3 data-i18n="prop_title">Турак жай</h3>
+          <p class="property-location" data-i18n="prop_location">Жайгашкан жери</p>
+          <p class="property-info" data-i18n="prop_info">Маалымат</p>
+          <p class="property-price" data-i18n="prop_price">Баасы</p>
+          <button class="property-btn" data-i18n="prop_btn">Толугураак</button>
         </div>
       </article>
 
       <article class="property-card">
         <div class="property-image"></div>
         <div class="property-content">
-          <h3>Турак жай</h3>
-          <p class="property-location">Жайгашкан жери</p>
-          <p class="property-info">Маалымат</p>
-          <p class="property-price">Баасы</p>
-          <button class="property-btn">Толугураак</button>
+          <h3 data-i18n="prop_title">Турак жай</h3>
+          <p class="property-location" data-i18n="prop_location">Жайгашкан жери</p>
+          <p class="property-info" data-i18n="prop_info">Маалымат</p>
+          <p class="property-price" data-i18n="prop_price">Баасы</p>
+          <button class="property-btn" data-i18n="prop_btn">Толугураак</button>
         </div>
       </article>
 
       <article class="property-card">
         <div class="property-image"></div>
         <div class="property-content">
-          <h3>Турак жай</h3>
-          <p class="property-location">Жайгашкан жери</p>
-          <p class="property-info">Маалымат</p>
-          <p class="property-price">Баасы</p>
-          <button class="property-btn">Толугураак</button>
+          <h3 data-i18n="prop_title">Турак жай</h3>
+          <p class="property-location" data-i18n="prop_location">Жайгашкан жери</p>
+          <p class="property-info" data-i18n="prop_info">Маалымат</p>
+          <p class="property-price" data-i18n="prop_price">Баасы</p>
+          <button class="property-btn" data-i18n="prop_btn">Толугураак</button>
         </div>
       </article>
 
@@ -218,23 +243,58 @@
   </section>
 </main>
 
-<!-- ================= PASO B — HEREDAR IDIOMA DESDE INDEX ================= -->
+<!-- ================= IDIOMAS (FUNCIONAL + HERENCIA) ================= -->
 <script>
-  const savedLang = localStorage.getItem("nurgul_lang");
-
-  if (savedLang) {
-    document.documentElement.lang = savedLang;
-
-    document.querySelectorAll(".lang-item").forEach(b =>
-      b.classList.remove("active")
-    );
-
-    const activeBtn = document.querySelector(
-      `.lang-item[data-lang="${savedLang}"]`
-    );
-
-    if (activeBtn) activeBtn.classList.add("active");
+const translations = {
+  ky:{
+    back:"← КАЙРА БАРУУ",
+    prop_title:"Турак жай",
+    prop_location:"Жайгашкан жери",
+    prop_info:"Маалымат",
+    prop_price:"Баасы",
+    prop_btn:"Толугураак"
+  },
+  ru:{
+    back:"← НАЗАД",
+    prop_title:"Недвижимость",
+    prop_location:"Расположение",
+    prop_info:"Информация",
+    prop_price:"Цена",
+    prop_btn:"Подробнее"
+  },
+  en:{
+    back:"← BACK",
+    prop_title:"Property",
+    prop_location:"Location",
+    prop_info:"Details",
+    prop_price:"Price",
+    prop_btn:"View details"
   }
+};
+
+// aplicar idioma
+function applyLang(lang){
+  document.documentElement.lang = lang;
+  localStorage.setItem("nurgul_lang", lang);
+
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    el.innerHTML = translations[lang][el.dataset.i18n];
+  });
+
+  document.querySelectorAll(".lang-item").forEach(b=>b.classList.remove("active"));
+  document.querySelector(`.lang-item[data-lang="${lang}"]`)?.classList.add("active");
+}
+
+// click idioma
+document.querySelectorAll(".lang-item").forEach(btn=>{
+  btn.onclick = ()=> applyLang(btn.dataset.lang);
+});
+
+// heredar idioma desde index
+const savedLang = localStorage.getItem("nurgul_lang");
+if(savedLang && translations[savedLang]){
+  applyLang(savedLang);
+}
 </script>
 
 </body>
