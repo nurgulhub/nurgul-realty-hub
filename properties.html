@@ -136,22 +136,35 @@
       gap:48px;
     }
 
-    .property-card{
-      display:flex;
-      flex-direction:column;
-    }
+    /* === B1 · PROPERTY CARD — FIXED BASE HEIGHT === */
+    
+.property-card{
+  display:flex;
+  flex-direction:column;
+  height:100%;                 /* 🔑 iguala columnas */
+  min-height:520px;            /* 🔑 altura base desktop */
+}
+    
+/* === B2 · PROPERTY CONTENT FLEX === */
+.property-content{
+  display:flex;
+  flex-direction:column;
+  flex:1;                      /* 🔑 ocupa espacio restante */
+}
 
-  .property-image{
+  /* === B3 · PROPERTY IMAGE — UNIFIED HEIGHT === */
+.property-image{
   width:100%;
-  height:260px;               /* altura de portada */
+  height:240px;                /* 🔑 equilibrio visual */
   background:rgba(255,255,255,0.08);
-  border-radius:14px;
+  border-radius:16px;
   margin-bottom:16px;
   overflow:hidden;
   display:flex;
   align-items:center;
   justify-content:center;
 }
+
     
 .property-image img{
   max-width:80%;              /* respiración premium */
@@ -509,6 +522,25 @@
 .royal-features li{
   margin-bottom:6px;
 }
+
+/* === B4 · RESPONSIVE CARD HEIGHT === */
+
+@media (max-width:1024px){
+  .property-card{
+    min-height:500px;
+  }
+}
+
+@media (max-width:768px){
+  .property-card{
+    min-height:unset;          /* 🔑 móvil libre */
+  }
+
+  .property-image{
+    height:220px;
+  }
+}
+
     
 </style>
 </head>
