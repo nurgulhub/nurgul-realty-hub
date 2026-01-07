@@ -1,515 +1,247 @@
 <!DOCTYPE html>
 <html lang="ky">
 <head>
-  <meta charset="UTF-8" />
-  <title>Nurgul Realty — Properties</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Nurgul Realty Hub — Properties</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="description" content="Nurgul Realty — Кыймылсыз мүлк боюнча ишенимдүү чечимдер." />
-
-  <style>
-    :root{
-      --green-dark:#081B17;
-      --green-main:#0F2A24;
-      --yellow-main:#F2C94C;
-      --yellow-soft:#FFE08A;
-      --text-main:#F5F7F6;
-      --text-muted:#A8B3AF;
-    }
-
-    *{box-sizing:border-box;margin:0;padding:0}
-
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-      background:var(--green-dark);
-      color:var(--text-main);
-      overflow-x:hidden;
-    }
-
-    /* ================= HEADER ================= */
-    header{
-      position:fixed;
-      top:0; left:0; right:0;
-      height:120px;
-      padding:0 36px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      z-index:50;
-      background:rgba(8,27,23,0.88);
-      backdrop-filter:blur(10px);
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      position:relative;
-      transform: translate(-40px, 14px);
-    }
-
-    .brand-logo{
-      height:280px;
-      width:auto;
-      display:block;
-      position:relative;
-      z-index:2;
-      filter:
-        drop-shadow(0 0 2px rgba(242,201,76,0.35))
-        drop-shadow(0 0 10px rgba(242,201,76,0.18));
-    }
-
-    .brand::before{
-      content:"";
-      position:absolute;
-      left:-80px;
-      top:50%;
-      transform:translateY(-50%);
-      width:480px;
-      height:260px;
-      background:radial-gradient(
-        ellipse,
-        rgba(242,201,76,0.75) 0%,
-        rgba(242,201,76,0.55) 25%,
-        rgba(242,201,76,0.32) 45%,
-        rgba(242,201,76,0.16) 60%,
-        rgba(242,201,76,0.06) 72%,
-        transparent 85%
-      );
-      filter:blur(34px);
-      z-index:1;
-      pointer-events:none;
-    }
-
-    .lang-switch{
-      display:flex;
-      align-items:center;
-      gap:16px;
-    }
-
-    .lang-item{
-      font-size:18px;
-      cursor:pointer;
-      opacity:.45;
-      transition:.2s;
-    }
-
-    .lang-item.active{
-      opacity:1;
-    }
-
-    /* ================= MAIN ================= */
-
-    main{
-      padding-top:180px;
-      padding-bottom:120px;
-    }
-
-    .properties-page{
-      max-width:1400px;
-      margin:0 auto;
-      padding:0 6%;
-    }
-
-    /* --- Back button --- */
-    .back-link{
-  position:relative;
-  z-index:60; /* 🔑 por encima del header (50) */
-  display:inline-block;
-  margin-bottom:48px;
-  font-size:13px;
-  letter-spacing:2px;
-  text-decoration:none;
-  color:var(--yellow-main);
-  border:1px solid var(--yellow-main);
-  padding:10px 22px;
-  transition:.25s ease;
+<style>
+:root{
+  --bg:#081B17;
+  --panel:#0F2A24;
+  --gold:#F2C94C;
+  --gold-soft:#FFE08A;
+  --text:#F5F7F6;
+  --muted:#A8B3AF;
 }
 
-    .back-link:hover{
-      background:var(--yellow-main);
-      color:#000;
-    }
+*{box-sizing:border-box;margin:0;padding:0}
 
-    .properties-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:48px;
-    }
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
 
-    .property-card{
-      display:flex;
-      flex-direction:column;
-    }
+/* ================= HEADER ================= */
 
-  .property-image{
-  width:100%;
-  height:260px;               /* altura de portada */
-  background:rgba(255,255,255,0.08);
-  border-radius:14px;
-  margin-bottom:16px;
-  overflow:hidden;
+header{
+  position:fixed;
+  inset:0 0 auto 0;
+  height:120px;
+  padding:0 36px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(8,27,23,.88);
+  backdrop-filter:blur(10px);
+  z-index:50;
+}
+
+.brand img{
+  height:280px;
+  transform:translate(-40px,14px);
+  filter:drop-shadow(0 0 12px rgba(242,201,76,.3));
+}
+
+.lang-switch{
   display:flex;
   align-items:center;
-  justify-content:center;
-}
-    
-.property-image img{
-  max-width:80%;              /* respiración premium */
-  max-height:80%;
-  object-fit:contain;
+  gap:14px;
 }
 
-    .property-content h3{
-      font-size:18px;
-      font-weight:600;
-      margin-bottom:8px;
-    }
+.lang-globe{
+  width:22px;
+  height:22px;
+}
 
-    .property-location,
-    .property-info,
-    .property-price{
-      font-size:14px;
-      color:var(--text-muted);
-      margin-bottom:6px;
-    }
-
-/* ===== QATAR LUXURY BUTTON (NO BLACK) ===== */
-.property-btn{
-  margin-top:14px;
-  padding:10px 28px;
-  background:rgba(255,255,255,0.02);
-  border:1px solid rgba(242,201,76,0.60);
-  border-radius:999px;
-  color:var(--yellow-main);
-  font-size:13px;
-  letter-spacing:1.5px;
+.lang-item{
   cursor:pointer;
-  backdrop-filter:blur(4px);
-  transition:background .35s ease, box-shadow .35s ease, transform .25s ease, color .35s ease;
+  opacity:.45;
+  font-size:18px;
 }
 
-.property-btn:hover{
-  background:rgba(242,201,76,0.10);
-  color:var(--yellow-main);
-  box-shadow:
-    0 0 0 1px rgba(242,201,76,0.35),
-    0 0 18px rgba(242,201,76,0.28);
-  transform:translateY(-1px);
+.lang-item.active{opacity:1}
+
+/* ================= MAIN ================= */
+
+main{
+  padding-top:180px;
+  padding-bottom:120px;
 }
 
-.property-btn:active{
-  transform:translateY(0);
+.properties-page{
+  max-width:1400px;
+  margin:auto;
+  padding:0 6%;
 }
-
-    @media(max-width:1024px){
-      .properties-grid{grid-template-columns:repeat(2,1fr)}
-    }
-
-    @media(max-width:600px){
-      .properties-grid{grid-template-columns:1fr}
-    }
-
-    /* ===== SECTION TITLE ===== */
 
 .section-title{
-  margin-top:80px;        /* 🔑 baja las tarjetas respecto al header */
-  margin-bottom:64px;     /* aire antes de las tarjetas */
-  max-width:780px;
+  margin-bottom:64px;
 }
 
 .section-title h2{
   font-size:clamp(28px,5vw,42px);
-  font-weight:500;
-  line-height:1.2;
-  margin-bottom:14px;
 }
 
 .section-title p{
-  font-size:15px;
-  color:var(--text-muted);
-  letter-spacing:.5px;
+  color:var(--muted);
+  margin-top:10px;
 }
 
-/* ===== QATAR LUXURY HOVER — FEATURED CARD (NO FLICKER) ===== */
+/* ================= GRID ================= */
 
-.featured-card{
-  position:relative;
-  transition:transform .45s ease, box-shadow .45s ease;
-  will-change:transform;
+.properties-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:48px;
 }
 
-/* ✅ Hover SOLO cuando NO está expandida */
-.featured-card:not([data-expanded="true"]):hover{
-  transform:translateY(-8px);
-  box-shadow:
-    0 18px 40px rgba(0,0,0,.45),
-    0 0 0 1px rgba(242,201,76,.35);
+@media(max-width:1024px){
+  .properties-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .properties-grid{grid-template-columns:1fr}
 }
 
-.featured-card .property-image{
-  transition:filter .45s ease;
+/* ================= CARD ================= */
+
+.property-card{
+  background:rgba(255,255,255,.03);
+  border-radius:20px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  min-height:520px;
+  border:1px solid rgba(242,201,76,.25);
 }
 
-.featured-card:not([data-expanded="true"]):hover .property-image{
-  filter:
-    drop-shadow(0 0 12px rgba(242,201,76,.25))
-    brightness(1.05);
-}
-
-.featured-card .property-image img{
-  transition:transform .45s ease;
-}
-
-.featured-card:not([data-expanded="true"]):hover .property-image img{
-  transform:scale(1.04);
-}
-
-/* ===== EXPANDIBLE GALLERY — FEATURED CARD ===== */
-
-.property-gallery{
-  max-height:0;
+.property-image{
+  height:240px;
+  border-radius:16px;
   overflow:hidden;
-  transition:max-height .6s ease;
-  margin-top:18px;
-}
-
-.featured-card[data-expanded="true"] .property-gallery{
-  max-height:520px;
-}
-
-.gallery-track{
   display:flex;
-  transition:transform .5s ease;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:18px;
 }
 
-.gallery-track img{
+.property-image img{
   width:100%;
-  flex-shrink:0;
-  border-radius:12px;
+  height:100%;
+  object-fit:cover;
 }
 
-.gallery-controls{
+.property-content{
+  flex:1;
   display:flex;
-  justify-content:space-between;
-  margin-top:12px;
+  flex-direction:column;
 }
 
-.gallery-controls button{
-  background:transparent;
-  border:1px solid rgba(255,255,255,.4);
-  color:#fff;
-  padding:6px 14px;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-/* ===== LIGHTBOX PREMIUM ===== */
-
-.lightbox{
-  position:fixed;
-  inset:0;
-  display:none;
-  z-index:999;
-}
-
-.lightbox.active{
-  display:block;
-}
-
-.lightbox-overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(6,14,12,.92);
-  backdrop-filter:blur(6px);
-}
-
-.lightbox-content{
-  position:relative;
-  max-width:1100px;
-  margin:6vh auto;
-  padding:24px;
-  background:rgba(8,27,23,.85);
-  border-radius:18px;
-  box-shadow:0 40px 120px rgba(0,0,0,.6);
-  text-align:center;
-}
-
-.lightbox-content img{
-  max-width:100%;
-  max-height:65vh;
-  border-radius:12px;
-}
-
-.lightbox-text{
-  margin-top:18px;
-}
-
-.lightbox-text h4{
-  font-size:20px;
-  font-weight:500;
+.property-content h3{
+  font-size:18px;
   margin-bottom:6px;
 }
 
-.lightbox-text p{
+.property-location,
+.property-info,
+.property-price{
   font-size:14px;
-  color:var(--text-muted);
+  color:var(--muted);
+  margin-bottom:6px;
 }
 
-.lightbox-close{
-  position:absolute;
-  top:14px;
-  right:18px;
-  background:none;
-  border:none;
-  color:#fff;
-  font-size:22px;
+/* ================= BUTTONS ================= */
+
+.property-actions{
+  margin-top:auto;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.property-btn{
+  flex:1 1 calc(33.33% - 10px);
+  text-align:center;
+  padding:10px 18px;
+  border-radius:999px;
+  border:1px solid rgba(242,201,76,.6);
+  background:transparent;
+  color:var(--gold);
+  font-size:13px;
   cursor:pointer;
+  text-decoration:none;
 }
 
-/* ================= RENT MODAL ================= */
+.property-btn:hover{
+  background:rgba(242,201,76,.12);
+}
 
-.rent-modal{
+@media(max-width:600px){
+  .property-btn{flex:1 1 100%}
+}
+
+/* ================= MODAL ================= */
+
+.modal{
   position:fixed;
   inset:0;
-  z-index:200;
   display:none;
+  z-index:200;
 }
 
-.rent-modal.active{
-  display:block;
-}
+.modal.active{display:block}
 
-.rent-modal-overlay{
+.modal-overlay{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,0.55);
+  background:rgba(0,0,0,.6);
   backdrop-filter:blur(6px);
 }
 
-.rent-modal-content{
+.modal-content{
   position:relative;
-  max-width:960px;
+  max-width:900px;
   margin:60px auto;
-  background:rgba(10,30,26,0.95);
-  border:1px solid rgba(242,201,76,0.35);
+  background:rgba(10,30,26,.95);
   border-radius:18px;
   padding:28px;
+  border:1px solid rgba(242,201,76,.35);
   max-height:85vh;
   overflow-y:auto;
-  box-shadow:0 0 40px rgba(0,0,0,0.45);
 }
 
-.rent-modal-close{
+.modal-close{
   position:absolute;
   top:18px;
   right:18px;
   background:none;
   border:none;
   font-size:20px;
-  color:var(--yellow-main);
+  color:var(--gold);
   cursor:pointer;
 }
 
-.rent-modal-header h3{
-  font-size:22px;
-  margin-bottom:6px;
-}
+.modal h3{margin-bottom:14px}
+.modal p{margin-bottom:12px;color:var(--muted)}
+.modal ul{margin-left:18px}
+.modal li{margin-bottom:6px}
 
-.rent-modal-price{
-  color:var(--yellow-soft);
-  margin-bottom:20px;
-}
+/* ================= GALLERY ================= */
 
-.rent-modal-gallery{
+.gallery{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
   gap:12px;
-  margin-bottom:24px;
+  margin-top:18px;
 }
 
-.rent-modal-gallery img{
+.gallery img{
   width:100%;
   height:160px;
   object-fit:cover;
   border-radius:10px;
 }
-
-.rent-modal-info p{
-  margin-bottom:14px;
-  color:var(--text-muted);
-}
-
-.rent-modal-list{
-  columns:2;
-  gap:40px;
-}
-
-.rent-modal-list li{
-  margin-bottom:8px;
-  font-size:14px;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-  .rent-modal-content{
-    margin:30px 12px;
-    padding:20px;
-  }
-
-  .rent-modal-list{
-    columns:1;
-  }
-}
-
-/* ===== RENT CARD IMAGE — BALANCED PREMIUM ===== */
-.rental-card .property-image{
-  height:240px;                /* equilibrado, no dominante */
-  border-radius:18px;
-}
-
-@media (max-width: 768px){
-  .rental-card .property-image{
-    height:200px;              /* mobile */
-  }
-}
-
-.rental-card .property-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;            /* look inmobiliario premium */
-}
-
-/* ===== ROYAL CENTRAL PARK — INFO STYLE ===== */
-.royal-info{
-  margin-top:24px;
-  padding:22px;
-  background:rgba(255,255,255,0.03);
-  border-radius:16px;
-  border:1px solid rgba(242,201,76,0.25);
-  font-size:14px;
-  line-height:1.6;
-  color:var(--text-main);
-}
-
-.royal-info p{
-  margin-bottom:12px;
-}
-
-.royal-highlight{
-  font-size:15px;
-  color:var(--yellow-soft);
-}
-
-.royal-features{
-  list-style:none;
-  padding-left:0;
-  margin:14px 0 18px;
-}
-
-.royal-features li{
-  margin-bottom:6px;
-}
-    
 </style>
 </head>
 
@@ -517,714 +249,221 @@
 
 <header>
   <div class="brand">
-    <img src="logo/nurgul-realty-hub-header.png" alt="Nurgul Realty Hub" class="brand-logo">
+    <img src="logo/nurgul-realty-hub-header.png" alt="Nurgul Realty Hub">
   </div>
 
   <div class="lang-switch">
-  <span class="lang-item" data-lang="ky">🇰🇬</span>
-  <span class="lang-item" data-lang="ru">🇷🇺</span>
-  <span class="lang-item" data-lang="en">🇬🇧</span>
-</div>
-
+    <svg class="lang-globe" viewBox="0 0 24 24">
+      <path fill="white" d="M12 2a10 10 0 1 0 0 20a10 10 0 0 0 0-20Z"/>
+    </svg>
+    <span class="lang-item" data-lang="ky">🇰🇬</span>
+    <span class="lang-item" data-lang="ru">🇷🇺</span>
+    <span class="lang-item" data-lang="en">🇬🇧</span>
+  </div>
 </header>
 
 <main>
-  <section class="properties-page">
-    
-<!-- ===== SECTION TITLE ===== -->
-    
+<section class="properties-page">
+
 <div class="section-title">
-  <h2 data-i18n="section_title">
-    Жашоонун жаңы деңгээли ушул жерден башталат
-  </h2>
-  <p data-i18n="section_subtitle">
-    Curated residences and premium developments
-  </p>
-</div>
-    
-    <!-- 🔙 BOTÓN RETORNO -->
-    
-    <a href="index.html" class="back-link" data-i18n="back">
-      ← КАЙРА БАРУУ
-    </a>
-
-    <section class="properties-grid">
-
-      <article class="property-card featured-card" data-expanded="false">
-
- <!-- PORTADA -->
-<div class="property-image property-cover">
-  <img src="images/royal1.png" alt="Royal Central Park Bishkek">
+  <h2 data-i18n="section_title"></h2>
+  <p data-i18n="section_subtitle"></p>
 </div>
 
-  <!-- CONTENIDO -->
-        
+<section class="properties-grid">
+
+<!-- ================= CARD 1 ================= -->
+
+<article class="property-card">
+  <div class="property-image">
+    <img src="images/royal1.png">
+  </div>
+
   <div class="property-content">
-    <h3 data-i18n="prop_title">Турак жай</h3>
-    <p class="property-location" data-i18n="prop_location">Жайгашкан жери</p>
-    <p class="property-info" data-i18n="prop_info">Маалымат</p>
-    <p class="property-price" data-i18n="prop_price">Баасы</p>
-    <button class="property-btn toggle-gallery" data-i18n="prop_btn">
-      Толугураак
-    </button>
-  </div>
+    <h3 data-i18n="royal_title"></h3>
+    <p class="property-location" data-i18n="royal_location"></p>
+    <p class="property-info" data-i18n="royal_short"></p>
+    <p class="property-price" data-i18n="royal_price"></p>
 
-<!-- ===== ROYAL CENTRAL PARK — INFO BLOCK ===== -->
-<div class="royal-info">
-
-  <p><strong>Застройщик:</strong> RCA Living</p>
-  <p><strong>Управление и развитие:</strong> Rox Living Global</p>
-  <p><strong>Проектирование и градостроительство:</strong> Nikken Sekkei (Япония)</p>
-
-  <p class="royal-highlight">
-    Royal Central Park — это не просто жилой комплекс.<br>
-    Это новый уровень жизни с концепцией <strong>«город в городе»</strong>.
-  </p>
-
-  <ul class="royal-features">
-    <li>🌿 Собственные парки</li>
-    <li>🏙 Современная архитектура</li>
-    <li>✨ Продуманные планировки</li>
-    <li>🚶‍♂️ Пространство для прогулок, отдыха и вдохновения</li>
-  </ul>
-
-  <p>
-    Общая площадь проекта — <strong>53,5 гектара</strong>.<br>
-    Из них <strong>27,2 гектара</strong> занимает инфраструктура:
-    зелёные зоны и водные объекты.
-  </p>
-
-  <p>
-    Проект предусматривает экологические решения:
-    искусственные водоёмы, посадку местных деревьев,
-    создание благоприятного микроклимата.
-  </p>
-
-  <p>
-    На территории комплекса уже построено искусственное озеро,
-    проложены дороги.
-  </p>
-
-  <p>
-    Виды застройки:
-    элитные апартаменты, офисы, торговые центры,
-    медицинское обслуживание, школы разных уровней,
-    детские игровые площадки (крытые и открытые),
-    спортивные комплексы, тематические сады,
-    беговые дорожки и зоны для мероприятий.
-  </p>
-
-</div>
-        
-  <!-- GALERÍA EXPANDIBLE -->
-        
-  <div class="property-gallery">
-    <div class="gallery-track">
-  <img src="images/rca1.png" alt="">
-  <img src="images/rca2.png" alt="">
-  <img src="images/rca3.png" alt="">
-</div>
-
-    <div class="gallery-controls">
-      <button class="gallery-prev">◀</button>
-      <button class="gallery-next">▶</button>
-    </div>
-  </div>
-
-</article>
-
-
-<!-- ================= PROPERTY CARD — RENT HOUSE (FIXED) ================= -->
-
-<article class="property-card rental-card">
-
-  <!-- PORTADA (solo 1 imagen) -->
-  <div class="property-image property-cover">
-    <img src="images/rent7.jpg" alt="House for rent — Yunusalieva / Suvanberdieva">
-  </div>
-
-  <!-- CONTENIDO -->
-  <div class="property-content">
-    <h3 data-i18n="rent_title">
-      House for Rent — Yunusalieva / Suvanberdieva
-    </h3>
-
-    <p class="property-location" data-i18n="rent_location">
-      Yunusalieva / Suvanberdieva district
-    </p>
-
-    <p class="property-info" data-i18n="rent_desc">
-      Comfortable house, fully ready for living.
-    </p>
-
-    <p class="property-price" data-i18n="rent_price">
-      $1500 / month
-    </p>
-
-<div class="rent-modal" id="rentModal">
-  <div class="rent-modal-overlay"></div>
-
-  <div class="rent-modal-content">
-
-    <button class="rent-modal-close">✕</button>
-
-    <div class="rent-modal-header">
-      <h3>House for Rent — Yunusalieva / Suvanberdieva</h3>
-      <p class="rent-modal-price">$1500 / month · Deposit $1500</p>
-    </div>
-
-    <!-- ✅ AQUÍ VAN LAS FOTOS -->
-    <div class="rent-modal-gallery">
-      <img src="images/rent1.jpg">
-      <img src="images/rent2.jpg">
-      <img src="images/rent3.jpg">
-      <img src="images/rent4.jpg">
-      <img src="images/rent5.jpg">
-      <img src="images/rent6.jpg">
-      <img src="images/rent7.jpg">
-      <img src="images/rent8.jpg">
-      <img src="images/rent9.jpg">
-      <img src="images/rent10.jpg">
-      <img src="images/rent11.jpg">
-      <img src="images/rent12.jpg">
-      <img src="images/rent13.jpg">
-    </div>
-
-    <div class="rent-modal-info">
-      ...
-    </div>
-
-  </div>
-</div>
-
-    
-    <!-- BOTONES -->
     <div class="property-actions">
-      <button class="property-btn open-rent-modal" data-i18n="prop_btn">
-        View details
-      </button>
-
-      <a
-        class="property-btn whatsapp-btn"
-        href="https://wa.me/996772630056"
-        target="_blank"
-        rel="noopener"
-      >
-        WhatsApp
-      </a>
+      <button class="property-btn open-royal-gallery" data-i18n="view"></button>
+      <button class="property-btn open-royal-info" data-i18n="info"></button>
+      <a class="property-btn" href="https://wa.me/996772630056" target="_blank">WhatsApp</a>
     </div>
   </div>
-  
 </article>
 
+<!-- ================= CARD 2 ================= -->
 
-      <article class="property-card">
-        <div class="property-image"></div>
-        <div class="property-content">
-          <h3 data-i18n="prop_title">Турак жай</h3>
-          <p class="property-location" data-i18n="prop_location">Жайгашкан жери</p>
-          <p class="property-info" data-i18n="prop_info">Маалымат</p>
-          <p class="property-price" data-i18n="prop_price">Баасы</p>
-          <button class="property-btn" data-i18n="prop_btn">Толугураак</button>
-        </div>
-      </article>
+<article class="property-card">
+  <div class="property-image">
+    <img src="images/rent7.jpg">
+  </div>
 
-    </section>
-  </section>
-</main>
-  
-<!-- ===== LIGHTBOX PREMIUM ===== -->
-  
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-overlay"></div>
+  <div class="property-content">
+    <h3 data-i18n="rent_title"></h3>
+    <p class="property-location" data-i18n="rent_location"></p>
+    <p class="property-info" data-i18n="rent_desc"></p>
+    <p class="property-price" data-i18n="rent_price"></p>
 
-  <div class="lightbox-content">
-    <button class="lightbox-close">✕</button>
-
-    <img id="lightbox-img" src="" alt="">
-
-    <div class="lightbox-text">
-      <h4 id="lightbox-title"></h4>
-      <p id="lightbox-desc"></p>
+    <div class="property-actions">
+      <button class="property-btn open-rent-gallery" data-i18n="view"></button>
+      <button class="property-btn open-rent-info" data-i18n="info"></button>
+      <a class="property-btn" href="https://wa.me/996772630056" target="_blank">WhatsApp</a>
     </div>
   </div>
+</article>
+
+</section>
+</section>
+</main>
+
+<!-- ================= MODALS ================= -->
+
+<div class="modal" id="royalInfo">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <button class="modal-close">✕</button>
+    <h3 data-i18n="royal_title"></h3>
+    <p data-i18n="royal_dev"></p>
+    <p data-i18n="royal_mgmt"></p>
+    <p data-i18n="royal_design"></p>
+    <p data-i18n="royal_desc"></p>
+    <ul>
+      <li data-i18n="royal_feat1"></li>
+      <li data-i18n="royal_feat2"></li>
+      <li data-i18n="royal_feat3"></li>
+      <li data-i18n="royal_feat4"></li>
+    </ul>
+  </div>
 </div>
-    
-<!-- ================= IDIOMAS (FUNCIONAL + HERENCIA) ================= -->
-  
+
+<div class="modal" id="rentInfo">
+  <div class="modal-overlay"></div>
+  <div class="modal-content">
+    <button class="modal-close">✕</button>
+    <h3 data-i18n="rent_info_title"></h3>
+    <p data-i18n="rent_info_body"></p>
+  </div>
+</div>
+
+<!-- ================= I18N ================= -->
+
 <script>
-const translations = {
-  ky:{
-    back:"← КАЙРА БАРУУ",
-    section_title:"Жашоонун жаңы деңгээли ушул жерден башталат",
-    section_subtitle:"Тандалган турак жайлар жана премиум долбоорлор",
-
-    prop_title:"Турак жай",
-    prop_location:"Жайгашкан жери",
-    prop_info:"Маалымат",
-    prop_price:"Баасы",
-    prop_btn:"Толугураак",
-
-    rent_title:"Үй ижарага берилет — Юнусалиева / Суванбердиева",
-    rent_location:"Юнусалиева / Суванбердиева району",
-    rent_desc:"Толук жабдылган, жашоого даяр үй.",
-    rent_price:"1500 $ / ай"
-  },
-
-  ru:{
-    back:"← НАЗАД",
-    section_title:"Жизнь исключительного уровня начинается здесь",
-    section_subtitle:"Отобранные жилые объекты и премиальные проекты",
-
-    prop_title:"Недвижимость",
-    prop_location:"Расположение",
-    prop_info:"Информация",
-    prop_price:"Цена",
-    prop_btn:"Подробнее",
-
-    rent_title:"Дом в аренду — Юнусалиева / Суванбердиева",
-    rent_location:"Район Юнусалиева / Суванбердиева",
-    rent_desc:"Комфортабельный дом, полностью готовый для проживания.",
-    rent_price:"1500 $ / месяц"
-  },
-
-  en:{
-    back:"← BACK",
-    section_title:"Where Exceptional Living Begins",
-    section_subtitle:"Curated residences and premium developments",
-
-    prop_title:"Property",
-    prop_location:"Location",
-    prop_info:"Details",
-    prop_price:"Price",
-    prop_btn:"View details",
-
-    rent_title:"House for Rent — Yunusalieva / Suvanberdieva",
-    rent_location:"Yunusalieva / Suvanberdieva district",
-    rent_desc:"Comfortable house, fully ready for living.",
-    rent_price:"$1500 / month"
-  }
-};
-
-royal_title:"Royal Central Park",
-royal_location:"Bishkek, Kyrgyzstan",
-royal_short:"Premium residential complex — city within a city.",
-
-info_btn:"Information",
-
-royal_dev:"Developer: RCA Living",
-royal_mgmt:"Management & Development: Rox Living Global",
-royal_design:"Architecture & Urban Planning: Nikken Sekkei (Japan)",
-
-royal_desc:"Royal Central Park is not just a residential complex. It represents a new level of living with a city-within-a-city concept.",
-
-royal_feat_1:"Private parks",
-royal_feat_2:"Modern architecture",
-royal_feat_3:"Thoughtfully designed layouts",
-royal_feat_4:"Spaces for walking, relaxation and inspiration",
-
-royal_area:"Total area: 53.5 hectares. Infrastructure occupies 27.2 hectares with green zones and water features.",
-royal_eco:"Eco-friendly solutions include artificial lakes, local trees and micro-climate creation.",
-royal_status:"An artificial lake and roads have already been completed.",
-royal_types:"Development includes apartments, offices, malls, medical centers, schools, playgrounds, sports complexes, gardens, running tracks and event zones."
-
-royal_title:"Royal Central Park",
-royal_location:"Бишкек, Кыргызстан",
-royal_short:"Премиальный жилой комплекс — город в городе.",
-
-info_btn:"Информация",
-
-royal_dev:"Застройщик: RCA Living",
-royal_mgmt:"Управление и развитие: Rox Living Global",
-royal_design:"Проектирование и градостроительство: Nikken Sekkei (Япония)",
-
-royal_desc:"Royal Central Park — это не просто жилой комплекс. Это новый уровень жизни с концепцией «город в городе».",
-
-royal_feat_1:"Собственные парки",
-royal_feat_2:"Современная архитектура",
-royal_feat_3:"Продуманные планировки",
-royal_feat_4:"Пространство для прогулок, отдыха и вдохновения",
-
-royal_area:"Общая площадь проекта — 53,5 гектара. Из них 27,2 гектара занимает инфраструктура: зелёные зоны и водные объекты.",
-royal_eco:"Проект предусматривает экологические решения: искусственные водоёмы, посадку местных деревьев и создание микроклимата.",
-royal_status:"На территории уже построено искусственное озеро и выполнены дороги.",
-royal_types:"Проект включает элитные апартаменты, офисы, торговые центры, медицинские учреждения, школы, детские и спортивные площадки, тематические сады, беговые дорожки и зоны для мероприятий."
+const T={
+ky:{
+section_title:"Жашоонун жаңы деңгээли ушул жерден башталат",
+section_subtitle:"Тандалган турак жайлар жана премиум долбоорлор",
+view:"Толугураак",
+info:"Маалымат",
 
 royal_title:"Royal Central Park",
 royal_location:"Бишкек, Кыргызстан",
 royal_short:"Премиум турак жай комплекси — шаар ичиндеги шаар.",
-
-info_btn:"Маалымат",
-
+royal_price:"Баасы: суроо боюнча",
 royal_dev:"Куруучу: RCA Living",
 royal_mgmt:"Башкаруу жана өнүктүрүү: Rox Living Global",
-royal_design:"Долбоорлоо жана шаар куруу: Nikken Sekkei (Япония)",
+royal_design:"Долбоорлоо: Nikken Sekkei (Япония)",
+royal_desc:"Royal Central Park — бул жөн гана турак жай комплекси эмес.",
+royal_feat1:"Өз парктары",
+royal_feat2:"Заманбап архитектура",
+royal_feat3:"Ойлонулган пландоолор",
+royal_feat4:"Жашоо үчүн мейкиндик",
 
-royal_desc:"Royal Central Park — бул жөн гана турак жай комплекси эмес. Бул «шаар ичиндеги шаар» концепциясы менен жашоонун жаңы деңгээли.",
+rent_title:"Үй ижарага берилет",
+rent_location:"Юнусалиева / Суванбердиева",
+rent_desc:"Толук жабдылган үй",
+rent_price:"1500 $ / ай",
+rent_info_title:"Ижара тууралуу маалымат",
+rent_info_body:"Маалымат кийин кошулат"
+},
+ru:{
+section_title:"Жизнь исключительного уровня начинается здесь",
+section_subtitle:"Премиальные жилые проекты",
+view:"Подробнее",
+info:"Информация",
 
-royal_feat_1:"Өз парктары",
-royal_feat_2:"Заманбап архитектура",
-royal_feat_3:"Ойлонулган пландоолор",
-royal_feat_4:"Сейилдөө, эс алуу жана илхам үчүн мейкиндиктер",
+royal_title:"Royal Central Park",
+royal_location:"Бишкек, Кыргызстан",
+royal_short:"Премиальный жилой комплекс — город в городе.",
+royal_price:"Цена по запросу",
+royal_dev:"Застройщик: RCA Living",
+royal_mgmt:"Управление: Rox Living Global",
+royal_design:"Проектирование: Nikken Sekkei",
+royal_desc:"Royal Central Park — это не просто жилой комплекс.",
+royal_feat1:"Собственные парки",
+royal_feat2:"Современная архитектура",
+royal_feat3:"Продуманные планировки",
+royal_feat4:"Комфортная среда",
 
-royal_area:"Долбоордун жалпы аянты — 53,5 гектар. Анын 27,2 гектарын инфраструктура түзөт: жашыл зоналар жана суу объектилери.",
-royal_eco:"Долбоор экологиялык чечимдерди камтыйт: жасалма көлдөр, жергиликтүү бак-дарактар жана микроклимат түзүү.",
-royal_status:"Аймакта жасалма көл жана жолдор буга чейин курулган.",
-royal_types:"Комплексте элиталык батирлер, кеңселер, соода борборлору, медициналык кызматтар, мектептер, балдар жана спорт аянтчалары, тематикалык бактар, чуркоо жолдору жана иш-чаралар үчүн зоналар каралган."
-  
-// aplicar idioma
-function applyLang(lang){
-  if(!translations[lang]) lang = "ky";
+rent_title:"Дом в аренду",
+rent_location:"Юнусалиева / Суванбердиева",
+rent_desc:"Полностью готов к проживанию",
+rent_price:"1500 $ / месяц",
+rent_info_title:"Информация по аренде",
+rent_info_body:"Контент будет добавлен позже"
+},
+en:{
+section_title:"Where Exceptional Living Begins",
+section_subtitle:"Curated residences and premium developments",
+view:"View details",
+info:"Information",
 
-  document.documentElement.lang = lang;
-  localStorage.setItem("nurgul_lang", lang);
+royal_title:"Royal Central Park",
+royal_location:"Bishkek, Kyrgyzstan",
+royal_short:"Premium residential complex — city within a city.",
+royal_price:"Pricing on request",
+royal_dev:"Developer: RCA Living",
+royal_mgmt:"Management: Rox Living Global",
+royal_design:"Architecture: Nikken Sekkei",
+royal_desc:"Royal Central Park is not just a residential complex.",
+royal_feat1:"Private parks",
+royal_feat2:"Modern architecture",
+royal_feat3:"Smart layouts",
+royal_feat4:"Lifestyle spaces",
 
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const key = el.dataset.i18n;
-    if(translations[lang][key]){
-      el.textContent = translations[lang][key];
-    }
-  });
+rent_title:"House for Rent",
+rent_location:"Yunusalieva / Suvanberdieva",
+rent_desc:"Fully ready for living",
+rent_price:"$1500 / month",
+rent_info_title:"Rental Information",
+rent_info_body:"Content will be added later"
+}
+};
 
-  document.querySelectorAll(".lang-item")
-    .forEach(b=>b.classList.remove("active"));
-
-  document
-    .querySelector(`.lang-item[data-lang="${lang}"]`)
-    ?.classList.add("active");
+function applyLang(l){
+localStorage.setItem("lang",l);
+document.documentElement.lang=l;
+document.querySelectorAll("[data-i18n]").forEach(e=>{
+const k=e.dataset.i18n;
+if(T[l][k]) e.textContent=T[l][k];
+});
+document.querySelectorAll(".lang-item").forEach(b=>b.classList.remove("active"));
+document.querySelector(`.lang-item[data-lang="${l}"]`).classList.add("active");
 }
 
-// eventos
-document.querySelectorAll(".lang-item").forEach(btn=>{
-  btn.addEventListener("click", ()=> applyLang(btn.dataset.lang));
+document.querySelectorAll(".lang-item").forEach(b=>{
+b.onclick=()=>applyLang(b.dataset.lang);
 });
 
-// idioma inicial
-applyLang(localStorage.getItem("nurgul_lang") || "ky");
-  
-</script>
-  
-<script>
-  
-(() => {
-  const card = document.querySelector(".featured-card");
-  const toggleBtn = card.querySelector(".toggle-gallery");
-  const track = card.querySelector(".gallery-track");
-  const images = track.querySelectorAll("img");
-  let index = 0;
+applyLang(localStorage.getItem("lang")||"ky");
 
-  toggleBtn.addEventListener("click", () => {
-    const expanded = card.getAttribute("data-expanded") === "true";
-    card.setAttribute("data-expanded", !expanded);
-  });
+/* MODALS */
+function modal(id){
+const m=document.getElementById(id);
+m.classList.add("active");
+document.body.style.overflow="hidden";
+m.querySelector(".modal-close").onclick=close;
+m.querySelector(".modal-overlay").onclick=close;
+function close(){
+m.classList.remove("active");
+document.body.style.overflow="";
+}
+}
 
-  card.querySelector(".gallery-next").onclick = () => {
-    index = (index + 1) % images.length;
-    track.style.transform = `translateX(-${index * 100}%)`;
-  };
-
-  card.querySelector(".gallery-prev").onclick = () => {
-    index = (index - 1 + images.length) % images.length;
-    track.style.transform = `translateX(-${index * 100}%)`;
-  };
-})();
-  
-</script>
-  
-<script>
-(() => {
-  const lightbox = document.getElementById("lightbox");
-  const imgBox = document.getElementById("lightbox-img");
-  const titleBox = document.getElementById("lightbox-title");
-  const descBox = document.getElementById("lightbox-desc");
-
-  const galleryImages = [
-    "images/rca1.png",
-    "images/rca2.png",
-    "images/rca3.png"
-  ];
-
-  let currentIndex = 0;
-
-  const captions = {
-    "images/rca1.png":{
-      title:{
-        ky:"Royal Central Park — Сырткы көрүнүш",
-        ru:"Royal Central Park — Экстерьер",
-        en:"Royal Central Park — Exterior"
-      },
-      desc:{
-        ky:"Заманбап архитектура жана шаардык премиум интеграция.",
-        ru:"Современная архитектура с премиальной городской интеграцией.",
-        en:"Contemporary architecture with premium urban integration."
-      }
-    },
-    "images/rca2.png":{
-      title:{
-        ky:"Royal Central Park — Интерьер",
-        ru:"Royal Central Park — Интерьер",
-        en:"Royal Central Park — Interior"
-      },
-      desc:{
-        ky:"Жогорку сапаттагы материалдар жана жылуу жарыктандыруу.",
-        ru:"Элегантный дизайн, тёплое освещение и благородные материалы.",
-        en:"Elegant design, warm lighting and noble materials."
-      }
-    },
-    "images/rca3.png":{
-      title:{
-        ky:"Royal Central Park — Планировкалар",
-        ru:"Royal Central Park — Планировки",
-        en:"Royal Central Park — Floor Plans"
-      },
-      desc:{
-        ky:"Ыңгайлуулук жана функционалдуулук үчүн оптималдаштырылган.",
-        ru:"Оптимизированные планировки для комфорта и функциональности.",
-        en:"Optimized layouts for comfort and functionality."
-      }
-    }
-  };
-
-  function updateLightbox(index){
-    const lang = localStorage.getItem("nurgul_lang") || "ky";
-
-    if(index < 0) index = galleryImages.length - 1;
-    if(index >= galleryImages.length) index = 0;
-
-    currentIndex = index;
-
-    const src = galleryImages[currentIndex];
-    imgBox.src = src;
-
-    if(captions[src]){
-      titleBox.textContent = captions[src].title[lang];
-      descBox.textContent = captions[src].desc[lang];
-    } else {
-      titleBox.textContent = "";
-      descBox.textContent = "";
-    }
-  }
-
-  document.querySelectorAll(".featured-card .gallery-track img").forEach(img=>{
-    img.addEventListener("click", ()=>{
-      const src = img.getAttribute("src");
-      currentIndex = galleryImages.indexOf(src);
-      updateLightbox(currentIndex);
-      lightbox.classList.add("active");
-    });
-  });
-
-  document.querySelector(".lightbox-close").onclick = () => {
-    lightbox.classList.remove("active");
-  };
-
-  document.querySelector(".lightbox-overlay").onclick = () => {
-    lightbox.classList.remove("active");
-  };
-
-  document.addEventListener("keydown", (e)=>{
-    if(!lightbox.classList.contains("active")) return;
-    if(e.key === "ArrowRight") updateLightbox(currentIndex + 1);
-    if(e.key === "ArrowLeft") updateLightbox(currentIndex - 1);
-    if(e.key === "Escape") lightbox.classList.remove("active");
-  });
-
-  let startX = 0;
-  imgBox.addEventListener("touchstart", e=>{
-    startX = e.touches[0].clientX;
-  });
-
-  imgBox.addEventListener("touchend", e=>{
-    const diff = startX - e.changedTouches[0].clientX;
-    if(Math.abs(diff) > 50){
-      diff > 0 ? updateLightbox(currentIndex + 1) : updateLightbox(currentIndex - 1);
-    }
-  });
-})();
-</script>
-  
-<script>
-(() => {
-  const lightbox = document.getElementById("lightbox");
-  const imgBox = document.getElementById("lightbox-img");
-  const titleBox = document.getElementById("lightbox-title");
-  const descBox = document.getElementById("lightbox-desc");
-
-  document.querySelectorAll(".rent-modal-gallery img").forEach((img, i) => {
-    img.addEventListener("click", () => {
-      imgBox.src = img.src;
-
-      titleBox.textContent = "House for Rent";
-      descBox.textContent = "";
-
-      lightbox.classList.add("active");
-    });
-  });
-
-  document.querySelector(".lightbox-close").onclick = () => {
-    lightbox.classList.remove("active");
-  };
-
-  document.querySelector(".lightbox-overlay").onclick = () => {
-    lightbox.classList.remove("active");
-  };
-})();
-</script>
-  
-<!-- ================= RENT HOUSE MODAL ================= -->
-
-<div class="rent-modal" id="rentModal">
-
-  <div class="rent-modal-overlay"></div>
-
-  <div class="rent-modal-content">
-
-    <!-- CERRAR -->
-    <button class="rent-modal-close">✕</button>
-
-    <!-- HEADER -->
-    <div class="rent-modal-header">
-      <h3 data-i18n="rent_modal_title">
-        Дом в аренду — Юнусалиева / Суванбердиева
-      </h3>
-
-      <p class="rent-modal-price" data-i18n="rent_modal_price">
-        1500 $ / месяц · Депозит 1500 $
-      </p>
-    </div>
-
-    <!-- GALERÍA -->
-    <div class="rent-modal-gallery">
-      <img src="images/rent-house/rent1.jpg" alt="">
-      <img src="images/rent-house/rent2.jpg" alt="">
-      <img src="images/rent-house/rent3.jpg" alt="">
-      <img src="images/rent-house/rent4.jpg" alt="">
-      <img src="images/rent-house/rent5.jpg" alt="">
-      <img src="images/rent-house/rent6.jpg" alt="">
-      <img src="images/rent-house/rent7.jpg" alt="">
-      <img src="images/rent-house/rent8.jpg" alt="">
-      <img src="images/rent-house/rent9.jpg" alt="">
-      <img src="images/rent-house/rent10.jpg" alt="">
-      <img src="images/rent-house/rent11.jpg" alt="">
-      <img src="images/rent-house/rent12.jpg" alt="">
-      <img src="images/rent-house/rent13.jpg" alt="">
-    </div>
-
-    <!-- INFO -->
-    <div class="rent-modal-info">
-
-      <p data-i18n="rent_modal_desc">
-        Сдается комфортабельный дом, полностью готовый для проживания.
-      </p>
-
-      <ul class="rent-modal-list">
-        <li>2 спальни</li>
-        <li>Просторный холл</li>
-        <li>Кухня</li>
-        <li>2 санузла</li>
-        <li>Газовое отопление</li>
-        <li>Газовая плита</li>
-        <li>2 холодильника</li>
-        <li>Мебель: кровати, диван</li>
-        <li>Отдельная кухня во дворе</li>
-        <li>Кондиционер</li>
-        <li>Участок 4 сотки</li>
-        <li>Парковка на 2 машины</li>
-      </ul>
-
-    </div>
-
-  </div>
-</div>
-
-<script>
-(() => {
-
-  const rentModal = document.getElementById("rentModal");
-  const closeBtn  = document.querySelector(".rent-modal-close");
-  const overlay   = document.querySelector(".rent-modal-overlay");
-
-  /* BOTÓN INFO / DETAILS DE TARJETA 2 */
-  document.querySelectorAll(".open-rent-modal").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      rentModal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    });
-  });
-
-  /* CERRAR */
-  function closeModal(){
-    rentModal.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-
-  closeBtn.addEventListener("click", closeModal);
-  overlay.addEventListener("click", closeModal);
-
-})();
+document.querySelector(".open-royal-info").onclick=()=>modal("royalInfo");
+document.querySelector(".open-rent-info").onclick=()=>modal("rentInfo");
 </script>
 
-<!-- ================= ROYAL INFO MODAL ================= -->
-
-<div class="rent-modal" id="royalInfoModal">
-
-  <div class="rent-modal-overlay"></div>
-
-  <div class="rent-modal-content">
-
-    <button class="rent-modal-close">✕</button>
-
-    <div class="rent-modal-header">
-      <h3 data-i18n="royal_title">Royal Central Park</h3>
-    </div>
-
-    <div class="rent-modal-info">
-
-      <p data-i18n="royal_dev"></p>
-      <p data-i18n="royal_mgmt"></p>
-      <p data-i18n="royal_design"></p>
-
-      <p data-i18n="royal_desc"></p>
-
-      <ul class="rent-modal-list">
-        <li data-i18n="royal_feat_1"></li>
-        <li data-i18n="royal_feat_2"></li>
-        <li data-i18n="royal_feat_3"></li>
-        <li data-i18n="royal_feat_4"></li>
-      </ul>
-
-      <p data-i18n="royal_area"></p>
-      <p data-i18n="royal_eco"></p>
-      <p data-i18n="royal_status"></p>
-      <p data-i18n="royal_types"></p>
-
-    </div>
-  </div>
-</div>
-
-<script>
-(() => {
-  const modal = document.getElementById("royalInfoModal");
-  const closeBtn = modal.querySelector(".rent-modal-close");
-  const overlay = modal.querySelector(".rent-modal-overlay");
-
-  document.querySelectorAll(".open-royal-info").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      modal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    });
-  });
-
-  function close(){
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-
-  closeBtn.onclick = close;
-  overlay.onclick = close;
-})();
-</script>
-
-  
 </body>
 </html>
