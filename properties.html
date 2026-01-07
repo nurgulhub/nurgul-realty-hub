@@ -726,7 +726,9 @@
   <div class="property-content">
 
   <h3 data-i18n="prop_title">Турак жай</h3>
-  <p class="property-location" data-i18n="prop_location">Жайгашкан жери</p>
+  <p class="property-location" data-i18n="royal_location">
+  Bishkek, Kyrgyzstan
+  </p>
   <p class="property-info" data-i18n="prop_info">Маалымат</p>
   <p class="property-price" data-i18n="prop_price">Баасы</p>
 
@@ -973,6 +975,7 @@ const translations = {
     royal_eco: "Экологиялык чечимдер жана жасалма көлдөр.",
     royal_status: "Аймакта жолдор жана көл буга чейин курулган.",
     royal_types: "Элиталык батирлер, кеңселер, соода жана социалдык объекттер."
+    royal_location: "Бишкек, Кыргызстан",
   },
 
   ru: {
@@ -1011,7 +1014,8 @@ const translations = {
     royal_eco: "Экологические решения и искусственные водоёмы.",
     royal_status: "Озеро и дороги уже построены.",
     royal_types: "Апартаменты, офисы, ТЦ, школы, спорт и зоны отдыха."
-  },
+    royal_location: "Бишкек, Кыргызстан",
+},
 
   en: {
     back: "← BACK",
@@ -1049,6 +1053,7 @@ const translations = {
     royal_eco: "Eco-friendly solutions and artificial lakes.",
     royal_status: "Lake and roads already completed.",
     royal_types: "Apartments, offices, malls, schools, sports and leisure areas."
+    royal_location: "Bishkek, Kyrgyzstan",
   }
 };
 
@@ -1074,7 +1079,9 @@ document.querySelectorAll(".lang-item").forEach(btn => {
 });
 
 /* hereda idioma desde index.html (misma key: nurgul_lang) */
-applyLang(localStorage.getItem("nurgul_lang") || "ky");
+document.addEventListener("DOMContentLoaded", () => {
+  applyLang(localStorage.getItem("nurgul_lang") || "ky");
+});
   
 </script>
     
@@ -1220,11 +1227,12 @@ applyLang(localStorage.getItem("nurgul_lang") || "ky");
   const titleBox = document.getElementById("lightbox-title");
   const descBox = document.getElementById("lightbox-desc");
 
-  document.querySelectorAll(".rent-modal-gallery img").forEach((img, i) => {
+  document.querySelectorAll(".rent-modal-gallery img").forEach(img => {
     img.addEventListener("click", () => {
       imgBox.src = img.src;
 
-      titleBox.textContent = "House for Rent";
+      // 🔑 NO forzar texto aquí
+      titleBox.textContent = "";
       descBox.textContent = "";
 
       lightbox.classList.add("active");
@@ -1377,25 +1385,26 @@ document.addEventListener("click", (e)=>{
 
     <div class="rent-modal-info">
 
-      <p data-i18n="royal_dev"></p>
-      <p data-i18n="royal_mgmt"></p>
-      <p data-i18n="royal_design"></p>
+  <p><strong data-i18n="royal_dev"></strong></p>
+  <p data-i18n="royal_mgmt"></p>
+  <p data-i18n="royal_design"></p>
 
-      <p data-i18n="royal_desc"></p>
+  <p data-i18n="royal_desc"></p>
 
-      <ul class="rent-modal-list">
-        <li data-i18n="royal_feat_1"></li>
-        <li data-i18n="royal_feat_2"></li>
-        <li data-i18n="royal_feat_3"></li>
-        <li data-i18n="royal_feat_4"></li>
-      </ul>
+  <ul class="rent-modal-list">
+    <li data-i18n="royal_feat_1"></li>
+    <li data-i18n="royal_feat_2"></li>
+    <li data-i18n="royal_feat_3"></li>
+    <li data-i18n="royal_feat_4"></li>
+  </ul>
 
-      <p data-i18n="royal_area"></p>
-      <p data-i18n="royal_eco"></p>
-      <p data-i18n="royal_status"></p>
-      <p data-i18n="royal_types"></p>
+  <p data-i18n="royal_area"></p>
+  <p data-i18n="royal_eco"></p>
+  <p data-i18n="royal_status"></p>
+  <p data-i18n="royal_types"></p>
 
-    </div>
+</div>
+
   </div>
 </div>
 
