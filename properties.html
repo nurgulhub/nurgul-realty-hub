@@ -173,32 +173,27 @@
       margin-bottom:6px;
     }
 
- .property-btn{
-  margin-top:18px;
-  padding:12px 28px;
-  background:transparent;
-  border:1.4px solid rgba(242,201,76,0.65);
+.property-btn{
+  margin-top:14px;
+  padding:10px 28px;
+  background:rgba(255,255,255,0.02);
+  border:1px solid rgba(242,201,76,0.55);
   border-radius:999px;
   color:var(--yellow-main);
   font-size:13px;
-  letter-spacing:1.8px;
+  letter-spacing:1.5px;
   cursor:pointer;
-  transition:
-    box-shadow .35s ease,
-    background .35s ease,
-    color .35s ease,
-    transform .25s ease;
+  transition:all .35s ease;
+  backdrop-filter:blur(4px);
 }
 
 /* ✨ HOVER QATAR LUXURY */
-    
 .property-btn:hover{
-  background:rgba(242,201,76,0.08);
+  background:rgba(242,201,76,0.12);
   box-shadow:
-    0 0 10px rgba(242,201,76,0.35),
-    0 0 28px rgba(242,201,76,0.18);
+    0 0 0 1px rgba(242,201,76,0.45),
+    0 0 18px rgba(242,201,76,0.35);
   color:#000;
-  transform:translateY(-1px);
 }
 
 /* CLICK SUAVE */
@@ -527,6 +522,16 @@ const translations = {
   }
 };
 
+ky:{
+  lightbox_desc_royal:"Заманбап архитектура жана шаардык премиум интеграция."
+},
+ru:{
+  lightbox_desc_royal:"Современная архитектура с премиальной городской интеграцией."
+},
+en:{
+  lightbox_desc_royal:"Contemporary architecture with premium urban integration."
+}
+  
 // aplicar idioma
 function applyLang(lang){
   if(!translations[lang]) return;
@@ -588,7 +593,7 @@ applyLang(savedLang);
   
 </script>
   
-  <script>
+<script>
 (() => {
   const lightbox = document.getElementById("lightbox");
   const imgBox = document.getElementById("lightbox-img");
@@ -597,27 +602,53 @@ applyLang(savedLang);
 
   const captions = {
     "images/rca1.png":{
-      title:"Royal Central Park — Exterior",
-      desc:"Arquitectura contemporánea con integración urbana premium."
+      title:{
+        ky:"Royal Central Park — Сырткы көрүнүш",
+        ru:"Royal Central Park — Экстерьер",
+        en:"Royal Central Park — Exterior"
+      },
+      desc:{
+        ky:"Заманбап архитектура жана шаардык премиум интеграция.",
+        ru:"Современная архитектура с премиальной городской интеграцией.",
+        en:"Contemporary architecture with premium urban integration."
+      }
     },
     "images/rca2.png":{
-      title:"Royal Central Park — Interior",
-      desc:"Diseño elegante, iluminación cálida y materiales nobles."
+      title:{
+        ky:"Royal Central Park — Интерьер",
+        ru:"Royal Central Park — Интерьер",
+        en:"Royal Central Park — Interior"
+      },
+      desc:{
+        ky:"Жогорку сапаттагы материалдар жана жылуу жарыктандыруу.",
+        ru:"Элегантный дизайн, тёплое освещение и благородные материалы.",
+        en:"Elegant design, warm lighting and noble materials."
+      }
     },
     "images/rca3.png":{
-      title:"Royal Central Park — Floor Plans",
-      desc:"Distribuciones optimizadas para confort y funcionalidad."
+      title:{
+        ky:"Royal Central Park — Планировкалар",
+        ru:"Royal Central Park — Планировки",
+        en:"Royal Central Park — Floor Plans"
+      },
+      desc:{
+        ky:"Ыңгайлуулук жана функционалдуулук үчүн оптималдаштырылган.",
+        ru:"Оптимизированные планировки для комфорта и функциональности.",
+        en:"Optimized layouts for comfort and functionality."
+      }
     }
   };
 
   document.querySelectorAll(".featured-card .gallery-track img").forEach(img=>{
     img.addEventListener("click", ()=>{
       const src = img.getAttribute("src");
+      const lang = localStorage.getItem("nurgul_lang") || "ky";
+
       imgBox.src = src;
 
       if(captions[src]){
-        titleBox.textContent = captions[src].title;
-        descBox.textContent = captions[src].desc;
+        titleBox.textContent = captions[src].title[lang];
+        descBox.textContent = captions[src].desc[lang];
       }else{
         titleBox.textContent = "";
         descBox.textContent = "";
@@ -635,8 +666,8 @@ applyLang(savedLang);
     lightbox.classList.remove("active");
   };
 })();
-    
 </script>
+
   
 </body>
 </html>
