@@ -174,15 +174,41 @@
     }
 
     .property-btn{
-      margin-top:14px;
-      padding:10px 18px;
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.35);
-      border-radius:8px;
-      color:var(--text-main);
-      cursor:pointer;
-      width:fit-content;
-    }
+  margin-top:14px;
+  padding:11px 18px;
+  border-radius:10px;
+  cursor:pointer;
+  width:fit-content;
+
+  color:#0b1512;
+  border:1px solid rgba(242,201,76,.65);
+
+  background:linear-gradient(180deg,
+    rgba(242,201,76,.95),
+    rgba(255,224,138,.88)
+  );
+
+  box-shadow:
+    0 10px 24px rgba(0,0,0,.35),
+    0 0 0 1px rgba(242,201,76,.15) inset;
+
+  transition:transform .35s ease, box-shadow .35s ease, filter .35s ease;
+}
+
+.property-btn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.04);
+  box-shadow:
+    0 16px 34px rgba(0,0,0,.42),
+    0 0 18px rgba(242,201,76,.22);
+}
+
+.property-btn:active{
+  transform:translateY(0);
+  box-shadow:
+    0 8px 18px rgba(0,0,0,.35),
+    0 0 0 1px rgba(242,201,76,.22) inset;
+}
 
     @media(max-width:1024px){
       .properties-grid{grid-template-columns:repeat(2,1fr)}
@@ -213,37 +239,37 @@
   letter-spacing:.5px;
 }
 
-/* ===== QATAR LUXURY HOVER — FEATURED CARD ===== */
+/* ===== QATAR LUXURY HOVER — FEATURED CARD (NO FLICKER) ===== */
 
 .featured-card{
   position:relative;
   transition:transform .45s ease, box-shadow .45s ease;
+  will-change:transform;
 }
 
-.featured-card:hover{
+/* ✅ Hover SOLO cuando NO está expandida */
+.featured-card:not([data-expanded="true"]):hover{
   transform:translateY(-8px);
   box-shadow:
     0 18px 40px rgba(0,0,0,.45),
     0 0 0 1px rgba(242,201,76,.35);
 }
 
-/* imagen */
 .featured-card .property-image{
   transition:filter .45s ease;
 }
 
-.featured-card:hover .property-image{
+.featured-card:not([data-expanded="true"]):hover .property-image{
   filter:
     drop-shadow(0 0 12px rgba(242,201,76,.25))
     brightness(1.05);
 }
 
-/* micro zoom elegante */
 .featured-card .property-image img{
   transition:transform .45s ease;
 }
 
-.featured-card:hover .property-image img{
+.featured-card:not([data-expanded="true"]):hover .property-image img{
   transform:scale(1.04);
 }
 
@@ -283,6 +309,69 @@
   color:#fff;
   padding:6px 14px;
   border-radius:8px;
+  cursor:pointer;
+}
+
+/* ===== LIGHTBOX PREMIUM ===== */
+
+.lightbox{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:999;
+}
+
+.lightbox.active{
+  display:block;
+}
+
+.lightbox-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(6,14,12,.92);
+  backdrop-filter:blur(6px);
+}
+
+.lightbox-content{
+  position:relative;
+  max-width:1100px;
+  margin:6vh auto;
+  padding:24px;
+  background:rgba(8,27,23,.85);
+  border-radius:18px;
+  box-shadow:0 40px 120px rgba(0,0,0,.6);
+  text-align:center;
+}
+
+.lightbox-content img{
+  max-width:100%;
+  max-height:65vh;
+  border-radius:12px;
+}
+
+.lightbox-text{
+  margin-top:18px;
+}
+
+.lightbox-text h4{
+  font-size:20px;
+  font-weight:500;
+  margin-bottom:6px;
+}
+
+.lightbox-text p{
+  font-size:14px;
+  color:var(--text-muted);
+}
+
+.lightbox-close{
+  position:absolute;
+  top:14px;
+  right:18px;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:22px;
   cursor:pointer;
 }
     
@@ -328,10 +417,10 @@
 
       <article class="property-card featured-card" data-expanded="false">
 
-  <!-- PORTADA -->
-  <div class="property-image property-cover">
-    <img src="images/rca1.png" alt="Royal Central Park Bishkek">
-  </div>
+ <!-- PORTADA -->
+<div class="property-image property-cover">
+  <img src="images/royal1.png" alt="Royal Central Park Bishkek">
+</div>
 
   <!-- CONTENIDO -->
         
@@ -349,10 +438,10 @@
         
   <div class="property-gallery">
     <div class="gallery-track">
-      <img src="images/rca1.png" alt="">
-      <img src="images/rca2.png" alt="">
-      <img src="images/rca3.png" alt="">
-    </div>
+  <img src="images/rca1.png" alt="">
+  <img src="images/rca2.png" alt="">
+  <img src="images/rca3.png" alt="">
+</div>
 
     <div class="gallery-controls">
       <button class="gallery-prev">◀</button>
@@ -388,7 +477,24 @@
     </section>
   </section>
 </main>
+  
+<!-- ===== LIGHTBOX PREMIUM ===== -->
+  
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-overlay"></div>
 
+  <div class="lightbox-content">
+    <button class="lightbox-close">✕</button>
+
+    <img id="lightbox-img" src="" alt="">
+
+    <div class="lightbox-text">
+      <h4 id="lightbox-title"></h4>
+      <p id="lightbox-desc"></p>
+    </div>
+  </div>
+</div>
+  
 <!-- ================= IDIOMAS (FUNCIONAL + HERENCIA) ================= -->
   
 <script>
@@ -484,6 +590,56 @@ applyLang(savedLang);
   };
 })();
   
+</script>
+  
+  <script>
+(() => {
+  const lightbox = document.getElementById("lightbox");
+  const imgBox = document.getElementById("lightbox-img");
+  const titleBox = document.getElementById("lightbox-title");
+  const descBox = document.getElementById("lightbox-desc");
+
+  const captions = {
+    "images/rca1.png":{
+      title:"Royal Central Park — Exterior",
+      desc:"Arquitectura contemporánea con integración urbana premium."
+    },
+    "images/rca2.png":{
+      title:"Royal Central Park — Interior",
+      desc:"Diseño elegante, iluminación cálida y materiales nobles."
+    },
+    "images/rca3.png":{
+      title:"Royal Central Park — Floor Plans",
+      desc:"Distribuciones optimizadas para confort y funcionalidad."
+    }
+  };
+
+  document.querySelectorAll(".featured-card .gallery-track img").forEach(img=>{
+    img.addEventListener("click", ()=>{
+      const src = img.getAttribute("src");
+      imgBox.src = src;
+
+      if(captions[src]){
+        titleBox.textContent = captions[src].title;
+        descBox.textContent = captions[src].desc;
+      }else{
+        titleBox.textContent = "";
+        descBox.textContent = "";
+      }
+
+      lightbox.classList.add("active");
+    });
+  });
+
+  document.querySelector(".lightbox-close").onclick = () => {
+    lightbox.classList.remove("active");
+  };
+
+  document.querySelector(".lightbox-overlay").onclick = () => {
+    lightbox.classList.remove("active");
+  };
+})();
+    
 </script>
   
 </body>
