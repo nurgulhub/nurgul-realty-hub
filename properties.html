@@ -1225,38 +1225,57 @@ applyLang(localStorage.getItem("nurgul_lang") || "ky");
 </div>
 
 <script>
-(() => {
+/* === MODAL MANAGER — SOLO UNO ACTIVO === */
+function closeAllModals(){
+  document.querySelectorAll(".rent-modal.active")
+    .forEach(m => m.classList.remove("active"));
+  document.body.style.overflow = "";
+}
 
-  const rentModal = document.getElementById("rentModal");
-  if(!rentModal) return;
+function openModalById(id){
+  closeAllModals();
+  const modal = document.getElementById(id);
+  if(!modal) return;
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
 
-  const closeBtn = rentModal.querySelector(".rent-modal-close");
-  const overlay  = rentModal.querySelector(".rent-modal-overlay");
+/* === BOTONES === */
+document.querySelectorAll(".open-rent-modal")
+  .forEach(btn => btn.addEventListener("click", () =>
+    openModalById("rentModal")
+  ));
 
-  function openModal(){
-    rentModal.classList.add("active");
-    document.body.style.overflow = "hidden";
+document.querySelectorAll(".open-rent-info")
+  .forEach(btn => btn.addEventListener("click", () =>
+    openModalById("rentInfoModal")
+  ));
+
+document.querySelectorAll(".open-royal-gallery")
+  .forEach(btn => btn.addEventListener("click", () =>
+    openModalById("royalGalleryModal")
+  ));
+
+document.querySelectorAll(".open-royal-info")
+  .forEach(btn => btn.addEventListener("click", () =>
+    openModalById("royalInfoModal")
+  ));
+
+/* === CIERRE GLOBAL (X + overlay) === */
+document.addEventListener("click", (e)=>{
+  const closeBtn = e.target.closest(".rent-modal-close");
+  if(closeBtn){
+    closeBtn.closest(".rent-modal")?.classList.remove("active");
+    document.body.style.overflow = "";
+    return;
   }
 
-  function closeModal(){
-    rentModal.classList.remove("active");
+  const overlay = e.target.closest(".rent-modal-overlay");
+  if(overlay){
+    overlay.closest(".rent-modal")?.classList.remove("active");
     document.body.style.overflow = "";
   }
-
-  /* BOTÓN DETAILS (Tarjeta 2) */
-  document.querySelectorAll(".open-rent-modal").forEach(btn=>{
-    btn.addEventListener("click", openModal);
-  });
-
-  /* BOTÓN INFO (Tarjeta 2) — por ahora abre el mismo modal */
-  document.querySelectorAll(".open-rent-info").forEach(btn=>{
-    btn.addEventListener("click", openModal);
-  });
-
-  closeBtn?.addEventListener("click", closeModal);
-  overlay?.addEventListener("click", closeModal);
-
-})();
+});
 </script>
 
 <!-- ================= ROYAL INFO MODAL ================= -->
@@ -1297,51 +1316,7 @@ applyLang(localStorage.getItem("nurgul_lang") || "ky");
   </div>
 </div>
 
-<script>
-(() => {
-  const modal = document.getElementById("royalInfoModal");
-  const closeBtn = modal.querySelector(".rent-modal-close");
-  const overlay = modal.querySelector(".rent-modal-overlay");
 
-  document.querySelectorAll(".open-royal-info").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      modal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    });
-  });
-
-  function close(){
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-
-  closeBtn.onclick = close;
-  overlay.onclick = close;
-})();
-</script>
-  
-<script>
-(() => {
-  const modal = document.getElementById("royalGalleryModal");
-  const overlay = modal.querySelector(".rent-modal-overlay");
-  const closeBtn = modal.querySelector(".rent-modal-close");
-
-  document.querySelectorAll(".open-royal-gallery").forEach(btn => {
-    btn.addEventListener("click", () => {
-      modal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    });
-  });
-
-  function close() {
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-
-  closeBtn.onclick = close;
-  overlay.onclick = close;
-})();
-</script>
 
 <!-- ================= RENT INFO MODAL ================= -->
 
