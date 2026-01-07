@@ -806,6 +806,72 @@ const translations = {
   }
 };
 
+royal_title:"Royal Central Park",
+royal_location:"Bishkek, Kyrgyzstan",
+royal_short:"Premium residential complex — city within a city.",
+
+info_btn:"Information",
+
+royal_dev:"Developer: RCA Living",
+royal_mgmt:"Management & Development: Rox Living Global",
+royal_design:"Architecture & Urban Planning: Nikken Sekkei (Japan)",
+
+royal_desc:"Royal Central Park is not just a residential complex. It represents a new level of living with a city-within-a-city concept.",
+
+royal_feat_1:"Private parks",
+royal_feat_2:"Modern architecture",
+royal_feat_3:"Thoughtfully designed layouts",
+royal_feat_4:"Spaces for walking, relaxation and inspiration",
+
+royal_area:"Total area: 53.5 hectares. Infrastructure occupies 27.2 hectares with green zones and water features.",
+royal_eco:"Eco-friendly solutions include artificial lakes, local trees and micro-climate creation.",
+royal_status:"An artificial lake and roads have already been completed.",
+royal_types:"Development includes apartments, offices, malls, medical centers, schools, playgrounds, sports complexes, gardens, running tracks and event zones."
+
+royal_title:"Royal Central Park",
+royal_location:"Бишкек, Кыргызстан",
+royal_short:"Премиальный жилой комплекс — город в городе.",
+
+info_btn:"Информация",
+
+royal_dev:"Застройщик: RCA Living",
+royal_mgmt:"Управление и развитие: Rox Living Global",
+royal_design:"Проектирование и градостроительство: Nikken Sekkei (Япония)",
+
+royal_desc:"Royal Central Park — это не просто жилой комплекс. Это новый уровень жизни с концепцией «город в городе».",
+
+royal_feat_1:"Собственные парки",
+royal_feat_2:"Современная архитектура",
+royal_feat_3:"Продуманные планировки",
+royal_feat_4:"Пространство для прогулок, отдыха и вдохновения",
+
+royal_area:"Общая площадь проекта — 53,5 гектара. Из них 27,2 гектара занимает инфраструктура: зелёные зоны и водные объекты.",
+royal_eco:"Проект предусматривает экологические решения: искусственные водоёмы, посадку местных деревьев и создание микроклимата.",
+royal_status:"На территории уже построено искусственное озеро и выполнены дороги.",
+royal_types:"Проект включает элитные апартаменты, офисы, торговые центры, медицинские учреждения, школы, детские и спортивные площадки, тематические сады, беговые дорожки и зоны для мероприятий."
+
+royal_title:"Royal Central Park",
+royal_location:"Бишкек, Кыргызстан",
+royal_short:"Премиум турак жай комплекси — шаар ичиндеги шаар.",
+
+info_btn:"Маалымат",
+
+royal_dev:"Куруучу: RCA Living",
+royal_mgmt:"Башкаруу жана өнүктүрүү: Rox Living Global",
+royal_design:"Долбоорлоо жана шаар куруу: Nikken Sekkei (Япония)",
+
+royal_desc:"Royal Central Park — бул жөн гана турак жай комплекси эмес. Бул «шаар ичиндеги шаар» концепциясы менен жашоонун жаңы деңгээли.",
+
+royal_feat_1:"Өз парктары",
+royal_feat_2:"Заманбап архитектура",
+royal_feat_3:"Ойлонулган пландоолор",
+royal_feat_4:"Сейилдөө, эс алуу жана илхам үчүн мейкиндиктер",
+
+royal_area:"Долбоордун жалпы аянты — 53,5 гектар. Анын 27,2 гектарын инфраструктура түзөт: жашыл зоналар жана суу объектилери.",
+royal_eco:"Долбоор экологиялык чечимдерди камтыйт: жасалма көлдөр, жергиликтүү бак-дарактар жана микроклимат түзүү.",
+royal_status:"Аймакта жасалма көл жана жолдор буга чейин курулган.",
+royal_types:"Комплексте элиталык батирлер, кеңселер, соода борборлору, медициналык кызматтар, мектептер, балдар жана спорт аянтчалары, тематикалык бактар, чуркоо жолдору жана иш-чаралар үчүн зоналар каралган."
+  
 // aplicar idioma
 function applyLang(lang){
   if(!translations[lang]) lang = "ky";
@@ -976,7 +1042,35 @@ applyLang(localStorage.getItem("nurgul_lang") || "ky");
   });
 })();
 </script>
+  
+<script>
+(() => {
+  const lightbox = document.getElementById("lightbox");
+  const imgBox = document.getElementById("lightbox-img");
+  const titleBox = document.getElementById("lightbox-title");
+  const descBox = document.getElementById("lightbox-desc");
 
+  document.querySelectorAll(".rent-modal-gallery img").forEach((img, i) => {
+    img.addEventListener("click", () => {
+      imgBox.src = img.src;
+
+      titleBox.textContent = "House for Rent";
+      descBox.textContent = "";
+
+      lightbox.classList.add("active");
+    });
+  });
+
+  document.querySelector(".lightbox-close").onclick = () => {
+    lightbox.classList.remove("active");
+  };
+
+  document.querySelector(".lightbox-overlay").onclick = () => {
+    lightbox.classList.remove("active");
+  };
+})();
+</script>
+  
 <!-- ================= RENT HOUSE MODAL ================= -->
 
 <div class="rent-modal" id="rentModal">
@@ -1069,6 +1163,68 @@ applyLang(localStorage.getItem("nurgul_lang") || "ky");
 
 })();
 </script>
+
+<!-- ================= ROYAL INFO MODAL ================= -->
+
+<div class="rent-modal" id="royalInfoModal">
+
+  <div class="rent-modal-overlay"></div>
+
+  <div class="rent-modal-content">
+
+    <button class="rent-modal-close">✕</button>
+
+    <div class="rent-modal-header">
+      <h3 data-i18n="royal_title">Royal Central Park</h3>
+    </div>
+
+    <div class="rent-modal-info">
+
+      <p data-i18n="royal_dev"></p>
+      <p data-i18n="royal_mgmt"></p>
+      <p data-i18n="royal_design"></p>
+
+      <p data-i18n="royal_desc"></p>
+
+      <ul class="rent-modal-list">
+        <li data-i18n="royal_feat_1"></li>
+        <li data-i18n="royal_feat_2"></li>
+        <li data-i18n="royal_feat_3"></li>
+        <li data-i18n="royal_feat_4"></li>
+      </ul>
+
+      <p data-i18n="royal_area"></p>
+      <p data-i18n="royal_eco"></p>
+      <p data-i18n="royal_status"></p>
+      <p data-i18n="royal_types"></p>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const modal = document.getElementById("royalInfoModal");
+  const closeBtn = modal.querySelector(".rent-modal-close");
+  const overlay = modal.querySelector(".rent-modal-overlay");
+
+  document.querySelectorAll(".open-royal-info").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  function close(){
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  closeBtn.onclick = close;
+  overlay.onclick = close;
+})();
+</script>
+
   
 </body>
 </html>
