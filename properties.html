@@ -747,7 +747,7 @@
 </div>
 
     
-   <div class="property-actions">
+  <div class="property-actions">
 
   <div class="actions-row">
     <button class="property-btn open-rent-modal" data-i18n="btn_details">
@@ -764,6 +764,7 @@
     href="https://wa.me/996772630056"
     target="_blank"
     rel="noopener"
+    data-i18n="btn_whatsapp"
   >
     WhatsApp
   </a>
@@ -863,6 +864,9 @@ const translations = {
     royal_eco:"Экологиялык чечимдер жана жасалма көлдөр.",
     royal_status:"Аймакта жолдор жана көл буга чейин курулган.",
     royal_types:"Элиталык батирлер, кеңселер, соода жана социалдык объекттер."
+    rent_modal_title:"Үй ижарага берилет — Юнусалиева / Суванбердиева",
+    rent_modal_price:"1500 $ / ай · Депозит 1500 $",
+    rent_modal_desc:"Сдается комфортабельный дом, полностью готовый для проживания.",  
   },
 
   ru:{
@@ -897,7 +901,10 @@ const translations = {
     royal_eco:"Экологические решения и искусственные водоёмы.",
     royal_status:"Озеро и дороги уже построены.",
     royal_types:"Апартаменты, офисы, ТЦ, школы, спорт и зоны отдыха."
-  },
+    rent_modal_title:"Дом в аренду — Юнусалиева / Суванбердиева",
+    rent_modal_price:"1500 $ / месяц · Депозит 1500 $",
+    rent_modal_desc:"Сдается комфортабельный дом, полностью готовый для проживания.",
+},
 
   en:{
     back:"← BACK",
@@ -931,9 +938,12 @@ const translations = {
     royal_eco:"Eco-friendly solutions and artificial lakes.",
     royal_status:"Lake and roads already completed.",
     royal_types:"Apartments, offices, malls, schools, sports and leisure areas."
+    rent_modal_title:"House for Rent — Yunusalieva / Suvanberdieva",
+    rent_modal_price:"$1500 / month · Deposit $1500",
+    rent_modal_desc:"Comfortable house, fully ready for living.",
   }
 };
-
+ 
 // aplicar idioma
 function applyLang(lang){
   if(!translations[lang]) lang = "ky";
@@ -1203,25 +1213,33 @@ applyLang(localStorage.getItem("nurgul_lang") || "ky");
 (() => {
 
   const rentModal = document.getElementById("rentModal");
-  const closeBtn  = document.querySelector(".rent-modal-close");
-  const overlay   = document.querySelector(".rent-modal-overlay");
+  if(!rentModal) return;
 
-  /* BOTÓN INFO / DETAILS DE TARJETA 2 */
-  document.querySelectorAll(".open-rent-modal").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      rentModal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    });
-  });
+  const closeBtn = rentModal.querySelector(".rent-modal-close");
+  const overlay  = rentModal.querySelector(".rent-modal-overlay");
 
-  /* CERRAR */
+  function openModal(){
+    rentModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
   function closeModal(){
     rentModal.classList.remove("active");
     document.body.style.overflow = "";
   }
 
-  closeBtn.addEventListener("click", closeModal);
-  overlay.addEventListener("click", closeModal);
+  /* BOTÓN DETAILS (Tarjeta 2) */
+  document.querySelectorAll(".open-rent-modal").forEach(btn=>{
+    btn.addEventListener("click", openModal);
+  });
+
+  /* BOTÓN INFO (Tarjeta 2) — por ahora abre el mismo modal */
+  document.querySelectorAll(".open-rent-info").forEach(btn=>{
+    btn.addEventListener("click", openModal);
+  });
+
+  closeBtn?.addEventListener("click", closeModal);
+  overlay?.addEventListener("click", closeModal);
 
 })();
 </script>
