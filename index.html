@@ -189,6 +189,94 @@
       .hero{padding-top:160px}
   }
 }
+
+/* ================= GLOBAL RESPONSIVE ================= */
+
+@media (max-width: 1024px){
+  header{
+    height:96px;
+    padding:0 24px;
+  }
+
+  .brand-logo{
+    height:180px;
+  }
+
+  main{
+    padding-top:140px;
+  }
+}
+
+@media (max-width: 768px){
+  header{
+    height:84px;
+    padding:0 16px;
+  }
+
+  .brand{
+    transform: translate(-12px, 6px);
+  }
+
+  .brand-logo{
+    height:140px;
+  }
+
+  .lang-item{
+    font-size:16px;
+  }
+
+  main{
+    padding-top:120px;
+  }
+
+  .property-btn{
+    font-size:13px;
+    padding:10px 22px;
+  }
+}
+
+@media (max-width: 600px){
+  .brand-logo{
+    height:120px;
+  }
+
+  .lang-switch{
+    gap:10px;
+  }
+}
+
+@media (max-width: 420px){
+  .brand-logo{
+    height:105px;
+  }
+
+  header{
+    height:78px;
+  }
+}
+
+/* ================= HERO — RESPONSIVE ================= */
+
+@media (max-width: 1024px){
+  .hero h1{
+    font-size:clamp(34px, 6vw, 48px);
+  }
+}
+
+@media (max-width: 768px){
+  .hero h1{
+    font-size:clamp(26px, 7vw, 34px);
+    line-height:1.2;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .hero .property-btn{
+    padding:12px 22px;
+  }
+}
     
 </style>
 </head>
