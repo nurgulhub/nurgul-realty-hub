@@ -571,9 +571,15 @@
         Информация
       </button>
 
-      <button class="property-btn contact-btn" data-i18n="rent_btn_contact">
-      Связаться
-     </button>
+      <a
+  href="https://wa.me/996772630056"
+  target="_blank"
+  class="property-btn contact-btn"
+  data-i18n="rent_btn_contact"
+>
+  Связаться
+</a>
+
     </div>
   </div>
 
@@ -610,10 +616,11 @@
     </div>
   </div>
 </div>
-  
+    
 <!-- ================= IDIOMAS (FUNCIONAL + HERENCIA) ================= -->
   
 <script>
+  
 const translations = {
   ky:{
     back:"← КАЙРА БАРУУ",
@@ -623,7 +630,10 @@ const translations = {
     prop_location:"Жайгашкан жери",
     prop_info:"Маалымат",
     prop_price:"Баасы",
-    prop_btn:"Толугураак"
+    prop_btn:"Толугураак",
+
+    rent_btn_info:"Маалымат",
+    rent_btn_contact:"Байланышуу"
   },
   ru:{
     back:"← НАЗАД",
@@ -633,7 +643,10 @@ const translations = {
     prop_location:"Расположение",
     prop_info:"Информация",
     prop_price:"Цена",
-    prop_btn:"Подробнее"
+    prop_btn:"Подробнее",
+
+    rent_btn_info:"Информация",
+    rent_btn_contact:"Связаться"
   },
   en:{
     back:"← BACK",
@@ -643,7 +656,10 @@ const translations = {
     prop_location:"Location",
     prop_info:"Details",
     prop_price:"Price",
-    prop_btn:"View details"
+    prop_btn:"View details",
+
+    rent_btn_info:"Information",
+    rent_btn_contact:"Contact"
   }
 };
 
@@ -673,8 +689,8 @@ document.querySelectorAll(".lang-item").forEach(btn=>{
 // heredar idioma desde index
 const savedLang = localStorage.getItem("nurgul_lang") || "ky";
 applyLang(savedLang);
+  
 </script>
-
   
 <script>
   
