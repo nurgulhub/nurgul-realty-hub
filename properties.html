@@ -173,41 +173,37 @@
       margin-bottom:6px;
     }
 
-    .property-btn{
-  margin-top:14px;
-  padding:11px 18px;
-  border-radius:10px;
+ .property-btn{
+  margin-top:18px;
+  padding:12px 28px;
+  background:transparent;
+  border:1.4px solid rgba(242,201,76,0.65);
+  border-radius:999px;
+  color:var(--yellow-main);
+  font-size:13px;
+  letter-spacing:1.8px;
   cursor:pointer;
-  width:fit-content;
-
-  color:#0b1512;
-  border:1px solid rgba(242,201,76,.65);
-
-  background:linear-gradient(180deg,
-    rgba(242,201,76,.95),
-    rgba(255,224,138,.88)
-  );
-
-  box-shadow:
-    0 10px 24px rgba(0,0,0,.35),
-    0 0 0 1px rgba(242,201,76,.15) inset;
-
-  transition:transform .35s ease, box-shadow .35s ease, filter .35s ease;
+  transition:
+    box-shadow .35s ease,
+    background .35s ease,
+    color .35s ease,
+    transform .25s ease;
 }
 
+/* ✨ HOVER QATAR LUXURY */
+    
 .property-btn:hover{
-  transform:translateY(-2px);
-  filter:brightness(1.04);
+  background:rgba(242,201,76,0.08);
   box-shadow:
-    0 16px 34px rgba(0,0,0,.42),
-    0 0 18px rgba(242,201,76,.22);
+    0 0 10px rgba(242,201,76,0.35),
+    0 0 28px rgba(242,201,76,0.18);
+  color:#000;
+  transform:translateY(-1px);
 }
 
+/* CLICK SUAVE */
 .property-btn:active{
   transform:translateY(0);
-  box-shadow:
-    0 8px 18px rgba(0,0,0,.35),
-    0 0 0 1px rgba(242,201,76,.22) inset;
 }
 
     @media(max-width:1024px){
