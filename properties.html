@@ -544,8 +544,8 @@
 
   <!-- PORTADA -->
   <div class="property-image property-cover">
-    <img src="images/rent-house/rent1.jpg" alt="House for rent — Yunusalieva / Suvanberdieva">
-  </div>
+  <img src="images/rent7.jpg" alt="Дом в аренду — Юнусалиева / Суванбердиева">
+</div>
 
   <!-- CONTENIDO -->
   <div class="property-content">
@@ -566,22 +566,50 @@
     </p>
 
     <!-- BOTONES -->
+    
     <div class="property-actions">
-      <button class="property-btn open-rent-modal" data-i18n="rent_btn_info">
-        Информация
-      </button>
+  <button class="property-btn open-rent-modal" data-i18n="prop_btn">
+    View details
+  </button>
 
-      <a
-  href="https://wa.me/996772630056"
-  target="_blank"
-  class="property-btn contact-btn"
-  data-i18n="rent_btn_contact"
->
-  Связаться
-</a>
-
-    </div>
+  <a
+    class="property-btn whatsapp-btn"
+    href="https://wa.me/996772630056"
+    target="_blank"
+    rel="noopener"
+     >
+      WhatsApp
+        </a>
+        </div>
   </div>
+  
+<div class="property-gallery">
+  <div class="gallery-track rent-gallery">
+    <img src="images/rent1.jpg" alt="">
+    <img src="images/rent2.jpg" alt="">
+    <img src="images/rent3.jpg" alt="">
+    <img src="images/rent4.jpg" alt="">
+    <img src="images/rent5.jpg" alt="">
+    <img src="images/rent6.jpg" alt="">
+    <img src="images/rent7.jpg" alt="">
+    <img src="images/rent8.jpg" alt="">
+    <img src="images/rent9.jpg" alt="">
+    <img src="images/rent10.jpg" alt="">
+    <img src="images/rent11.jpg" alt="">
+    <img src="images/rent12.jpg" alt="">
+    <img src="images/rent13.jpg" alt="">
+  </div>
+</div>
+  
+<div class="rent-info">
+  <h3 data-i18n="rent_title"></h3>
+
+  <p data-i18n="rent_location"></p>
+
+  <p data-i18n="rent_desc"></p>
+
+  <p class="property-price" data-i18n="rent_price"></p>
+</div>
 
 </article>
 
@@ -662,7 +690,30 @@ const translations = {
     rent_btn_contact:"Contact"
   }
 };
+ky:{
+  ...
+  rent_title:"Үй ижарага берилет",
+  rent_location:"Юнусалиева / Суванбердиева району",
+  rent_price:"1500 $ / ай",
+  rent_desc:"Толук жабдылган, жашоого даяр үй."
+},
 
+ru:{
+  ...
+  rent_title:"Дом в аренду",
+  rent_location:"Район Юнусалиева / Суванбердиева",
+  rent_price:"1500 $ / месяц",
+  rent_desc:"Комфортабельный дом, полностью готовый для проживания."
+},
+
+en:{
+  ...
+  rent_title:"House for Rent",
+  rent_location:"Yunusalieva / Suvanberdieva district",
+  rent_price:"$1500 / month",
+  rent_desc:"Comfortable house, fully ready for living."
+}
+  
 // aplicar idioma
 function applyLang(lang){
   if(!translations[lang]) lang = "ky";
