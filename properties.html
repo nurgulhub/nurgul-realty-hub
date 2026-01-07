@@ -379,7 +379,7 @@
   cursor:pointer;
 }
 
-/* ================= RENT MODAL ================= */
+/* ================= MODAL BASE (SAFE: SOLO 1 ABIERTO) ================= */
 
 .rent-modal{
   position:fixed;
@@ -390,6 +390,15 @@
 
 .rent-modal.active{
   display:block;
+}
+
+/* 🔑 Evita que un overlay de otro modal “reciba” clicks */
+.rent-modal:not(.active){
+  pointer-events:none;
+}
+
+.rent-modal.active{
+  pointer-events:auto;
 }
 
 .rent-modal-overlay{
@@ -668,23 +677,26 @@
 
 </div>
        
-  <!-- ================= ROYAL GALLERY MODAL ================= -->
+ <!-- ================= ROYAL GALLERY MODAL ================= -->
 
 <div class="rent-modal" id="royalGalleryModal">
+
   <div class="rent-modal-overlay"></div>
 
   <div class="rent-modal-content">
+
     <button class="rent-modal-close">✕</button>
 
     <div class="rent-modal-header">
-      <h3 data-i18n="royal_title">Royal Central Park</h3>
+      <h3>Royal Central Park</h3>
     </div>
 
     <div class="rent-modal-gallery">
-      <img src="images/rca1.png" alt="">
-      <img src="images/rca2.png" alt="">
-      <img src="images/rca3.png" alt="">
+      <img src="images/rca1.png">
+      <img src="images/rca2.png">
+      <img src="images/rca3.png">
     </div>
+
   </div>
 </div>
 
@@ -982,34 +994,7 @@ document.querySelectorAll(".lang-item").forEach(btn => {
 applyLang(localStorage.getItem("nurgul_lang") || "ky");
   
 </script>
-  
-<script>
-  
-(() => {
-  const card = document.querySelector(".featured-card");
-  const toggleBtn = card.querySelector(".toggle-gallery");
-  const track = card.querySelector(".gallery-track");
-  const images = track.querySelectorAll("img");
-  let index = 0;
-
-  toggleBtn.addEventListener("click", () => {
-    const expanded = card.getAttribute("data-expanded") === "true";
-    card.setAttribute("data-expanded", !expanded);
-  });
-
-  card.querySelector(".gallery-next").onclick = () => {
-    index = (index + 1) % images.length;
-    track.style.transform = `translateX(-${index * 100}%)`;
-  };
-
-  card.querySelector(".gallery-prev").onclick = () => {
-    index = (index - 1 + images.length) % images.length;
-    track.style.transform = `translateX(-${index * 100}%)`;
-  };
-})();
-  
-</script>
-  
+    
 <script>
 (() => {
   const lightbox = document.getElementById("lightbox");
@@ -1119,6 +1104,29 @@ applyLang(localStorage.getItem("nurgul_lang") || "ky");
       diff > 0 ? updateLightbox(currentIndex + 1) : updateLightbox(currentIndex - 1);
     }
   });
+})();
+</script>
+
+<script>
+(() => {
+  const modal = document.getElementById("royalGalleryModal");
+  const closeBtn = modal.querySelector(".rent-modal-close");
+  const overlay = modal.querySelector(".rent-modal-overlay");
+
+  document.querySelectorAll(".open-royal-gallery").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  function close(){
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  closeBtn.onclick = close;
+  overlay.onclick = close;
 })();
 </script>
   
@@ -1391,6 +1399,45 @@ applyLang(localStorage.getItem("nurgul_lang") || "ky");
   closeBtn.onclick = close;
   overlay.onclick = close;
 })();
+</script>
+
+<script>
+  
+/* === MODAL MANAGER (ONE AT A TIME) === */
+function closeAllModals(){
+  document.querySelectorAll(".rent-modal.active").forEach(m => m.classList.remove("active"));
+  document.body.style.overflow = "";
+}
+
+function openModalById(id){
+  closeAllModals();
+  const modal = document.getElementById(id);
+  if(!modal) return;
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+}
+
+/* Close (delegado) — funciona aunque tengas 10 modales */
+document.addEventListener("click", (e) => {
+  const closeBtn = e.target.closest(".rent-modal-close");
+  if(closeBtn){
+    const modal = closeBtn.closest(".rent-modal");
+    if(modal){
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+    return;
+  }
+
+  const overlay = e.target.closest(".rent-modal-overlay");
+  if(overlay){
+    const modal = overlay.closest(".rent-modal");
+    if(modal){
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+  }
+});
 </script>
   
 </body>
