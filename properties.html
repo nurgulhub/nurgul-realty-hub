@@ -191,7 +191,29 @@
     @media(max-width:600px){
       .properties-grid{grid-template-columns:1fr}
     }
-  </style>
+
+    /* ===== SECTION TITLE ===== */
+
+.section-title{
+  margin-top:80px;        /* 🔑 baja las tarjetas respecto al header */
+  margin-bottom:64px;     /* aire antes de las tarjetas */
+  max-width:780px;
+}
+
+.section-title h2{
+  font-size:clamp(28px,5vw,42px);
+  font-weight:500;
+  line-height:1.2;
+  margin-bottom:14px;
+}
+
+.section-title p{
+  font-size:15px;
+  color:var(--text-muted);
+  letter-spacing:.5px;
+}
+    
+</style>
 </head>
 
 <body>
@@ -210,8 +232,20 @@
 
 <main>
   <section class="properties-page">
-
+    
+<!-- ===== SECTION TITLE ===== -->
+    
+<div class="section-title">
+  <h2 data-i18n="section_title">
+    Жашоонун жаңы деңгээли ушул жерден башталат
+  </h2>
+  <p data-i18n="section_subtitle">
+    Curated residences and premium developments
+  </p>
+</div>
+    
     <!-- 🔙 BOTÓN RETORNO -->
+    
     <a href="index.html" class="back-link" data-i18n="back">
       ← КАЙРА БАРУУ
     </a>
@@ -286,6 +320,21 @@ const translations = {
   }
 };
 
+ky:{
+  section_title:"Жашоонун жаңы деңгээли ушул жерден башталат",
+  section_subtitle:"Тандалган турак жайлар жана премиум долбоорлор"
+},
+
+ru:{
+  section_title:"Жизнь исключительного уровня начинается здесь",
+  section_subtitle:"Отобранные жилые объекты и премиальные проекты"
+},
+
+en:{
+  section_title:"Where Exceptional Living Begins",
+  section_subtitle:"Curated residences and premium developments"
+}
+  
 // aplicar idioma
 function applyLang(lang){
   document.documentElement.lang = lang;
