@@ -224,10 +224,11 @@
   </div>
 
   <div class="lang-switch">
-    <span class="lang-item active" data-lang="ky">🇰🇬</span>
-    <span class="lang-item" data-lang="ru">🇷🇺</span>
-    <span class="lang-item" data-lang="en">🇬🇧</span>
-  </div>
+  <span class="lang-item" data-lang="ky">🇰🇬</span>
+  <span class="lang-item" data-lang="ru">🇷🇺</span>
+  <span class="lang-item" data-lang="en">🇬🇧</span>
+</div>
+
 </header>
 
 <main>
@@ -292,10 +293,13 @@
 </main>
 
 <!-- ================= IDIOMAS (FUNCIONAL + HERENCIA) ================= -->
+  
 <script>
 const translations = {
   ky:{
     back:"← КАЙРА БАРУУ",
+    section_title:"Жашоонун жаңы деңгээли ушул жерден башталат",
+    section_subtitle:"Тандалган турак жайлар жана премиум долбоорлор",
     prop_title:"Турак жай",
     prop_location:"Жайгашкан жери",
     prop_info:"Маалымат",
@@ -304,6 +308,8 @@ const translations = {
   },
   ru:{
     back:"← НАЗАД",
+    section_title:"Жизнь исключительного уровня начинается здесь",
+    section_subtitle:"Отобранные жилые объекты и премиальные проекты",
     prop_title:"Недвижимость",
     prop_location:"Расположение",
     prop_info:"Информация",
@@ -312,6 +318,8 @@ const translations = {
   },
   en:{
     back:"← BACK",
+    section_title:"Where Exceptional Living Begins",
+    section_subtitle:"Curated residences and premium developments",
     prop_title:"Property",
     prop_location:"Location",
     prop_info:"Details",
@@ -320,44 +328,38 @@ const translations = {
   }
 };
 
-ky:{
-  section_title:"Жашоонун жаңы деңгээли ушул жерден башталат",
-  section_subtitle:"Тандалган турак жайлар жана премиум долбоорлор"
-},
-
-ru:{
-  section_title:"Жизнь исключительного уровня начинается здесь",
-  section_subtitle:"Отобранные жилые объекты и премиальные проекты"
-},
-
-en:{
-  section_title:"Where Exceptional Living Begins",
-  section_subtitle:"Curated residences and premium developments"
-}
-  
 // aplicar idioma
 function applyLang(lang){
+  if(!translations[lang]) return;
+
   document.documentElement.lang = lang;
-  localStorage.setItem("nurgul_lang", lang);
 
   document.querySelectorAll("[data-i18n]").forEach(el=>{
-    el.innerHTML = translations[lang][el.dataset.i18n];
+    const key = el.dataset.i18n;
+    if(translations[lang][key]){
+      el.innerHTML = translations[lang][key];
+    }
   });
 
   document.querySelectorAll(".lang-item").forEach(b=>b.classList.remove("active"));
-  document.querySelector(`.lang-item[data-lang="${lang}"]`)?.classList.add("active");
+  document
+    .querySelector(`.lang-item[data-lang="${lang}"]`)
+    ?.classList.add("active");
+
+  localStorage.setItem("nurgul_lang", lang);
 }
 
 // click idioma
 document.querySelectorAll(".lang-item").forEach(btn=>{
-  btn.onclick = ()=> applyLang(btn.dataset.lang);
+  btn.addEventListener("click", ()=>{
+    applyLang(btn.dataset.lang);
+  });
 });
 
 // heredar idioma desde index
-const savedLang = localStorage.getItem("nurgul_lang");
-if(savedLang && translations[savedLang]){
-  applyLang(savedLang);
-}
+const savedLang = localStorage.getItem("nurgul_lang") || "ky";
+applyLang(savedLang);
+  
 </script>
 
 </body>
