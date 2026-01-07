@@ -585,6 +585,14 @@ applyLang(savedLang);
   const titleBox = document.getElementById("lightbox-title");
   const descBox = document.getElementById("lightbox-desc");
 
+  const galleryImages = [
+    "images/rca1.png",
+    "images/rca2.png",
+    "images/rca3.png"
+  ];
+
+  let currentIndex = 0;
+
   const captions = {
     "images/rca1.png":{
       title:{
@@ -624,21 +632,31 @@ applyLang(savedLang);
     }
   };
 
+  function updateLightbox(index){
+    const lang = localStorage.getItem("nurgul_lang") || "ky";
+
+    if(index < 0) index = galleryImages.length - 1;
+    if(index >= galleryImages.length) index = 0;
+
+    currentIndex = index;
+
+    const src = galleryImages[currentIndex];
+    imgBox.src = src;
+
+    if(captions[src]){
+      titleBox.textContent = captions[src].title[lang];
+      descBox.textContent = captions[src].desc[lang];
+    } else {
+      titleBox.textContent = "";
+      descBox.textContent = "";
+    }
+  }
+
   document.querySelectorAll(".featured-card .gallery-track img").forEach(img=>{
     img.addEventListener("click", ()=>{
       const src = img.getAttribute("src");
-      const lang = localStorage.getItem("nurgul_lang") || "ky";
-
-      imgBox.src = src;
-
-      if(captions[src]){
-        titleBox.textContent = captions[src].title[lang];
-        descBox.textContent = captions[src].desc[lang];
-      }else{
-        titleBox.textContent = "";
-        descBox.textContent = "";
-      }
-
+      currentIndex = galleryImages.indexOf(src);
+      updateLightbox(currentIndex);
       lightbox.classList.add("active");
     });
   });
@@ -650,8 +668,28 @@ applyLang(savedLang);
   document.querySelector(".lightbox-overlay").onclick = () => {
     lightbox.classList.remove("active");
   };
+
+  document.addEventListener("keydown", (e)=>{
+    if(!lightbox.classList.contains("active")) return;
+    if(e.key === "ArrowRight") updateLightbox(currentIndex + 1);
+    if(e.key === "ArrowLeft") updateLightbox(currentIndex - 1);
+    if(e.key === "Escape") lightbox.classList.remove("active");
+  });
+
+  let startX = 0;
+  imgBox.addEventListener("touchstart", e=>{
+    startX = e.touches[0].clientX;
+  });
+
+  imgBox.addEventListener("touchend", e=>{
+    const diff = startX - e.changedTouches[0].clientX;
+    if(Math.abs(diff) > 50){
+      diff > 0 ? updateLightbox(currentIndex + 1) : updateLightbox(currentIndex - 1);
+    }
+  });
 })();
 </script>
+
 
   
 </body>
