@@ -571,9 +571,9 @@
         Информация
       </button>
 
-      <button class="property-btn" data-i18n="rent_btn_contact">
-        Связаться
-      </button>
+      <button class="property-btn contact-btn" data-i18n="rent_btn_contact">
+      Связаться
+     </button>
     </div>
   </div>
 
@@ -880,6 +880,33 @@ applyLang(savedLang);
 
   </div>
 </div>
+
+<script>
+(() => {
+
+  const rentModal = document.getElementById("rentModal");
+  const closeBtn  = document.querySelector(".rent-modal-close");
+  const overlay   = document.querySelector(".rent-modal-overlay");
+
+  /* BOTÓN INFO / DETAILS DE TARJETA 2 */
+  document.querySelectorAll(".open-rent-modal").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      rentModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  /* CERRAR */
+  function closeModal(){
+    rentModal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  closeBtn.addEventListener("click", closeModal);
+  overlay.addEventListener("click", closeModal);
+
+})();
+</script>
   
 </body>
 </html>
