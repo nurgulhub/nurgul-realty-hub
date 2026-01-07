@@ -642,9 +642,10 @@
   <div class="property-actions">
 
     <div class="actions-row">
-      <button class="property-btn toggle-gallery" data-i18n="btn_details">
-        Толугураак
-      </button>
+      <button class="property-btn open-royal-gallery" data-i18n="btn_details">
+  Толугураак
+</button>
+
 
       <button class="property-btn open-royal-info" data-i18n="btn_info">
         Маалымат
@@ -666,22 +667,26 @@
   </div>
 
 </div>
+       
+  <!-- ================= ROYAL GALLERY MODAL ================= -->
 
-        
-  <!-- GALERÍA EXPANDIBLE -->
-        
-  <div class="property-gallery">
-    <div class="gallery-track">
-  <img src="images/rca1.png" alt="">
-  <img src="images/rca2.png" alt="">
-  <img src="images/rca3.png" alt="">
-</div>
+<div class="rent-modal" id="royalGalleryModal">
+  <div class="rent-modal-overlay"></div>
 
-    <div class="gallery-controls">
-      <button class="gallery-prev">◀</button>
-      <button class="gallery-next">▶</button>
+  <div class="rent-modal-content">
+    <button class="rent-modal-close">✕</button>
+
+    <div class="rent-modal-header">
+      <h3 data-i18n="royal_title">Royal Central Park</h3>
+    </div>
+
+    <div class="rent-modal-gallery">
+      <img src="images/rca1.png" alt="">
+      <img src="images/rca2.png" alt="">
+      <img src="images/rca3.png" alt="">
     </div>
   </div>
+</div>
 
 </article>
 
@@ -1306,7 +1311,87 @@ applyLang(localStorage.getItem("nurgul_lang") || "ky");
   overlay.onclick = close;
 })();
 </script>
+  
+<script>
+(() => {
+  const modal = document.getElementById("royalGalleryModal");
+  const overlay = modal.querySelector(".rent-modal-overlay");
+  const closeBtn = modal.querySelector(".rent-modal-close");
 
+  document.querySelectorAll(".open-royal-gallery").forEach(btn => {
+    btn.addEventListener("click", () => {
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  function close() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  closeBtn.onclick = close;
+  overlay.onclick = close;
+})();
+</script>
+
+<!-- ================= RENT INFO MODAL ================= -->
+
+<div class="rent-modal" id="rentInfoModal">
+  <div class="rent-modal-overlay"></div>
+
+  <div class="rent-modal-content">
+    <button class="rent-modal-close">✕</button>
+
+    <div class="rent-modal-header">
+      <h3 data-i18n="rent_title"></h3>
+    </div>
+
+    <div class="rent-modal-info">
+      <p><strong>📍 <span data-i18n="rent_location"></span></strong></p>
+      <p data-i18n="rent_desc"></p>
+
+      <ul class="rent-modal-list">
+        <li>2 спальни</li>
+        <li>Просторный холл</li>
+        <li>Кухня</li>
+        <li>2 санузла</li>
+        <li>Дом тёплый</li>
+        <li>Газовое отопление</li>
+        <li>Газовая плита</li>
+        <li>2 холодильника</li>
+        <li>Мебель: кровати, диван</li>
+        <li>Отдельная кухня во дворе</li>
+        <li>Кондиционер</li>
+        <li>Участок 4 сотки</li>
+        <li>Парковка на 2 машины</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const modal = document.getElementById("rentInfoModal");
+  const overlay = modal.querySelector(".rent-modal-overlay");
+  const closeBtn = modal.querySelector(".rent-modal-close");
+
+  document.querySelectorAll(".open-rent-info").forEach(btn => {
+    btn.addEventListener("click", () => {
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  function close() {
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  closeBtn.onclick = close;
+  overlay.onclick = close;
+})();
+</script>
   
 </body>
 </html>
