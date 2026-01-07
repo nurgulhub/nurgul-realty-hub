@@ -212,6 +212,40 @@
   color:var(--text-muted);
   letter-spacing:.5px;
 }
+
+/* ===== QATAR LUXURY HOVER — FEATURED CARD ===== */
+
+.featured-card{
+  position:relative;
+  transition:transform .45s ease, box-shadow .45s ease;
+}
+
+.featured-card:hover{
+  transform:translateY(-8px);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.45),
+    0 0 0 1px rgba(242,201,76,.35);
+}
+
+/* imagen */
+.featured-card .property-image{
+  transition:filter .45s ease;
+}
+
+.featured-card:hover .property-image{
+  filter:
+    drop-shadow(0 0 12px rgba(242,201,76,.25))
+    brightness(1.05);
+}
+
+/* micro zoom elegante */
+.featured-card .property-image img{
+  transition:transform .45s ease;
+}
+
+.featured-card:hover .property-image img{
+  transform:scale(1.04);
+}
     
 </style>
 </head>
@@ -253,7 +287,7 @@
 
     <section class="properties-grid">
 
-      <article class="property-card">
+      <article class="property-card featured-card">
   <div class="property-image property-cover">
   <img src="images/royal1.png" alt="Royal Central Park Bishkek">
 </div>
