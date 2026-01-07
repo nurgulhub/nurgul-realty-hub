@@ -246,6 +246,45 @@
 .featured-card:hover .property-image img{
   transform:scale(1.04);
 }
+
+/* ===== EXPANDIBLE GALLERY — FEATURED CARD ===== */
+
+.property-gallery{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .6s ease;
+  margin-top:18px;
+}
+
+.featured-card[data-expanded="true"] .property-gallery{
+  max-height:520px;
+}
+
+.gallery-track{
+  display:flex;
+  transition:transform .5s ease;
+}
+
+.gallery-track img{
+  width:100%;
+  flex-shrink:0;
+  border-radius:12px;
+}
+
+.gallery-controls{
+  display:flex;
+  justify-content:space-between;
+  margin-top:12px;
+}
+
+.gallery-controls button{
+  background:transparent;
+  border:1px solid rgba(255,255,255,.4);
+  color:#fff;
+  padding:6px 14px;
+  border-radius:8px;
+  cursor:pointer;
+}
     
 </style>
 </head>
@@ -287,18 +326,42 @@
 
     <section class="properties-grid">
 
-      <article class="property-card featured-card">
+      <article class="property-card featured-card" data-expanded="false">
+
+  <!-- PORTADA -->
   <div class="property-image property-cover">
-  <img src="images/royal1.png" alt="Royal Central Park Bishkek">
-</div>
+    <img src="images/rca1.png" alt="Royal Central Park Bishkek">
+  </div>
+
+  <!-- CONTENIDO -->
+        
   <div class="property-content">
     <h3 data-i18n="prop_title">Турак жай</h3>
     <p class="property-location" data-i18n="prop_location">Жайгашкан жери</p>
     <p class="property-info" data-i18n="prop_info">Маалымат</p>
     <p class="property-price" data-i18n="prop_price">Баасы</p>
-    <button class="property-btn" data-i18n="prop_btn">Толугураак</button>
+    <button class="property-btn toggle-gallery" data-i18n="prop_btn">
+      Толугураак
+    </button>
   </div>
+
+  <!-- GALERÍA EXPANDIBLE -->
+        
+  <div class="property-gallery">
+    <div class="gallery-track">
+      <img src="images/rca1.png" alt="">
+      <img src="images/rca2.png" alt="">
+      <img src="images/rca3.png" alt="">
+    </div>
+
+    <div class="gallery-controls">
+      <button class="gallery-prev">◀</button>
+      <button class="gallery-next">▶</button>
+    </div>
+  </div>
+
 </article>
+
 
       <article class="property-card">
         <div class="property-image"></div>
@@ -395,6 +458,33 @@ const savedLang = localStorage.getItem("nurgul_lang") || "ky";
 applyLang(savedLang);
   
 </script>
+  
+<script>
+  
+(() => {
+  const card = document.querySelector(".featured-card");
+  const toggleBtn = card.querySelector(".toggle-gallery");
+  const track = card.querySelector(".gallery-track");
+  const images = track.querySelectorAll("img");
+  let index = 0;
 
+  toggleBtn.addEventListener("click", () => {
+    const expanded = card.getAttribute("data-expanded") === "true";
+    card.setAttribute("data-expanded", !expanded);
+  });
+
+  card.querySelector(".gallery-next").onclick = () => {
+    index = (index + 1) % images.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  };
+
+  card.querySelector(".gallery-prev").onclick = () => {
+    index = (index - 1 + images.length) % images.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  };
+})();
+  
+</script>
+  
 </body>
 </html>
