@@ -591,6 +591,89 @@
   white-space:nowrap;
 }
 
+/* ================= GLOBAL RESPONSIVE ================= */
+
+@media (max-width: 1024px){
+  header{
+    height:96px;
+    padding:0 24px;
+  }
+
+  .brand-logo{
+    height:180px;
+  }
+
+  main{
+    padding-top:140px;
+  }
+}
+
+@media (max-width: 768px){
+  header{
+    height:84px;
+    padding:0 16px;
+  }
+
+  .brand{
+    transform: translate(-12px, 6px);
+  }
+
+  .brand-logo{
+    height:140px;
+  }
+
+  .lang-item{
+    font-size:16px;
+  }
+
+  main{
+    padding-top:120px;
+  }
+
+  .property-btn{
+    font-size:13px;
+    padding:10px 22px;
+  }
+}
+
+@media (max-width: 600px){
+  .brand-logo{
+    height:120px;
+  }
+
+  .lang-switch{
+    gap:10px;
+  }
+}
+
+@media (max-width: 420px){
+  .brand-logo{
+    height:105px;
+  }
+
+  header{
+    height:78px;
+  }
+}
+
+/* ================= PROPERTIES — RESPONSIVE ================= */
+
+@media (max-width: 1024px){
+  .properties-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media (max-width: 600px){
+  .properties-grid{
+    grid-template-columns:1fr;
+  }
+
+  .property-card{
+    min-height:unset;
+  }
+}
+    
 </style>
 </head>
 
