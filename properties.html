@@ -541,7 +541,47 @@
   }
 }
 
+/* === PROPERTY ACTIONS — BUTTON LAYOUT FIX === */
+
+.property-actions{
+  margin-top:18px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+/* fila superior: 2 botones */
+.actions-row{
+  display:flex;
+  gap:14px;
+}
+
+/* botones superiores iguales */
+.actions-row .property-btn{
+  flex:1;
+  text-align:center;
+  padding:10px 0;
+}
+
+/* WhatsApp abajo, ancho completo */
+.property-actions .whatsapp-btn{
+  width:100%;
+  text-align:center;
+  padding:10px 0;
+}
+
+/* evita montajes en móvil */
+@media (max-width: 600px){
+  .actions-row{
+    flex-direction:column;
+  }
+}
     
+.property-btn{
+  line-height:1.2;
+  white-space:nowrap;
+}
+
 </style>
 </head>
 
