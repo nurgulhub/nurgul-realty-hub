@@ -461,18 +461,22 @@
   }
 }
 
-/* ===== RENT CARD IMAGE — FULL BLEED ===== */
+/* ===== RENT CARD IMAGE — BALANCED PREMIUM ===== */
 .rental-card .property-image{
-  height:320px;                /* más protagonista */
+  height:240px;                /* equilibrado, no dominante */
   border-radius:18px;
+}
+
+@media (max-width: 768px){
+  .rental-card .property-image{
+    height:200px;              /* mobile */
+  }
 }
 
 .rental-card .property-image img{
   width:100%;
   height:100%;
-  max-width:none;              /* 🔑 quita el límite del logo */
-  max-height:none;
-  object-fit:cover;            /* 🔑 look inmobiliario premium */
+  object-fit:cover;            /* look inmobiliario premium */
 }
     
 </style>
@@ -596,8 +600,8 @@
         </a>
         </div>
   </div>
-  
-  <div class="rent-modal-gallery">
+
+<div class="rent-modal-gallery">
   <img src="images/rent1.jpg" alt="">
   <img src="images/rent2.jpg" alt="">
   <img src="images/rent3.jpg" alt="">
