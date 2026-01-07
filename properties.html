@@ -365,6 +365,101 @@
   font-size:22px;
   cursor:pointer;
 }
+
+/* ================= RENT MODAL ================= */
+
+.rent-modal{
+  position:fixed;
+  inset:0;
+  z-index:200;
+  display:none;
+}
+
+.rent-modal.active{
+  display:block;
+}
+
+.rent-modal-overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.55);
+  backdrop-filter:blur(6px);
+}
+
+.rent-modal-content{
+  position:relative;
+  max-width:960px;
+  margin:60px auto;
+  background:rgba(10,30,26,0.95);
+  border:1px solid rgba(242,201,76,0.35);
+  border-radius:18px;
+  padding:28px;
+  max-height:85vh;
+  overflow-y:auto;
+  box-shadow:0 0 40px rgba(0,0,0,0.45);
+}
+
+.rent-modal-close{
+  position:absolute;
+  top:18px;
+  right:18px;
+  background:none;
+  border:none;
+  font-size:20px;
+  color:var(--yellow-main);
+  cursor:pointer;
+}
+
+.rent-modal-header h3{
+  font-size:22px;
+  margin-bottom:6px;
+}
+
+.rent-modal-price{
+  color:var(--yellow-soft);
+  margin-bottom:20px;
+}
+
+.rent-modal-gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
+  gap:12px;
+  margin-bottom:24px;
+}
+
+.rent-modal-gallery img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.rent-modal-info p{
+  margin-bottom:14px;
+  color:var(--text-muted);
+}
+
+.rent-modal-list{
+  columns:2;
+  gap:40px;
+}
+
+.rent-modal-list li{
+  margin-bottom:8px;
+  font-size:14px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .rent-modal-content{
+    margin:30px 12px;
+    padding:20px;
+  }
+
+  .rent-modal-list{
+    columns:1;
+  }
+}
     
 </style>
 </head>
@@ -443,16 +538,46 @@
 </article>
 
 
-      <article class="property-card">
-        <div class="property-image"></div>
-        <div class="property-content">
-          <h3 data-i18n="prop_title">Турак жай</h3>
-          <p class="property-location" data-i18n="prop_location">Жайгашкан жери</p>
-          <p class="property-info" data-i18n="prop_info">Маалымат</p>
-          <p class="property-price" data-i18n="prop_price">Баасы</p>
-          <button class="property-btn" data-i18n="prop_btn">Толугураак</button>
-        </div>
-      </article>
+      <!-- ================= PROPERTY CARD — RENT HOUSE ================= -->
+
+<article class="property-card rental-card">
+
+  <!-- PORTADA -->
+  <div class="property-image property-cover">
+    <img src="images/rent-house/rent1.jpg" alt="House for rent — Yunusalieva / Suvanberdieva">
+  </div>
+
+  <!-- CONTENIDO -->
+  <div class="property-content">
+    <h3 data-i18n="rent_title">
+      Дом в аренду — Юнусалиева / Суванбердиева
+    </h3>
+
+    <p class="property-location" data-i18n="rent_location">
+      Район: Юнусалиева / Суванбердиева
+    </p>
+
+    <p class="property-info" data-i18n="rent_info">
+      Комфортабельный дом, полностью готовый для проживания
+    </p>
+
+    <p class="property-price" data-i18n="rent_price">
+      1500 $ / месяц
+    </p>
+
+    <!-- BOTONES -->
+    <div class="property-actions">
+      <button class="property-btn open-rent-modal" data-i18n="rent_btn_info">
+        Информация
+      </button>
+
+      <button class="property-btn" data-i18n="rent_btn_contact">
+        Связаться
+      </button>
+    </div>
+  </div>
+
+</article>
 
       <article class="property-card">
         <div class="property-image"></div>
@@ -690,7 +815,71 @@ applyLang(savedLang);
 })();
 </script>
 
+<!-- ================= RENT HOUSE MODAL ================= -->
 
+<div class="rent-modal" id="rentModal">
+
+  <div class="rent-modal-overlay"></div>
+
+  <div class="rent-modal-content">
+
+    <!-- CERRAR -->
+    <button class="rent-modal-close">✕</button>
+
+    <!-- HEADER -->
+    <div class="rent-modal-header">
+      <h3 data-i18n="rent_modal_title">
+        Дом в аренду — Юнусалиева / Суванбердиева
+      </h3>
+
+      <p class="rent-modal-price" data-i18n="rent_modal_price">
+        1500 $ / месяц · Депозит 1500 $
+      </p>
+    </div>
+
+    <!-- GALERÍA -->
+    <div class="rent-modal-gallery">
+      <img src="images/rent-house/rent1.jpg" alt="">
+      <img src="images/rent-house/rent2.jpg" alt="">
+      <img src="images/rent-house/rent3.jpg" alt="">
+      <img src="images/rent-house/rent4.jpg" alt="">
+      <img src="images/rent-house/rent5.jpg" alt="">
+      <img src="images/rent-house/rent6.jpg" alt="">
+      <img src="images/rent-house/rent7.jpg" alt="">
+      <img src="images/rent-house/rent8.jpg" alt="">
+      <img src="images/rent-house/rent9.jpg" alt="">
+      <img src="images/rent-house/rent10.jpg" alt="">
+      <img src="images/rent-house/rent11.jpg" alt="">
+      <img src="images/rent-house/rent12.jpg" alt="">
+      <img src="images/rent-house/rent13.jpg" alt="">
+    </div>
+
+    <!-- INFO -->
+    <div class="rent-modal-info">
+
+      <p data-i18n="rent_modal_desc">
+        Сдается комфортабельный дом, полностью готовый для проживания.
+      </p>
+
+      <ul class="rent-modal-list">
+        <li>2 спальни</li>
+        <li>Просторный холл</li>
+        <li>Кухня</li>
+        <li>2 санузла</li>
+        <li>Газовое отопление</li>
+        <li>Газовая плита</li>
+        <li>2 холодильника</li>
+        <li>Мебель: кровати, диван</li>
+        <li>Отдельная кухня во дворе</li>
+        <li>Кондиционер</li>
+        <li>Участок 4 сотки</li>
+        <li>Парковка на 2 машины</li>
+      </ul>
+
+    </div>
+
+  </div>
+</div>
   
 </body>
 </html>
