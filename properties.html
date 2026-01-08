@@ -508,60 +508,66 @@
       cursor:default;
     }
 
-/* ================= CARD 3 — NURGUL LOGO SOLAR ================= */
+/* ================= CARD 3 — NURGUL LOGO HALO PREMIUM ================= */
 
 .nurgul-logo-card{
   position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
-  height:240px;
+  height:260px; /* ⬆️ más aire vertical */
   background:transparent;
 }
 
+/* Halo suave tipo header */
 .nurgul-logo-card::before{
   content:"";
   position:absolute;
-  width:220px;
-  height:220px;
+  width:420px;
+  height:320px;
   border-radius:50%;
   background:radial-gradient(
-    circle,
-    rgba(242,201,76,0.95) 0%,
-    rgba(242,201,76,0.75) 30%,
-    rgba(242,201,76,0.45) 55%,
-    rgba(242,201,76,0.18) 70%,
+    ellipse,
+    rgba(242,201,76,0.55) 0%,
+    rgba(242,201,76,0.38) 25%,
+    rgba(242,201,76,0.22) 45%,
+    rgba(242,201,76,0.12) 60%,
+    rgba(242,201,76,0.05) 72%,
     transparent 85%
   );
-  filter:blur(18px);
+  filter:blur(42px);
   z-index:0;
+  pointer-events:none;
 }
 
+/* Logo protagonista */
 .nurgul-logo-card img{
   position:relative;
   z-index:1;
-  width:160px;
+  width:280px; /* ⬆️ LOGO MUCHO MÁS GRANDE */
   height:auto;
   filter:
-    drop-shadow(0 0 12px rgba(242,201,76,0.45))
-    drop-shadow(0 0 28px rgba(242,201,76,0.25));
+    drop-shadow(0 0 6px rgba(242,201,76,0.25))
+    drop-shadow(0 0 18px rgba(242,201,76,0.18));
 }
 
-/* Mobile refinement */
+/* Mobile */
 @media (max-width: 768px){
   .nurgul-logo-card{
-    height:200px;
+    height:220px;
   }
 
   .nurgul-logo-card::before{
-    width:180px;
-    height:180px;
+    width:320px;
+    height:240px;
+    filter:blur(36px);
   }
 
   .nurgul-logo-card img{
-    width:130px;
+    width:190px;
   }
 }
+
     
 </style>
 </head>
