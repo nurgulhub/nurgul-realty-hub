@@ -1243,26 +1243,56 @@ document.addEventListener("DOMContentLoaded", () => {
   const titleBox = document.getElementById("lightbox-title");
   const descBox = document.getElementById("lightbox-desc");
 
-  document.querySelectorAll(".rent-modal-gallery img").forEach(img => {
-    img.addEventListener("click", () => {
-      imgBox.src = img.src;
+  const rentImages = Array.from(
+    document.querySelectorAll("#rentModal .rent-modal-gallery img")
+  ).map(img => img.src);
 
-      // 🔑 NO forzar texto aquí
-      titleBox.textContent = "";
-      descBox.textContent = "";
+  let currentIndex = 0;
 
-      lightbox.classList.add("active");
+  function openRentLightbox(index){
+    currentIndex = index;
+    imgBox.src = rentImages[currentIndex];
+
+    const lang = localStorage.getItem("nurgul_lang") || "en";
+    const titles = {
+      ky: "Үй ижарага берилет",
+      ru: "Дом в аренду",
+      en: "House for Rent"
+    };
+
+    titleBox.textContent = titles[lang];
+    descBox.textContent = "";
+
+    lightbox.classList.add("active");
+  }
+
+  document
+    .querySelectorAll("#rentModal .rent-modal-gallery img")
+    .forEach((img, i) => {
+      img.addEventListener("click", () => openRentLightbox(i));
     });
+
+  /* === SWIPE SOLO PARA RENT === */
+  let startX = 0;
+
+  imgBox.addEventListener("touchstart", e => {
+    startX = e.touches[0].clientX;
   });
 
-  document.querySelector(".lightbox-close").onclick = () => {
-    lightbox.classList.remove("active");
-  };
+  imgBox.addEventListener("touchend", e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      currentIndex =
+        diff > 0
+          ? (currentIndex + 1) % rentImages.length
+          : (currentIndex - 1 + rentImages.length) % rentImages.length;
 
-  document.querySelector(".lightbox-overlay").onclick = () => {
-    lightbox.classList.remove("active");
-  };
+      imgBox.src = rentImages[currentIndex];
+    }
+  });
+
 })();
+
 </script>
   
 <!-- ================= RENT HOUSE MODAL ================= -->
