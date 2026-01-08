@@ -1111,23 +1111,33 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
-  
-/* ================= IMAGE ZOOM HANDLER — DIRECT ================= */
+/* ================= IMAGE ZOOM HANDLER — SAFE ================= */
 (() => {
   const zoomModal = document.getElementById("imageZoomModal");
   const zoomImg = document.getElementById("zoomImage");
 
   if (!zoomModal || !zoomImg) return;
 
-  /* abrir zoom SOLO al tocar imagen */
+  /* abrir zoom */
   document.querySelectorAll(".viewer-img, .rent-modal-gallery img").forEach(img=>{
     img.addEventListener("click", e=>{
+      e.preventDefault();
       e.stopPropagation();
+
       zoomImg.src = img.src;
       zoomModal.classList.add("active");
       document.body.style.overflow = "hidden";
     });
   });
+
+  /* ⛔ bloquear swipe dentro del zoom */
+  zoomImg.addEventListener("touchstart", e=>{
+    if (e.touches.length > 1) e.stopPropagation();
+  }, {passive:true});
+
+  zoomImg.addEventListener("touchmove", e=>{
+    if (e.touches.length > 1) e.stopPropagation();
+  }, {passive:true});
 
   /* cerrar */
   zoomModal.addEventListener("click", e=>{
