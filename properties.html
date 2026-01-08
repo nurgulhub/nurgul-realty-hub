@@ -1112,6 +1112,53 @@ const state = {
   bind("royal");
   bind("rent");
 })();
+
+/* ================= IMAGE ZOOM — TOUCH SAFE ================= */
+  
+(() => {
+
+  const zoomModal = document.getElementById("imageZoomModal");
+  const zoomImg   = document.getElementById("zoomImage");
+
+  if (!zoomModal || !zoomImg) return;
+
+  function openZoom(src){
+    if(!src) return;
+    zoomImg.src = src;
+    zoomModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeZoom(){
+    zoomModal.classList.remove("active");
+    zoomImg.src = "";
+    document.body.style.overflow = "";
+  }
+
+  /* ✅ TAP DIRECTO SOBRE LA IMAGEN (MÓVIL REAL) */
+  document.addEventListener("touchend", e => {
+    const img = e.target.closest(".viewer-img");
+    if(!img) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const zoomSrc = img.dataset.zoomSrc || img.src;
+    openZoom(zoomSrc);
+  }, { passive:false });
+
+  /* cerrar zoom */
+  zoomModal.addEventListener("click", e => {
+    if (
+      e.target.classList.contains("rent-modal-overlay") ||
+      e.target.classList.contains("rent-modal-close")
+    ){
+      closeZoom();
+    }
+  });
+
+})();
+
 </script>
 
 <script>
