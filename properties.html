@@ -815,36 +815,31 @@
 </div>
        
 <!-- ================= ROYAL GALLERY MODAL (VIEWER) ================= -->
+        
 <div class="rent-modal" id="royalGalleryModal">
   <div class="rent-modal-overlay"></div>
 
   <div class="rent-modal-content">
-
     <button class="rent-modal-close">✕</button>
 
     <div class="rent-modal-header">
       <h3 data-i18n="royal_title">Royal Central Park</h3>
-      <p class="rent-modal-price" data-i18n="royal_price">
-        Availability & pricing on request · Contact via WhatsApp
-      </p>
+      <p data-i18n="royal_price"></p>
     </div>
 
-    <!-- VIEWER -->
-    
-    <div class="modal-viewer" data-viewer="royal">
-      <button class="viewer-btn" data-prev="royal" aria-label="Previous">‹</button>
-
-      <div class="viewer-stage">
-        <img class="viewer-img" data-img="royal" src="" alt="Royal Central Park">
-      </div>
-
-      <button class="viewer-btn" data-next="royal" aria-label="Next">›</button>
+    <!-- GALERÍA -->
+    <div class="rent-modal-gallery">
+      <img class="gallery-image" src="images/rca1.png">
+      <img class="gallery-image" src="images/rca2.png">
+      <img class="gallery-image" src="images/rca3.png">
     </div>
 
-    <div class="viewer-footer">
-      <div class="viewer-counter" data-counter="royal">1 / 1</div>
+    <!-- CONTROLES DE GALERÍA (DENTRO DEL MODAL) -->
+    <div class="gallery-nav">
+      <button class="gallery-prev">‹</button>
+      <div class="gallery-counter">1 / 3</div>
+      <button class="gallery-next">›</button>
     </div>
-
   </div>
 </div>
         
@@ -1408,6 +1403,79 @@ document.addEventListener("DOMContentLoaded", () => {
   initRent();
   bindControls("royal");
   bindControls("rent");
+
+})();
+</script>
+
+<script>
+/* ================= NURGUL — STANDARD MODAL GALLERY ENGINE ================= */
+(() => {
+
+  function closeAllModals(){
+    document.querySelectorAll(".rent-modal.active")
+      .forEach(m => m.classList.remove("active"));
+    document.body.style.overflow = "";
+  }
+
+  function openModal(id){
+    closeAllModals();
+    const modal = document.getElementById(id);
+    if(!modal) return;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  /* ---------- OPENERS ---------- */
+  document.querySelectorAll("[data-open-modal]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      openModal(btn.dataset.openModal);
+    });
+  });
+
+  /* ---------- CLOSE ---------- */
+  document.addEventListener("click", e=>{
+    if(e.target.closest(".rent-modal-close") || e.target.classList.contains("rent-modal-overlay")){
+      closeAllModals();
+    }
+  });
+
+  /* ---------- GALLERY PER MODAL ---------- */
+  document.querySelectorAll(".rent-modal").forEach(modal=>{
+    const images = Array.from(modal.querySelectorAll(".gallery-image"));
+    const prev = modal.querySelector(".gallery-prev");
+    const next = modal.querySelector(".gallery-next");
+    const counter = modal.querySelector(".gallery-counter");
+
+    if(!images.length) return;
+
+    let index = 0;
+
+    function render(i){
+      index = (i + images.length) % images.length;
+      images.forEach((img,k)=>{
+        img.style.display = k === index ? "block" : "none";
+      });
+      if(counter) counter.textContent = `${index + 1} / ${images.length}`;
+    }
+
+    render(0);
+
+    prev?.addEventListener("click", ()=>render(index - 1));
+    next?.addEventListener("click", ()=>render(index + 1));
+
+    /* Swipe SOLO ESTE MODAL */
+    let startX = 0;
+    modal.addEventListener("touchstart", e=>{
+      startX = e.touches[0].clientX;
+    }, {passive:true});
+
+    modal.addEventListener("touchend", e=>{
+      const diff = startX - e.changedTouches[0].clientX;
+      if(Math.abs(diff) > 50){
+        diff > 0 ? render(index + 1) : render(index - 1);
+      }
+    }, {passive:true});
+  });
 
 })();
 </script>
