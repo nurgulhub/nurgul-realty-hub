@@ -443,13 +443,13 @@
     }
 
     .viewer-img{
-      width:100%;
-      height:auto;
-      max-height:70vh;
-      object-fit:contain;
-      display:block;
-      touch-action:pan-y;
-    }
+     width:100%;
+     height:auto;
+     max-height:70vh;
+     object-fit:contain;
+     display:block;
+     cursor:zoom-in;
+   }
 
     .viewer-footer{
       display:flex;
@@ -1112,31 +1112,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <script>
   
-/* ================= IMAGE ZOOM HANDLER ================= */
+/* ================= IMAGE ZOOM HANDLER — DIRECT ================= */
 (() => {
   const zoomModal = document.getElementById("imageZoomModal");
   const zoomImg = document.getElementById("zoomImage");
 
   if (!zoomModal || !zoomImg) return;
 
-  document.addEventListener("click", e => {
-    const img = e.target.closest(
-      ".rent-modal-gallery img, .viewer-img, .gallery-image"
-    );
-    if (!img) return;
-
-    zoomImg.src = img.src;
-    zoomModal.classList.add("active");
-    document.body.style.overflow = "hidden";
+  /* abrir zoom SOLO al tocar imagen */
+  document.querySelectorAll(".viewer-img, .rent-modal-gallery img").forEach(img=>{
+    img.addEventListener("click", e=>{
+      e.stopPropagation();
+      zoomImg.src = img.src;
+      zoomModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
   });
 
-  document.addEventListener("click", e => {
+  /* cerrar */
+  zoomModal.addEventListener("click", e=>{
     if (
-      e.target.closest("#imageZoomModal .rent-modal-close") ||
-      e.target.classList.contains("rent-modal-overlay")
-    ) {
+      e.target.classList.contains("rent-modal-overlay") ||
+      e.target.classList.contains("rent-modal-close")
+    ){
       zoomModal.classList.remove("active");
       document.body.style.overflow = "";
+      zoomImg.src = "";
     }
   });
 })();
