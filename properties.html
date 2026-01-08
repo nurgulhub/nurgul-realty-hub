@@ -316,6 +316,43 @@
   cursor:pointer;
 }
 
+/* ===== GALLERY NAV (Prev/Next + Counter) ===== */
+    
+.gallery-nav{
+  margin-top:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+}
+
+.gallery-btn{
+  width:44px;
+  height:38px;
+  border-radius:12px;
+  border:1px solid rgba(242,201,76,0.55);
+  background:rgba(255,255,255,0.03);
+  color:var(--yellow-main);
+  font-size:22px;
+  line-height:1;
+  cursor:pointer;
+  transition:transform .2s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.gallery-btn:hover{
+  background:rgba(242,201,76,0.10);
+  box-shadow:0 0 0 1px rgba(242,201,76,0.22), 0 0 18px rgba(242,201,76,0.22);
+  transform:translateY(-1px);
+}
+
+.gallery-counter{
+  min-width:90px;
+  text-align:center;
+  font-size:13px;
+  letter-spacing:1px;
+  color:var(--text-muted);
+}
+    
 /* ===== LIGHTBOX PREMIUM ===== */
 
 .lightbox{
@@ -484,6 +521,7 @@
 }
 
 /* ===== RENT CARD IMAGE — BALANCED PREMIUM ===== */
+    
 .rental-card .property-image{
   height:240px;                /* equilibrado, no dominante */
   border-radius:18px;
@@ -502,6 +540,7 @@
 }
 
 /* ===== ROYAL CENTRAL PARK — INFO STYLE ===== */
+    
 .royal-info{
   margin-top:24px;
   padding:22px;
@@ -717,8 +756,9 @@
       <article class="property-card featured-card" data-expanded="false">
 
  <!-- PORTADA -->
+        
 <div class="property-image property-cover">
-  <img src="images/royal1.png" alt="Royal Central Park Bishkek">
+  <img class="open-royal-gallery" src="images/royal1.png" alt="Royal Central Park Bishkek">
 </div>
 
   <!-- CONTENIDO -->
@@ -791,9 +831,16 @@
 
   </div>
 </div>
-
+        
+<!-- ✅ ROYAL GALLERY CONTROLS -->
+        
+<div class="gallery-nav" data-gallery-nav="royal">
+  <button class="gallery-btn" data-gallery-prev="royal">‹</button>
+  <div class="gallery-counter" data-gallery-counter="royal">1 / 1</div>
+  <button class="gallery-btn" data-gallery-next="royal">›</button>
+</div>
+        
 </article>
-
 
 <!-- ================= PROPERTY CARD — RENT HOUSE (FIXED) ================= -->
 
@@ -857,7 +904,14 @@
 
   </div>
 </div>
-
+    
+<!-- ✅ RENT GALLERY CONTROLS -->
+    
+<div class="gallery-nav" data-gallery-nav="rent">
+  <button class="gallery-btn" data-gallery-prev="rent">‹</button>
+  <div class="gallery-counter" data-gallery-counter="rent">1 / 1</div>
+  <button class="gallery-btn" data-gallery-next="rent">›</button>
+</div>
     
   <div class="property-actions">
 
