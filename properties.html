@@ -1051,18 +1051,22 @@ const state = {
   }
 
   function render(key){
-    const modal = document.getElementById(getModalId(key));
-    if(!modal) return;
+  const modal = document.getElementById(getModalId(key));
+  if(!modal) return;
 
-    const imgEl = modal.querySelector(`[data-img="${key}"]`);
-    const counter = modal.querySelector(`[data-counter="${key}"]`);
-    const s = state[key];
+  const imgEl = modal.querySelector(`[data-img="${key}"]`);
+  const counter = modal.querySelector(`[data-counter="${key}"]`);
+  const s = state[key];
 
-    if(!imgEl || !counter || !s.images.length) return;
+  if(!imgEl || !counter || !s.images.length) return;
 
-    imgEl.src = s.images[s.index];
-    counter.textContent = `${s.index + 1} / ${s.images.length}`;
-  }
+  const current = s.images[s.index];
+
+  imgEl.src = current.src;
+  imgEl.dataset.zoomSrc = current.zoom;
+
+  counter.textContent = `${s.index + 1} / ${s.images.length}`;
+}
 
   function prev(key){
     const s = state[key];
