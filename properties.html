@@ -979,23 +979,6 @@
   </section>
 </main>
   
-<!-- ===== LIGHTBOX PREMIUM ===== -->
-  
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-overlay"></div>
-
-  <div class="lightbox-content">
-    <button class="lightbox-close">✕</button>
-
-    <img id="lightbox-img" src="" alt="">
-
-    <div class="lightbox-text">
-      <h4 id="lightbox-title"></h4>
-      <p id="lightbox-desc"></p>
-    </div>
-  </div>
-</div>
-    
 <!-- ================= IDIOMAS (FUNCIONAL + HERENCIA) ================= -->
   
 <script>
@@ -1154,201 +1137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
   
 </script>
-    
-<script>
-(() => {
-  const lightbox = document.getElementById("lightbox");
-  const imgBox = document.getElementById("lightbox-img");
-  const titleBox = document.getElementById("lightbox-title");
-  const descBox = document.getElementById("lightbox-desc");
-
-  const galleryImages = [
-    "images/rca1.png",
-    "images/rca2.png",
-    "images/rca3.png"
-  ];
-
-  let currentIndex = 0;
-
-  const captions = {
-    "images/rca1.png":{
-      title:{
-        ky:"Royal Central Park — Сырткы көрүнүш",
-        ru:"Royal Central Park — Экстерьер",
-        en:"Royal Central Park — Exterior"
-      },
-      desc:{
-        ky:"Заманбап архитектура жана шаардык премиум интеграция.",
-        ru:"Современная архитектура с премиальной городской интеграцией.",
-        en:"Contemporary architecture with premium urban integration."
-      }
-    },
-    "images/rca2.png":{
-      title:{
-        ky:"Royal Central Park — Интерьер",
-        ru:"Royal Central Park — Интерьер",
-        en:"Royal Central Park — Interior"
-      },
-      desc:{
-        ky:"Жогорку сапаттагы материалдар жана жылуу жарыктандыруу.",
-        ru:"Элегантный дизайн, тёплое освещение и благородные материалы.",
-        en:"Elegant design, warm lighting and noble materials."
-      }
-    },
-    "images/rca3.png":{
-      title:{
-        ky:"Royal Central Park — Планировкалар",
-        ru:"Royal Central Park — Планировки",
-        en:"Royal Central Park — Floor Plans"
-      },
-      desc:{
-        ky:"Ыңгайлуулук жана функционалдуулук үчүн оптималдаштырылган.",
-        ru:"Оптимизированные планировки для комфорта и функциональности.",
-        en:"Optimized layouts for comfort and functionality."
-      }
-    }
-  };
-
-  function updateLightbox(index){
-    const lang = localStorage.getItem("nurgul_lang") || "ky";
-
-    if(index < 0) index = galleryImages.length - 1;
-    if(index >= galleryImages.length) index = 0;
-
-    currentIndex = index;
-
-    const src = galleryImages[currentIndex];
-    imgBox.src = src;
-
-    if(captions[src]){
-      titleBox.textContent = captions[src].title[lang];
-      descBox.textContent = captions[src].desc[lang];
-    } else {
-      titleBox.textContent = "";
-      descBox.textContent = "";
-    }
-  }
-
-  document.querySelectorAll(".featured-card .gallery-track img").forEach(img=>{
-    img.addEventListener("click", ()=>{
-      const src = img.getAttribute("src");
-      currentIndex = galleryImages.indexOf(src);
-      updateLightbox(currentIndex);
-      lightbox.classList.add("active");
-    });
-  });
-
-  document.querySelector(".lightbox-close").onclick = () => {
-    lightbox.classList.remove("active");
-  };
-
-  document.querySelector(".lightbox-overlay").onclick = () => {
-    lightbox.classList.remove("active");
-  };
-
-  document.addEventListener("keydown", (e)=>{
-    if(!lightbox.classList.contains("active")) return;
-    if(e.key === "ArrowRight") updateLightbox(currentIndex + 1);
-    if(e.key === "ArrowLeft") updateLightbox(currentIndex - 1);
-    if(e.key === "Escape") lightbox.classList.remove("active");
-  });
-
-  let startX = 0;
-  imgBox.addEventListener("touchstart", e=>{
-    startX = e.touches[0].clientX;
-  });
-
-  imgBox.addEventListener("touchend", e=>{
-    const diff = startX - e.changedTouches[0].clientX;
-    if(Math.abs(diff) > 50){
-      diff > 0 ? updateLightbox(currentIndex + 1) : updateLightbox(currentIndex - 1);
-    }
-  });
-})();
-</script>
-
-<script>
-(() => {
-  const modal = document.getElementById("royalGalleryModal");
-  const closeBtn = modal.querySelector(".rent-modal-close");
-  const overlay = modal.querySelector(".rent-modal-overlay");
-
-  document.querySelectorAll(".open-royal-gallery").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      modal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    });
-  });
-
-  function close(){
-    modal.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-
-  closeBtn.onclick = close;
-  overlay.onclick = close;
-})();
-</script>
-  
-<script>
-(() => {
-  const lightbox = document.getElementById("lightbox");
-  const imgBox = document.getElementById("lightbox-img");
-  const titleBox = document.getElementById("lightbox-title");
-  const descBox = document.getElementById("lightbox-desc");
-
-  const rentImages = Array.from(
-    document.querySelectorAll("#rentModal .rent-modal-gallery img")
-  ).map(img => img.src);
-
-  let currentIndex = 0;
-
-  function openRentLightbox(index){
-    currentIndex = index;
-    imgBox.src = rentImages[currentIndex];
-
-    const lang = localStorage.getItem("nurgul_lang") || "en";
-    const titles = {
-      ky: "Үй ижарага берилет",
-      ru: "Дом в аренду",
-      en: "House for Rent"
-    };
-
-    titleBox.textContent = titles[lang];
-    descBox.textContent = "";
-
-    lightbox.classList.add("active");
-  }
-
-  document
-    .querySelectorAll("#rentModal .rent-modal-gallery img")
-    .forEach((img, i) => {
-      img.addEventListener("click", () => openRentLightbox(i));
-    });
-
-  /* === SWIPE SOLO PARA RENT === */
-  let startX = 0;
-
-  imgBox.addEventListener("touchstart", e => {
-    startX = e.touches[0].clientX;
-  });
-
-  imgBox.addEventListener("touchend", e => {
-    const diff = startX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      currentIndex =
-        diff > 0
-          ? (currentIndex + 1) % rentImages.length
-          : (currentIndex - 1 + rentImages.length) % rentImages.length;
-
-      imgBox.src = rentImages[currentIndex];
-    }
-  });
-
-})();
-
-</script>
-  
+        
 <!-- ================= RENT HOUSE MODAL ================= -->
 
 <div class="rent-modal" id="rentModal">
@@ -1415,60 +1204,6 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
 </div>
 
-<script>
-/* === MODAL MANAGER — SOLO UNO ACTIVO === */
-function closeAllModals(){
-  document.querySelectorAll(".rent-modal.active")
-    .forEach(m => m.classList.remove("active"));
-  document.body.style.overflow = "";
-}
-
-function openModalById(id){
-  closeAllModals();
-  const modal = document.getElementById(id);
-  if(!modal) return;
-  modal.classList.add("active");
-  document.body.style.overflow = "hidden";
-}
-
-/* === BOTONES === */
-document.querySelectorAll(".open-rent-modal")
-  .forEach(btn => btn.addEventListener("click", () =>
-    openModalById("rentModal")
-  ));
-
-document.querySelectorAll(".open-rent-info")
-  .forEach(btn => btn.addEventListener("click", () =>
-    openModalById("rentInfoModal")
-  ));
-
-document.querySelectorAll(".open-royal-gallery")
-  .forEach(btn => btn.addEventListener("click", () =>
-    openModalById("royalGalleryModal")
-  ));
-
-document.querySelectorAll(".open-royal-info")
-  .forEach(btn => btn.addEventListener("click", () =>
-    openModalById("royalInfoModal")
-  ));
-
-/* === CIERRE GLOBAL (X + overlay) === */
-document.addEventListener("click", (e)=>{
-  const closeBtn = e.target.closest(".rent-modal-close");
-  if(closeBtn){
-    closeBtn.closest(".rent-modal")?.classList.remove("active");
-    document.body.style.overflow = "";
-    return;
-  }
-
-  const overlay = e.target.closest(".rent-modal-overlay");
-  if(overlay){
-    overlay.closest(".rent-modal")?.classList.remove("active");
-    document.body.style.overflow = "";
-  }
-});
-</script>
-
 <!-- ================= ROYAL INFO MODAL ================= -->
 
 <div class="rent-modal" id="royalInfoModal">
@@ -1508,8 +1243,6 @@ document.addEventListener("click", (e)=>{
   </div>
 </div>
 
-
-
 <!-- ================= RENT INFO MODAL ================= -->
 
 <div class="rent-modal" id="rentInfoModal">
@@ -1546,65 +1279,107 @@ document.addEventListener("click", (e)=>{
 </div>
 
 <script>
+  
+/* ================= NURGUL — MODAL + GALLERY ENGINE (ROYAL & RENT AISLADOS) ================= */
 (() => {
-  const modal = document.getElementById("rentInfoModal");
-  const overlay = modal.querySelector(".rent-modal-overlay");
-  const closeBtn = modal.querySelector(".rent-modal-close");
 
-  document.querySelectorAll(".open-rent-info").forEach(btn => {
-    btn.addEventListener("click", () => {
-      modal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    });
-  });
-
-  function close() {
-    modal.classList.remove("active");
+  /* ---------- MODAL CORE ---------- */
+  
+  function closeAllModals(){
+    document.querySelectorAll(".rent-modal.active")
+      .forEach(m => m.classList.remove("active"));
     document.body.style.overflow = "";
   }
 
-  closeBtn.onclick = close;
-  overlay.onclick = close;
-})();
-</script>
+  function openModalById(id){
+    closeAllModals();
+    const modal = document.getElementById(id);
+    if(!modal) return;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
 
-<script>
+  /* ---------- OPENERS ---------- */
   
-/* === MODAL MANAGER (ONE AT A TIME) === */
-function closeAllModals(){
-  document.querySelectorAll(".rent-modal.active").forEach(m => m.classList.remove("active"));
-  document.body.style.overflow = "";
-}
+  document.querySelectorAll(".open-rent-modal")
+    .forEach(b => b.addEventListener("click", () => openModalById("rentModal")));
 
-function openModalById(id){
-  closeAllModals();
-  const modal = document.getElementById(id);
-  if(!modal) return;
-  modal.classList.add("active");
-  document.body.style.overflow = "hidden";
-}
+  document.querySelectorAll(".open-rent-info")
+    .forEach(b => b.addEventListener("click", () => openModalById("rentInfoModal")));
 
-/* Close (delegado) — funciona aunque tengas 10 modales */
-document.addEventListener("click", (e) => {
-  const closeBtn = e.target.closest(".rent-modal-close");
-  if(closeBtn){
-    const modal = closeBtn.closest(".rent-modal");
-    if(modal){
-      modal.classList.remove("active");
+  document.querySelectorAll(".open-royal-gallery")
+    .forEach(b => b.addEventListener("click", () => openModalById("royalGalleryModal")));
+
+  document.querySelectorAll(".open-royal-info")
+    .forEach(b => b.addEventListener("click", () => openModalById("royalInfoModal")));
+
+  /* ---------- CLOSE (X + overlay) ---------- */
+  
+  document.addEventListener("click", (e)=>{
+    const closeBtn = e.target.closest(".rent-modal-close");
+    if(closeBtn){
+      closeBtn.closest(".rent-modal")?.classList.remove("active");
+      document.body.style.overflow = "";
+      return;
+    }
+
+    const overlay = e.target.closest(".rent-modal-overlay");
+    if(overlay){
+      overlay.closest(".rent-modal")?.classList.remove("active");
       document.body.style.overflow = "";
     }
-    return;
+  });
+
+  /* ================= GALLERY ENGINE (1 POR MODAL) ================= */
+  
+  function initGallery(modalId, key){
+    const modal = document.getElementById(modalId);
+    if(!modal) return;
+
+    const images = Array.from(modal.querySelectorAll(".rent-modal-gallery img"));
+    if(!images.length) return;
+
+    const counter = modal.querySelector(`[data-gallery-counter="${key}"]`);
+    const prev = modal.querySelector(`[data-gallery-prev="${key}"]`);
+    const next = modal.querySelector(`[data-gallery-next="${key}"]`);
+
+    let index = 0;
+
+    function render(i){
+      index = (i + images.length) % images.length;
+      images.forEach((img, k) => {
+        img.style.display = k === index ? "block" : "none";
+      });
+      if(counter) counter.textContent = `${index + 1} / ${images.length}`;
+    }
+
+    images.forEach(img => img.style.display = "none");
+    render(0);
+
+    prev?.addEventListener("click", () => render(index - 1));
+    next?.addEventListener("click", () => render(index + 1));
+
+    /* Swipe SOLO dentro de este modal */
+    let startX = 0;
+
+    modal.addEventListener("touchstart", e => {
+      startX = e.touches[0].clientX;
+    }, {passive:true});
+
+    modal.addEventListener("touchend", e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if(Math.abs(diff) > 50){
+        diff > 0 ? render(index + 1) : render(index - 1);
+      }
+    }, {passive:true});
   }
 
-  const overlay = e.target.closest(".rent-modal-overlay");
-  if(overlay){
-    const modal = overlay.closest(".rent-modal");
-    if(modal){
-      modal.classList.remove("active");
-      document.body.style.overflow = "";
-    }
-  }
-});
+  /* ---------- INIT (AISLADO) ---------- */
+  initGallery("rentModal", "rent");
+  initGallery("royalGalleryModal", "royal");
+
+})();
+  
 </script>
   
 </body>
