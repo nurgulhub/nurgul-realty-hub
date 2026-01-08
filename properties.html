@@ -1012,39 +1012,39 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // VIEWER STATE (aislado por key)
-  const state = {
-    royal: {
-      index: 0,
-      images: [
-        "images/rca1.png",
-        "images/rca2.png",
-        "images/rca3.png",
-        "images/rca4.jpg",
-        "images/rca5.jpg",
-        "images/rca6.jpg"        
-      ]
-    },
-    rent: {
-      index: 0,
-      images: [
-        "images/rent1.jpg",
-        "images/rent2.jpg",
-        "images/rent3.jpg",
-        "images/rent4.jpg",
-        "images/rent5.jpg",
-        "images/rent6.jpg",
-        "images/rent7.jpg",
-        "images/rent8.jpg",
-        "images/rent9.jpg",
-        "images/rent10.jpg",
-        "images/rent11.jpg",
-        "images/rent12.jpg",
-        "images/rent13.jpg"
+// VIEWER STATE (aislado por key)
+const state = {
+  royal: {
+    index: 0,
+    images: [
+      { src: "images/rca1.png", zoom: "images/rca1.png" },
+      { src: "images/rca2.png", zoom: "images/rca2.png" },
+      { src: "images/rca3.png", zoom: "images/rca3.png" },
+      { src: "images/rca4.jpg", zoom: "images/rca4.jpg" },
+      { src: "images/rca5.jpg", zoom: "images/rca5.jpg" },
+      { src: "images/rca6.jpg", zoom: "images/rca6.jpg" }
+    ]
+  },
 
-      ]
-    }
-  };
+  rent: {
+    index: 0,
+    images: [
+      { src: "images/rent1.jpg", zoom: "images/rent1.jpg" },
+      { src: "images/rent2.jpg", zoom: "images/rent2.jpg" },
+      { src: "images/rent3.jpg", zoom: "images/rent3.jpg" },
+      { src: "images/rent4.jpg", zoom: "images/rent4.jpg" },
+      { src: "images/rent5.jpg", zoom: "images/rent5.jpg" },
+      { src: "images/rent6.jpg", zoom: "images/rent6.jpg" },
+      { src: "images/rent7.jpg", zoom: "images/rent7.jpg" },
+      { src: "images/rent8.jpg", zoom: "images/rent8.jpg" },
+      { src: "images/rent9.jpg", zoom: "images/rent9.jpg" },
+      { src: "images/rent10.jpg", zoom: "images/rent10.jpg" },
+      { src: "images/rent11.jpg", zoom: "images/rent11.jpg" },
+      { src: "images/rent12.jpg", zoom: "images/rent12.jpg" },
+      { src: "images/rent13.jpg", zoom: "images/rent13.jpg" }
+    ]
+  }
+};
 
   function getModalId(key){
     return key === "rent" ? "rentModal" : "royalGalleryModal";
@@ -1152,36 +1152,72 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })();
 </script>
+
+<script>
+/* ================= IMAGE ZOOM ENGINE (SEPARATED VIEW) ================= */
+(() => {
+
+  const zoomModal = document.getElementById("imageZoomModal");
+  const zoomImg = document.getElementById("zoomImage");
+
+  function openZoom(src){
+    zoomImg.src = src;
+    zoomModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeZoom(){
+    zoomModal.classList.remove("active");
+    zoomImg.src = "";
+    document.body.style.overflow = "";
+  }
+
+  document.addEventListener("click", e => {
+    const img = e.target.closest("[data-zoom-src]");
+    if(img){
+      closeAllModals();   // 🔑 CIERRA GALERÍA
+      openZoom(img.dataset.zoomSrc);
+      return;
+    }
+
+    if(e.target.closest("#imageZoomModal .rent-modal-close") ||
+       e.target.classList.contains("rent-modal-overlay")){
+      closeZoom();
+    }
+  });
+
+})();
+</script>
   
 <!-- ================= IMAGE ZOOM MODAL ================= -->
-  
 <div class="rent-modal" id="imageZoomModal">
   <div class="rent-modal-overlay"></div>
 
-  <div class="rent-modal-content" style="padding:0; background:#000;">
-    <button class="rent-modal-close" style="top:12px; right:16px;">✕</button>
+  <div class="rent-modal-content" style="max-width:95vw; max-height:95vh; padding:12px;">
+    <button class="rent-modal-close">✕</button>
 
     <div style="
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      width:100%;
       height:100%;
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
     ">
       <img
         id="zoomImage"
         src=""
-        alt="Zoom image"
         style="
-          max-width:100%;
-          max-height:100vh;
-          object-fit:contain;
-          touch-action:pinch-zoom;
+          width:100%;
+          height:auto;
+          max-width:none;
+          touch-action:pan-x pan-y pinch-zoom;
+          user-select:none;
+          display:block;
         "
-      />
+        alt="Zoom image"
+      >
     </div>
   </div>
 </div>
-
   
 </body>
 </html>
