@@ -507,7 +507,63 @@
       object-fit:contain;
       cursor:default;
     }
-  </style>
+
+/* ================= CARD 3 — NURGUL LOGO SOLAR ================= */
+
+.nurgul-logo-card{
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:240px;
+  background:transparent;
+}
+
+.nurgul-logo-card::before{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:radial-gradient(
+    circle,
+    rgba(242,201,76,0.95) 0%,
+    rgba(242,201,76,0.75) 30%,
+    rgba(242,201,76,0.45) 55%,
+    rgba(242,201,76,0.18) 70%,
+    transparent 85%
+  );
+  filter:blur(18px);
+  z-index:0;
+}
+
+.nurgul-logo-card img{
+  position:relative;
+  z-index:1;
+  width:160px;
+  height:auto;
+  filter:
+    drop-shadow(0 0 12px rgba(242,201,76,0.45))
+    drop-shadow(0 0 28px rgba(242,201,76,0.25));
+}
+
+/* Mobile refinement */
+@media (max-width: 768px){
+  .nurgul-logo-card{
+    height:200px;
+  }
+
+  .nurgul-logo-card::before{
+    width:180px;
+    height:180px;
+  }
+
+  .nurgul-logo-card img{
+    width:130px;
+  }
+}
+    
+</style>
 </head>
 
 <body>
@@ -605,10 +661,9 @@
 
       <!-- ================= CARD 3 — PLACEHOLDER ================= -->
       <article class="property-card placeholder-card">
-        <div class="property-image">
-          <!-- ✅ centrado como pediste -->
-          <img src="logo/nurgul-realty-hub-header.png" alt="Nurgul Realty">
-        </div>
+        <div class="property-image nurgul-logo-card">
+        <img src="logo/nurgul-realty-hub-header.png" alt="Nurgul Realty">
+      </div>
 
         <div class="property-content">
           <h3 data-i18n="prop_title">Турак жай</h3>
