@@ -1110,5 +1110,67 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 </script>
 
+<script>
+  
+/* ================= IMAGE ZOOM HANDLER ================= */
+(() => {
+  const zoomModal = document.getElementById("imageZoomModal");
+  const zoomImg = document.getElementById("zoomImage");
+
+  if (!zoomModal || !zoomImg) return;
+
+  document.addEventListener("click", e => {
+    const img = e.target.closest(
+      ".rent-modal-gallery img, .viewer-img, .gallery-image"
+    );
+    if (!img) return;
+
+    zoomImg.src = img.src;
+    zoomModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  });
+
+  document.addEventListener("click", e => {
+    if (
+      e.target.closest("#imageZoomModal .rent-modal-close") ||
+      e.target.classList.contains("rent-modal-overlay")
+    ) {
+      zoomModal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+  });
+})();
+</script>
+  
+<!-- ================= IMAGE ZOOM MODAL ================= -->
+  
+<div class="rent-modal" id="imageZoomModal">
+  <div class="rent-modal-overlay"></div>
+
+  <div class="rent-modal-content" style="padding:0; background:#000;">
+    <button class="rent-modal-close" style="top:12px; right:16px;">✕</button>
+
+    <div style="
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100%;
+    ">
+      <img
+        id="zoomImage"
+        src=""
+        alt="Zoom image"
+        style="
+          max-width:100%;
+          max-height:100vh;
+          object-fit:contain;
+          touch-action:pinch-zoom;
+        "
+      />
+    </div>
+  </div>
+</div>
+
+  
 </body>
 </html>
