@@ -1198,16 +1198,19 @@ const state = {
     zoomModal.classList.remove("active");
     zoomImg.src = "";
 
-    // 🔁 volver al modal anterior si existe
+    // 🔁 volver exactamente al modal anterior
     if(window.lastModalId){
       const modal = document.getElementById(window.lastModalId);
-      modal?.classList.add("active");
+      if(modal){
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
     } else {
       document.body.style.overflow = "";
     }
   }
 
-  /* ✅ TAP REAL SOBRE IMAGEN */
+  /* ✅ TAP REAL: sale del modal y abre zoom */
   document.addEventListener("touchend", e => {
     const img = e.target.closest(".viewer-img");
     if(!img) return;
