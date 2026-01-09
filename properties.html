@@ -1058,12 +1058,16 @@ const state = {
   const counter = modal.querySelector(`[data-counter="${key}"]`);
   const s = state[key];
 
-  if(!imgEl || !counter || !s.images.length) return;
+  if(!imgEl || !counter || !s || !s.images || !s.images.length) return;
 
   const current = s.images[s.index];
+  if(!current) return;
 
+  // ✅ FIX: state.images es array de objetos { src, zoom }
   imgEl.src = current.src;
-  imgEl.dataset.zoomSrc = current.zoom;
+
+  // ✅ Guardar fuente para zoom (manteniendo compatibilidad con tu engine actual)
+  imgEl.dataset.zoomSrc = current.zoom || current.src;
 
   counter.textContent = `${s.index + 1} / ${s.images.length}`;
 }
