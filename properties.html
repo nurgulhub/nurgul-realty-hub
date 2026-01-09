@@ -978,15 +978,18 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ================= NURGUL — MODAL + VIEWER ENGINE (AISLADO) ================= */
   
 (() => {
+  
+  window.lastModalId = null;
   function closeAllModals(){
     document.querySelectorAll(".rent-modal.active").forEach(m => m.classList.remove("active"));
     document.body.style.overflow = "";
   }
 
-  function openModalById(id){
+    function openModalById(id){
     closeAllModals();
     const modal = document.getElementById(id);
     if(!modal) return;
+    lastModalId = id;
     modal.classList.add("active");
     document.body.style.overflow = "hidden";
   }
@@ -1170,46 +1173,64 @@ const state = {
 </script>
 
 <script>
-/* ================= IMAGE ZOOM HANDLER — SAFE ================= */
+/* ================= IMAGE ZOOM ENGINE (SEPARATED VIEW) ================= */
 (() => {
+
   const zoomModal = document.getElementById("imageZoomModal");
-  const zoomImg = document.getElementById("zoomImage");
+  const zoomImg   = document.getElementById("zoomImage");
 
-  if (!zoomModal || !zoomImg) return;
+  if(!zoomModal || !zoomImg) return;
 
-  /* abrir zoom */
-  document.querySelectorAll(".viewer-img, .rent-modal-gallery img").forEach(img=>{
-    img.addEventListener("click", e=>{
-      e.preventDefault();
-      e.stopPropagation();
+  function openZoom(src){
+    if(!src) return;
 
-      zoomImg.src = img.src;
-      zoomModal.classList.add("active");
-      document.body.style.overflow = "hidden";
+    // 🔥 cerrar cualquier modal activo (viewer fuera)
+    document.querySelectorAll(".rent-modal.active").forEach(m => {
+      if(m.id !== "imageZoomModal") m.classList.remove("active");
     });
-  });
 
-  /* ⛔ bloquear swipe dentro del zoom */
-  zoomImg.addEventListener("touchstart", e=>{
-    if (e.touches.length > 1) e.stopPropagation();
-  }, {passive:true});
+    zoomImg.src = src;
+    zoomModal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
 
-  zoomImg.addEventListener("touchmove", e=>{
-    if (e.touches.length > 1) e.stopPropagation();
-  }, {passive:true});
+  function closeZoom(){
+    zoomModal.classList.remove("active");
+    zoomImg.src = "";
 
-  /* cerrar */
-  zoomModal.addEventListener("click", e=>{
-    if (
+    // 🔁 volver al modal anterior si existe
+    if(window.lastModalId){
+      const modal = document.getElementById(window.lastModalId);
+      modal?.classList.add("active");
+    } else {
+      document.body.style.overflow = "";
+    }
+  }
+
+  /* ✅ TAP REAL SOBRE IMAGEN */
+  document.addEventListener("touchend", e => {
+    const img = e.target.closest(".viewer-img");
+    if(!img) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const zoomSrc = img.dataset.zoomSrc || img.src;
+    openZoom(zoomSrc);
+  }, { passive:false });
+
+  /* cerrar zoom */
+  zoomModal.addEventListener("click", e => {
+    if(
       e.target.classList.contains("rent-modal-overlay") ||
       e.target.classList.contains("rent-modal-close")
     ){
-      zoomModal.classList.remove("active");
-      document.body.style.overflow = "";
-      zoomImg.src = "";
+      closeZoom();
     }
   });
+
 })();
+
 </script>
 
 <script>
