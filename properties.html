@@ -1095,14 +1095,17 @@ const state = {
     prevBtn?.addEventListener("click", () => prev(key));
     nextBtn?.addEventListener("click", () => next(key));
 
-    // SWIPE SOLO dentro del viewer-stage del modal correspondiente
+        // SWIPE SOLO si NO hay zoom activo
     let startX = 0;
 
     stage?.addEventListener("touchstart", (e) => {
+      if(document.body.classList.contains("zoom-active")) return;
       startX = e.touches[0].clientX;
     }, {passive:true});
 
     stage?.addEventListener("touchend", (e) => {
+      if(document.body.classList.contains("zoom-active")) return;
+
       const diff = startX - e.changedTouches[0].clientX;
       if(Math.abs(diff) > 50){
         diff > 0 ? next(key) : prev(key);
@@ -1117,29 +1120,30 @@ const state = {
   bind("rent");
 })();
 
-/* ================= IMAGE ZOOM — TOUCH SAFE ================= */
-  
+/* ================= IMAGE ZOOM ENGINE (SEPARATED VIEW) ================= */
 (() => {
 
   const zoomModal = document.getElementById("imageZoomModal");
   const zoomImg   = document.getElementById("zoomImage");
 
-  if (!zoomModal || !zoomImg) return;
+  if(!zoomModal || !zoomImg) return;
 
   function openZoom(src){
     if(!src) return;
     zoomImg.src = src;
     zoomModal.classList.add("active");
+    document.body.classList.add("zoom-active"); // 🔒 bloquea swipe
     document.body.style.overflow = "hidden";
   }
 
   function closeZoom(){
     zoomModal.classList.remove("active");
+    document.body.classList.remove("zoom-active");
     zoomImg.src = "";
     document.body.style.overflow = "";
   }
 
-  /* ✅ TAP DIRECTO SOBRE LA IMAGEN (MÓVIL REAL) */
+  /* ✅ TAP DIRECTO SOBRE IMAGEN DEL VIEWER */
   document.addEventListener("touchend", e => {
     const img = e.target.closest(".viewer-img");
     if(!img) return;
@@ -1153,7 +1157,7 @@ const state = {
 
   /* cerrar zoom */
   zoomModal.addEventListener("click", e => {
-    if (
+    if(
       e.target.classList.contains("rent-modal-overlay") ||
       e.target.classList.contains("rent-modal-close")
     ){
