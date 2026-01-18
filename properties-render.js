@@ -1,15 +1,14 @@
 /* ============================================================
-   🏠 NURGUL REALTY — PROPERTIES RENDER ENGINE
+   🏠 NURGUL REALTY — PROPERTIES RENDER ENGINE (FIX)
    ------------------------------------------------------------
-   - Clona la tarjeta plantilla
-   - Inserta datos desde properties-data.js
-   - Respeta idioma actual (localStorage: nurgul_lang)
+   - Respeta idioma (localStorage: nurgul_lang)
+   - Llena Address / Status / Details / Price / Published
+   - Botón Information abre el modal genérico
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ================= SAFETY CHECK ================= */
-  if (!window.PROPERTIES || !Array.isArray(PROPERTIES)) {
+  if (!window.PROPERTIES || !Array.isArray(window.PROPERTIES)) {
     console.warn("PROPERTIES not found or invalid");
     return;
   }
@@ -24,13 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   template.style.display = "none";
 
-  /* ================= LANG HELPERS ================= */
+  /* ================= LANG ================= */
   function getCurrentLang(){
-    return (
-      localStorage.getItem("nurgul_lang") ||
-      document.documentElement.lang ||
-      "ky"
-    );
+    return localStorage.getItem("nurgul_lang") || "en";
   }
 
   function pickTexts(property){
@@ -44,21 +39,19 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  function statusLabel(property){
+  function getStatusLabel(property){
     const lang = getCurrentLang();
     const map = {
-      ky: { available: "Сатууда", sold: "Сатылды" },
-      ru: { available: "В продаже", sold: "Продано" },
-      en: { available: "On sale", sold: "Sold" }
+      ky: { available:"Сатууда", sold:"Сатылды" },
+      ru: { available:"В продаже", sold:"Продано" },
+      en: { available:"On sale", sold:"Sold" }
     };
-    const key = property.status === "sold" ? "sold" : "available";
-    return (map[lang] && map[lang][key]) ? map[lang][key] : key;
+    const key = (property.status === "sold") ? "sold" : "available";
+    return map[lang]?.[key] || map.en[key];
   }
 
-  /* ============================================================
-     🔹 RENDER PROPERTIES (solo SALE)
-     ============================================================ */
-  PROPERTIES.forEach(property => {
+  /* ================= RENDER ================= */
+  window.PROPERTIES.forEach(property => {
     if (property.type !== "sale") return;
 
     const t = pickTexts(property);
@@ -69,46 +62,51 @@ document.addEventListener("DOMContentLoaded", () => {
     card.style.display = "";
     card.dataset.propertyId = property.id;
 
-    // ===== TEXTOS =====
-    card.querySelector("[data-prop-title]").textContent = t.title || "";
+    // Título “tipo Royal” -> SIEMPRE visible
+    const title = (t.title && t.title.trim()) ? t.title : "Royal";
+    card.querySelector("[data-prop-title]").textContent = title;
+
+    // Location (línea suelta)
     card.querySelector("[data-prop-location]").textContent = t.location || "";
+
+    // Address (label + value)
+    const addrEl = card.querySelector("[data-prop-address]");
+    if (addrEl) addrEl.textContent = t.address || t.location || "";
+
+    // Status
+    const stEl = card.querySelector("[data-prop-status]");
+    if (stEl) stEl.textContent = getStatusLabel(property);
+
+    // Details
     card.querySelector("[data-prop-desc]").textContent = t.shortDesc || "";
+
+    // Price
     card.querySelector("[data-prop-price]").textContent = t.price || "";
 
-    // ===== CAMPOS NUEVOS (labels ya están en data-i18n) =====
-    const addrEl = card.querySelector("[data-prop-address]");
-    if (addrEl) addrEl.textContent = t.location || "";
+    // Published
+    const pubEl = card.querySelector("[data-prop-date]");
+    if (pubEl) pubEl.textContent = property.published || "—";
 
-    const stEl = card.querySelector("[data-prop-status]");
-    if (stEl) stEl.textContent = statusLabel(property);
-
-    const dateEl = card.querySelector("[data-prop-date]");
-    if (dateEl) dateEl.textContent = property.published || "—";
-
-    // ===== IMAGEN =====
+    // Image
     const img = card.querySelector("[data-prop-img]");
     if (img) {
       img.src = `images/${property.imagesFolder}/house1.jpg`;
-      img.alt = t.title || "";
+      img.alt = title;
     }
 
-    // ===== WHATSAPP =====
+    // WhatsApp
     const wa = card.querySelector("[data-prop-whatsapp]");
     const contact = property.contacts?.[0];
     if (wa && contact?.phone) {
       wa.href = `https://wa.me/${String(contact.phone).replace(/\D/g, "")}`;
-      // opcional: texto botón si lo necesitas dinámico, pero ya lo tienes fijo “WhatsApp”
     }
 
-    // ===== ESTADO VISUAL =====
     if (property.status === "sold") card.classList.add("property-sold");
 
     grid.appendChild(card);
   });
 
-  /* ============================================================
-     🟧 2.3 — PROPERTY CARD ACTIONS
-     ============================================================ */
+  /* ================= ACTIONS ================= */
   grid.addEventListener("click", e => {
     const btn = e.target.closest("[data-action]");
     if (!btn) return;
@@ -117,20 +115,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!card) return;
 
     const propertyId = card.dataset.propertyId;
-    const property = PROPERTIES.find(p => p.id === propertyId);
+    const property = window.PROPERTIES.find(p => p.id === propertyId);
     if (!property) return;
 
     const t = pickTexts(property);
     if (!t) return;
 
     if (btn.dataset.action === "info") {
-      if (!t.fullInfo) return;
-
-      window.openPropertyInfo(
-        t.title,
-        t.fullInfo,
-        property.contacts || []
-      );
+      const title = (t.title && t.title.trim()) ? t.title : "Royal";
+      const info  = t.fullInfo || t.shortDesc || "";
+      window.openPropertyInfo(title, info, property.contacts || []);
     }
 
     if (btn.dataset.action === "details") {
@@ -143,19 +137,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ============================================================
-   🟧 2.4.2 — PROPERTY INFO MODAL ENGINE
+   🟧 PROPERTY INFO MODAL ENGINE (MATCHES HTML)
    ============================================================ */
-
 window.openPropertyInfo = function(title, text, contacts = []) {
   const modal = document.getElementById("propertyInfoModal");
   if (!modal) return;
 
-  const titleEl    = modal.querySelector("[data-info-title]");
-  const textEl     = modal.querySelector("[data-info-text]");
+  const titleEl = modal.querySelector("[data-info-title]");
+  const textEl = modal.querySelector("[data-info-text]");
   const contactsEl = modal.querySelector("[data-info-contacts]");
 
   if (titleEl) titleEl.textContent = title || "";
-  if (textEl)  textEl.textContent  = text || "";
+  if (textEl) textEl.textContent = text || "";
 
   if (contactsEl) {
     contactsEl.innerHTML = "";
