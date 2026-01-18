@@ -1304,22 +1304,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* === CONEXIÓN CON TARJETAS === */
-  document.addEventListener("click", e => {
-    const btn = e.target.closest('[data-action="details"]');
-    if (!btn) return;
+  /* === CONEXIÓN CON TARJETAS (SIN DATA) === */
+document.addEventListener("click", e => {
+  const btn = e.target.closest('[data-action="details"]');
+  if (!btn) return;
 
-    const card = btn.closest("[data-property-id]");
-    if (!card) return;
+  const card = btn.closest("[data-property-id]");
+  if (!card) return;
 
-    const id = card.dataset.propertyId;
-    const property = window.PROPERTIES?.find(p => p.id === id);
-    if (!property || !property.gallery) return;
+  const folder = card.dataset.propertyId;
+  if (!folder) return;
 
-    open(property.gallery);
-  });
+  const images = [
+    `images/${folder}/house1.jpg`,
+    `images/${folder}/house2_.jpg`,
+    `images/${folder}/house3.jpg`,
+    `images/${folder}/house4.jpg`,
+    `images/${folder}/house6.jpg`,
+    `images/${folder}/house9.jpg`,
+    `images/${folder}/house10.jpg`,
+    `images/${folder}/house15.jpg`,
+    `images/${folder}/house17.jpg`,
+    `images/${folder}/house18.JPG`,
+    `images/${folder}/house20.jpg`
+  ];
+
+  open(images);
+});
 
 })();
+  
 </script>
   
 <!-- ================= IMAGE ZOOM MODAL ================= -->
