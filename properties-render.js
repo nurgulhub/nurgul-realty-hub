@@ -131,3 +131,41 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 }); // 🔒 CIERRE CORRECTO DOMContentLoaded
+
+/* ============================================================
+   🟧 2.4.2 — PROPERTY INFO MODAL ENGINE
+   ============================================================ */
+
+window.openPropertyInfo = function(title, text, contacts){
+  const modal = document.getElementById("propertyInfoModal");
+  if(!modal) return;
+
+  document.getElementById("propertyInfoTitle").textContent = title;
+  document.getElementById("propertyInfoText").textContent = text;
+
+  const contactsBox = document.getElementById("propertyInfoContacts");
+  contactsBox.innerHTML = "";
+
+  (contacts || []).forEach(c => {
+    const a = document.createElement("a");
+    a.href = `https://wa.me/${c.phone.replace(/\D/g,"")}`;
+    a.target = "_blank";
+    a.textContent = `${c.name}: ${c.phone}`;
+    contactsBox.appendChild(a);
+  });
+
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+};
+
+/* ===== CLOSE ===== */
+document.addEventListener("click", e => {
+  if(
+    e.target.classList.contains("property-modal-overlay") ||
+    e.target.classList.contains("property-modal-close")
+  ){
+    const modal = document.getElementById("propertyInfoModal");
+    modal?.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+});
