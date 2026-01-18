@@ -638,32 +638,57 @@
     </div>
   </article>
 
-  <!-- ================= CARD 2 — RENT ================= -->
-  <article class="property-card rental-card">
-    <div class="property-image property-cover">
-      <img class="open-rent-modal" src="images/rent7.jpg" alt="House for rent">
-    </div>
+  <!-- ================= CARD — PROPERTY TEMPLATE (SALE) ================= -->
+      
+<article class="property-card rental-card property-template" data-property-id="">
+  
+  <div class="property-image property-cover">
+    <img
+      class="open-property-modal"
+      data-prop-img
+      src=""
+      alt=""
+    >
+  </div>
 
-    <div class="property-content">
-      <h3 data-i18n="rent_title">House for Rent — Yunusalieva / Suvanberdieva</h3>
-      <p class="property-location" data-i18n="rent_location">Yunusalieva / Suvanberdieva district</p>
-      <p class="property-info" data-i18n="rent_desc">
-        Comfortable house, fully ready for living.
-      </p>
-      <p class="property-price" data-i18n="rent_price">$1500 / month</p>
+  <div class="property-content">
+    <h3 data-prop-title></h3>
 
-      <div class="property-actions">
-        <div class="actions-row">
-          <button class="property-btn open-rent-modal" data-i18n="btn_details">View details</button>
-          <button class="property-btn open-rent-info" data-i18n="btn_info">Information</button>
-        </div>
-        <a class="property-btn whatsapp-btn"
-           href="https://wa.me/996772630056"
-           target="_blank"
-           rel="noopener">WhatsApp</a>
+    <p class="property-location" data-prop-location></p>
+
+    <p class="property-info" data-prop-desc></p>
+
+    <p class="property-price" data-prop-price></p>
+
+    <div class="property-actions">
+      <div class="actions-row">
+        <button
+          class="property-btn open-property-modal"
+          data-prop-details
+        >
+          View details
+        </button>
+
+        <button
+          class="property-btn open-property-info"
+          data-prop-info
+        >
+          Information
+        </button>
       </div>
+
+      <a
+        class="property-btn whatsapp-btn"
+        data-prop-whatsapp
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp
+      </a>
     </div>
-  </article>
+  </div>
+
+</article>
 
   <!-- ================= CARD 3 — PLACEHOLDER ================= -->
   <article class="property-card placeholder-card">
