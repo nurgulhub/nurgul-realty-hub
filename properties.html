@@ -610,6 +610,7 @@
     <section class="properties-grid">
 
   <!-- ================= CARD 1 — ROYAL ================= -->
+      
   <article class="property-card featured-card">
     <div class="property-image property-cover">
       <img class="open-royal-gallery" src="images/royal1.png" alt="Royal Central Park Bishkek">
@@ -638,13 +639,12 @@
     </div>
   </article>
 
-  <!-- ================= CARD — PROPERTY TEMPLATE (SALE) ================= -->
+<!-- ================= CARD — PROPERTY TEMPLATE (GENÉRICO) ================= -->
       
 <article class="property-card rental-card property-template" data-property-id="">
-  
+
   <div class="property-image property-cover">
     <img
-      class="open-property-modal"
       data-prop-img
       src=""
       alt=""
@@ -663,15 +663,15 @@
     <div class="property-actions">
       <div class="actions-row">
         <button
-          class="property-btn open-property-modal"
-          data-prop-details
+          class="property-btn"
+          data-action="details"
         >
           View details
         </button>
 
         <button
-          class="property-btn open-property-info"
-          data-prop-info
+          class="property-btn"
+          data-action="info"
         >
           Information
         </button>
@@ -694,6 +694,7 @@
 </main>
   
 <!-- ================= ROYAL GALLERY MODAL (VIEWER UNIFICADO) ================= -->
+  
 <div class="rent-modal" id="royalGalleryModal">
   <div class="rent-modal-overlay"></div>
 
@@ -721,35 +722,8 @@
   </div>
 </div>
 
-<!-- ================= RENT HOUSE MODAL (VIEWER UNIFICADO) ================= -->
-<div class="rent-modal" id="rentModal">
-  <div class="rent-modal-overlay"></div>
-
-  <div class="rent-modal-content">
-    <button class="rent-modal-close">✕</button>
-
-    <div class="rent-modal-header">
-      <h3 data-i18n="rent_modal_title">House for Rent — Yunusalieva / Suvanberdieva</h3>
-      <p class="rent-modal-price" data-i18n="rent_modal_price">$1500 / month · Deposit $1500</p>
-    </div>
-
-    <div class="modal-viewer" data-viewer="rent">
-      <button class="viewer-btn" data-prev="rent" aria-label="Previous">‹</button>
-
-      <div class="viewer-stage">
-        <img class="viewer-img" data-img="rent" src="" alt="House for Rent">
-      </div>
-
-      <button class="viewer-btn" data-next="rent" aria-label="Next">›</button>
-    </div>
-
-    <div class="viewer-footer">
-      <div class="viewer-counter" data-counter="rent">1 / 1</div>
-    </div>
-  </div>
-</div>
-
 <!-- ================= ROYAL INFO MODAL ================= -->
+  
 <div class="rent-modal" id="royalInfoModal">
   <div class="rent-modal-overlay"></div>
 
@@ -782,37 +756,23 @@
   </div>
 </div>
 
-<!-- ================= RENT INFO MODAL ================= -->
-<div class="rent-modal" id="rentInfoModal">
+<!-- ============================================================
+     🟧 PROPERTY INFORMATION MODAL (GENÉRICO — SALE / SOLD / RENTED)
+     ============================================================ -->
+<div class="property-modal" id="propertyInfoModal">
   <div class="rent-modal-overlay"></div>
 
   <div class="rent-modal-content">
     <button class="rent-modal-close">✕</button>
 
     <div class="rent-modal-header">
-      <h3 data-i18n="rent_title">House for Rent — Yunusalieva / Suvanberdieva</h3>
+      <h3 data-info-title></h3>
     </div>
 
     <div class="rent-modal-info">
-    <p><strong>📍 <span data-i18n="rent_location"></span></strong></p>
-    <p data-i18n="rent_desc"></p>
-
-  <ul class="rent-modal-list">
-    <li data-i18n="rent_feat_1"></li>
-    <li data-i18n="rent_feat_2"></li>
-    <li data-i18n="rent_feat_3"></li>
-    <li data-i18n="rent_feat_4"></li>
-    <li data-i18n="rent_feat_5"></li>
-    <li data-i18n="rent_feat_6"></li>
-    <li data-i18n="rent_feat_7"></li>
-    <li data-i18n="rent_feat_8"></li>
-    <li data-i18n="rent_feat_9"></li>
-    <li data-i18n="rent_feat_10"></li>
-    <li data-i18n="rent_feat_11"></li>
-    <li data-i18n="rent_feat_12"></li>
-    <li data-i18n="rent_feat_13"></li>
-    </ul>
-   </div>
+      <pre data-info-text style="white-space:pre-wrap;"></pre>
+      <div data-info-contacts style="margin-top:16px;"></div>
+    </div>
   </div>
 </div>
 
