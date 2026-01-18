@@ -1010,6 +1010,11 @@ function applyLang(lang) {
   document.querySelectorAll(".lang-item").forEach(b => b.classList.remove("active"));
   const activeBtn = document.querySelector(`.lang-item[data-lang="${lang}"]`);
   if (activeBtn) activeBtn.classList.add("active");
+
+  /* ===== 2.2 — REFRESH PROPERTIES ON LANGUAGE CHANGE ===== */
+  if (window.NURGUL_refreshProperties) {
+    window.NURGUL_refreshProperties();
+  }
 }
 
 document.querySelectorAll(".lang-item").forEach(btn => {
