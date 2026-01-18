@@ -141,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+});
 
 /* ============================================================
    🟧 PROPERTY INFO MODAL ENGINE (MATCHES HTML)
