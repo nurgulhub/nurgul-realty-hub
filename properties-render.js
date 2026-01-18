@@ -169,3 +169,17 @@ window.openPropertyInfo = function(title, text, contacts = []) {
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
 };
+
+window.NURGUL_refreshProperties = function () {
+  const grid = document.querySelector(".properties-grid");
+  if (!grid) return;
+
+  // eliminar tarjetas actuales (menos template)
+  grid.querySelectorAll(".property-card:not(.property-template)")
+      .forEach(card => card.remove());
+
+  // volver a renderizar
+  if (typeof renderProperties === "function") {
+    renderProperties();
+  }
+};
