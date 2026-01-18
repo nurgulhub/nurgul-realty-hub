@@ -49,29 +49,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const key = (property.status === "sold") ? "sold" : "available";
     return map[lang]?.[key] || map.en[key];
   }
+   
+/* ================= RENDER ================= */
+   
+window.PROPERTIES.forEach(property => {
 
-  /* ================= RENDER ================= */
-  window.PROPERTIES.forEach(property => {
-    if (property.type !== "sale") return;
+  // ⬅️ AJUSTE: permitir placeholders
+  if (!property.placeholder && property.type !== "sale") return;
 
-    const t = pickTexts(property);
-    if (!t) return;
+  // ⬅️ AJUSTE: no exigir textos a placeholders
+  const t = property.placeholder ? null : pickTexts(property);
+  if (!property.placeholder && !t) return;
 
-    const card = template.cloneNode(true);
-    card.classList.remove("property-template");
-    card.style.display = "";
-    card.dataset.propertyId = property.id;
+  const card = template.cloneNode(true);
+  card.classList.remove("property-template");
+  card.style.display = "";
+  card.dataset.propertyId = property.id;
 
-    // Título “tipo Royal” -> SIEMPRE visible
-    const title = (t.title && t.title.trim()) ? t.title : "Royal";
-    card.querySelector("[data-prop-title]").textContent = title;
+  // 🔴 PLACEHOLDER CARD (SOLO LOGO) — AJUSTE
+  if (property.placeholder) {
+    card.innerHTML = `
+      <div class="property-placeholder">
+        <img src="logo/nurgul-realty-hub-header.png" alt="Nurgul Realty">
+      </div>
+    `;
+    grid.appendChild(card);
+    return;
+  }
 
-    // Location (línea suelta)
-    card.querySelector("[data-prop-location]").textContent = "";
+  // Título “tipo Royal” -> SIEMPRE visible
+  const title = (t.title && t.title.trim()) ? t.title : "Royal";
+  card.querySelector("[data-prop-title]").textContent = title;
 
-    // Address (label + value)
-    const addrEl = card.querySelector("[data-prop-address]");
-    if (addrEl) addrEl.textContent = t.address || t.location || "";
+  // Location (línea suelta)
+  card.querySelector("[data-prop-location]").textContent = "";
+
+  // Address (label + value)
+  const addrEl = card.querySelector("[data-prop-address]");
+  if (addrEl) addrEl.textContent = t.address || t.location || "";
 
     // Status
     const stEl = card.querySelector("[data-prop-status]");
