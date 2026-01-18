@@ -657,6 +657,40 @@
   text-decoration:none;
   font-size:13px;
 }
+
+/* ============================================================
+   📸 FIX CENTRADO GALERÍA (IMAGEN + CONTROLES)
+   ============================================================ */
+
+#propertyGalleryModal .viewer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#propertyGalleryModal .viewer-stage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#propertyGalleryModal .viewer-stage img,
+#propertyGalleryModal .viewer-stage video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+#propertyGalleryModal .viewer-controls {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
     
 </style>
 </head>
@@ -1316,18 +1350,18 @@ document.addEventListener("click", e => {
   if (!folder) return;
 
   const images = [
-    `images/${folder}/house1.jpg`,
-    `images/${folder}/house2_.jpg`,
-    `images/${folder}/house3.jpg`,
-    `images/${folder}/house4.jpg`,
-    `images/${folder}/house6.jpg`,
-    `images/${folder}/house9.jpg`,
-    `images/${folder}/house10.jpg`,
-    `images/${folder}/house15.jpg`,
-    `images/${folder}/house17.jpg`,
-    `images/${folder}/house18.JPG`,
-    `images/${folder}/house20.jpg`
-  ];
+  `images/${folder}/house1.jpg`,
+  `images/${folder}/house2.jpg`,
+  `images/${folder}/house3.jpg`,
+  `images/${folder}/house4.jpg`,
+  `images/${folder}/house6.jpg`,
+  `images/${folder}/house9.jpg`,
+  `images/${folder}/house10.jpg`,
+  `images/${folder}/house15.jpg`,
+  `images/${folder}/house17.jpg`,
+  `images/${folder}/house18.jpg`,
+  `images/${folder}/house20.jpg`
+];
 
   open(images);
 });
