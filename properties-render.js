@@ -3,8 +3,7 @@
    ------------------------------------------------------------
    - Clona la tarjeta plantilla
    - Inserta datos desde properties-data.js
-   - No altera el diseño
-   - Escalable a múltiples propiedades
+   - Respeta idioma actual (localStorage: nurgul_lang)
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -23,65 +22,86 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  /* ================= TEMPLATE ================= */
   template.style.display = "none";
 
-  /* ============================================================
-     🔹 RESOLVER ESTADO DE PROPIEDAD
-     ============================================================ */
-  function getPropertyStateLabel(property) {
-    if (property.status === "sold") return "SOLD";
-    if (property.status === "rented") return "RENTED";
-    if (property.type === "sale") return "SALE";
-    if (property.type === "rent") return "RENT";
-    return "";
+  /* ================= LANG HELPERS ================= */
+  function getCurrentLang(){
+    return (
+      localStorage.getItem("nurgul_lang") ||
+      document.documentElement.lang ||
+      "ky"
+    );
+  }
+
+  function pickTexts(property){
+    const lang = getCurrentLang();
+    return (
+      property.texts?.[lang] ||
+      property.texts?.ru ||
+      property.texts?.en ||
+      property.texts?.ky ||
+      null
+    );
+  }
+
+  function statusLabel(property){
+    const lang = getCurrentLang();
+    const map = {
+      ky: { available: "Сатууда", sold: "Сатылды" },
+      ru: { available: "В продаже", sold: "Продано" },
+      en: { available: "On sale", sold: "Sold" }
+    };
+    const key = property.status === "sold" ? "sold" : "available";
+    return (map[lang] && map[lang][key]) ? map[lang][key] : key;
   }
 
   /* ============================================================
-     🔹 RENDER PROPERTIES
+     🔹 RENDER PROPERTIES (solo SALE)
      ============================================================ */
   PROPERTIES.forEach(property => {
     if (property.type !== "sale") return;
+
+    const t = pickTexts(property);
+    if (!t) return;
 
     const card = template.cloneNode(true);
     card.classList.remove("property-template");
     card.style.display = "";
     card.dataset.propertyId = property.id;
 
-    /* ===== TEXTOS (RU por defecto) ===== */
-    const lang = "ru";
-    const t = property.texts?.[lang];
-    if (!t) return;
-
+    // ===== TEXTOS =====
     card.querySelector("[data-prop-title]").textContent = t.title || "";
     card.querySelector("[data-prop-location]").textContent = t.location || "";
     card.querySelector("[data-prop-desc]").textContent = t.shortDesc || "";
     card.querySelector("[data-prop-price]").textContent = t.price || "";
 
-    /* ===== ESTADO ===== */
-    const stateEl = card.querySelector("[data-prop-state]");
-    if (stateEl) {
-      stateEl.textContent = getPropertyStateLabel(property);
-    }
+    // ===== CAMPOS NUEVOS (labels ya están en data-i18n) =====
+    const addrEl = card.querySelector("[data-prop-address]");
+    if (addrEl) addrEl.textContent = t.location || "";
 
-    /* ===== IMAGEN ===== */
+    const stEl = card.querySelector("[data-prop-status]");
+    if (stEl) stEl.textContent = statusLabel(property);
+
+    const dateEl = card.querySelector("[data-prop-date]");
+    if (dateEl) dateEl.textContent = property.published || "—";
+
+    // ===== IMAGEN =====
     const img = card.querySelector("[data-prop-img]");
     if (img) {
       img.src = `images/${property.imagesFolder}/house1.jpg`;
       img.alt = t.title || "";
     }
 
-    /* ===== WHATSAPP ===== */
+    // ===== WHATSAPP =====
     const wa = card.querySelector("[data-prop-whatsapp]");
     const contact = property.contacts?.[0];
     if (wa && contact?.phone) {
-      wa.href = `https://wa.me/${contact.phone.replace(/\D/g, "")}`;
+      wa.href = `https://wa.me/${String(contact.phone).replace(/\D/g, "")}`;
+      // opcional: texto botón si lo necesitas dinámico, pero ya lo tienes fijo “WhatsApp”
     }
 
-    /* ===== ESTADO VISUAL ===== */
-    if (property.status === "sold") {
-      card.classList.add("property-sold");
-    }
+    // ===== ESTADO VISUAL =====
+    if (property.status === "sold") card.classList.add("property-sold");
 
     grid.appendChild(card);
   });
@@ -100,11 +120,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const property = PROPERTIES.find(p => p.id === propertyId);
     if (!property) return;
 
-    const lang = "ru";
-    const t = property.texts?.[lang];
+    const t = pickTexts(property);
     if (!t) return;
 
-    /* ===== INFORMATION ===== */
     if (btn.dataset.action === "info") {
       if (!t.fullInfo) return;
 
@@ -115,7 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
       );
     }
 
-    /* ===== DETAILS (GALERÍA FUTURA) ===== */
     if (btn.dataset.action === "details") {
       if (typeof window.openPropertyGallery === "function") {
         window.openPropertyGallery(property);
@@ -123,19 +140,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-}); // 🔒 FIN DOMContentLoaded
+});
 
 /* ============================================================
-   🟧 2.4.2 — PROPERTY INFO MODAL ENGINE (FIXED)
+   🟧 2.4.2 — PROPERTY INFO MODAL ENGINE
    ============================================================ */
 
 window.openPropertyInfo = function(title, text, contacts = []) {
   const modal = document.getElementById("propertyInfoModal");
   if (!modal) return;
 
-  const titleEl   = modal.querySelector("[data-info-title]");
-  const textEl    = modal.querySelector("[data-info-text]");
-  const contactsEl= modal.querySelector("[data-info-contacts]");
+  const titleEl    = modal.querySelector("[data-info-title]");
+  const textEl     = modal.querySelector("[data-info-text]");
+  const contactsEl = modal.querySelector("[data-info-contacts]");
 
   if (titleEl) titleEl.textContent = title || "";
   if (textEl)  textEl.textContent  = text || "";
@@ -152,19 +169,3 @@ window.openPropertyInfo = function(title, text, contacts = []) {
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
 };
-
-/* ============================================================
-   🟧 MODAL CLOSE HANDLER (GENÉRICO)
-   ============================================================ */
-
-document.addEventListener("click", e => {
-  if (
-    e.target.classList.contains("rent-modal-overlay") ||
-    e.target.classList.contains("rent-modal-close")
-  ) {
-    document.querySelectorAll(".rent-modal.active").forEach(m => {
-      m.classList.remove("active");
-    });
-    document.body.style.overflow = "";
-  }
-});
