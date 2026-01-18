@@ -657,36 +657,6 @@
   text-decoration:none;
   font-size:13px;
 }
-
-/* ================= GENERIC GALLERY CENTER FIX ================= */
-#propertyGalleryModal .viewer-content{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#propertyGalleryModal .viewer-stage{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#propertyGalleryModal .viewer-img{
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-#propertyGalleryModal .viewer-controls{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-top: 12px;
-}
     
 </style>
 </head>
@@ -1345,19 +1315,19 @@ document.addEventListener("click", e => {
   const folder = card.dataset.propertyId;
   if (!folder) return;
 
-    const images = [
-  { type: "image", src: `images/${folder}/house1.jpg` },
-  { type: "image", src: `images/${folder}/house2..jpg` },
-  { type: "image", src: `images/${folder}/house3..jpg` },
-  { type: "image", src: `images/${folder}/house4.jpg` },
-  { type: "video", src: `images/${folder}/house1_sa.mp4` }, // 🎥 VIDEO
-  { type: "image", src: `images/${folder}/house6.jpg` },
-  { type: "image", src: `images/${folder}/house9.jpg` },
-  { type: "image", src: `images/${folder}/house15.jpg` },
-  { type: "image", src: `images/${folder}/house17.jpg` },
-  { type: "image", src: `images/${folder}/house18.JPG` },
-  { type: "image", src: `images/${folder}/house20.jpg` }
-];
+  const images = [
+    `images/${folder}/house1.jpg`,
+    `images/${folder}/house2_.jpg`,
+    `images/${folder}/house3.jpg`,
+    `images/${folder}/house4.jpg`,
+    `images/${folder}/house6.jpg`,
+    `images/${folder}/house9.jpg`,
+    `images/${folder}/house10.jpg`,
+    `images/${folder}/house15.jpg`,
+    `images/${folder}/house17.jpg`,
+    `images/${folder}/house18.JPG`,
+    `images/${folder}/house20.jpg`
+  ];
 
   open(images);
 });
