@@ -995,7 +995,7 @@ const translations = {
 
 <script>  
   
-function applyLang(lang) {
+function applyLang(lang, skipRefresh = false) {
   if (!translations[lang]) lang = "ky";
 
   document.documentElement.lang = lang;
@@ -1011,8 +1011,8 @@ function applyLang(lang) {
   const activeBtn = document.querySelector(`.lang-item[data-lang="${lang}"]`);
   if (activeBtn) activeBtn.classList.add("active");
 
-  /* ===== 2.2 — REFRESH PROPERTIES ON LANGUAGE CHANGE ===== */
-  if (window.NURGUL_refreshProperties) {
+  /* ===== REFRESH PROPERTIES (ONLY AFTER INITIAL LOAD) ===== */
+  if (!skipRefresh && window.NURGUL_refreshProperties) {
     window.NURGUL_refreshProperties();
   }
 }
@@ -1022,7 +1022,7 @@ document.querySelectorAll(".lang-item").forEach(btn => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  applyLang(localStorage.getItem("nurgul_lang") || "ky");
+  applyLang(localStorage.getItem("nurgul_lang") || "ky", true);
 });
 </script>
 
