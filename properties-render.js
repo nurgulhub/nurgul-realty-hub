@@ -24,6 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // Limpiar plantilla visual (no se muestra sola)
   template.style.display = "none";
 
+  /* ===== RESOLVER ESTADO DE PROPIEDAD ===== */
+  function getPropertyStateLabel(property) {
+    if (property.status === "sold") return "SOLD";
+    if (property.status === "rented") return "RENTED";
+    if (property.type === "sale") return "SALE";
+    if (property.type === "rent") return "RENT";
+    return "";
+  }
+
   PROPERTIES.forEach(property => {
     if (property.type !== "sale") return;
 
@@ -41,6 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
     card.querySelector("[data-prop-desc]").textContent = t.shortDesc;
     card.querySelector("[data-prop-price]").textContent = t.price;
 
+    /* ===== ESTADO (SALE / SOLD / RENT / RENTED) ===== */
+    const stateEl = card.querySelector("[data-prop-state]");
+    if (stateEl) {
+      stateEl.textContent = getPropertyStateLabel(property);
+    }
+
     /* ===== IMAGEN PRINCIPAL ===== */
     const img = card.querySelector("[data-prop-img]");
     img.src = `images/${property.imagesFolder}/house1.jpg`;
@@ -51,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const contact = property.contacts[0];
     wa.href = `https://wa.me/${contact.phone.replace(/\D/g, "")}`;
 
-    /* ===== ESTADO (sold / available) ===== */
+    /* ===== ESTADO VISUAL (opcional futuro) ===== */
     if (property.status === "sold") {
       card.classList.add("property-sold");
     }
