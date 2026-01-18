@@ -1306,11 +1306,34 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function render(){
-    const src = images[index];
-    imgEl.src = src;
-    imgEl.dataset.zoomSrc = src; // 🔗 conecta con el ZOOM ENGINE
-    counter.textContent = `${index + 1} / ${images.length}`;
+  const item = images[index];
+  if (!item) return;
+
+  // Limpiar stage
+  const stage = imgEl.parentElement;
+  stage.innerHTML = "";
+
+  if (item.type === "video") {
+    const video = document.createElement("video");
+    video.src = item.src;
+    video.controls = true;
+    video.playsInline = true; // iOS
+    video.style.maxWidth = "100%";
+    video.style.borderRadius = "12px";
+
+    stage.appendChild(video);
+  } else {
+    const img = document.createElement("img");
+    img.className = "viewer-img";
+    img.src = item.src;
+    img.dataset.zoomSrc = item.src;
+
+    img.onerror = () => next();
+    stage.appendChild(img);
   }
+
+  counter.textContent = `${index + 1} / ${images.length}`;
+}
 
   function prev(){
     index = (index - 1 + images.length) % images.length;
