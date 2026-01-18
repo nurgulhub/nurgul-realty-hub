@@ -1035,18 +1035,22 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 
 <script>
-  
 /* ================= NURGUL — MODAL + VIEWER ENGINE (AISLADO) ================= */
-  
+
 (() => {
-  
+
   window.lastModalId = null;
+
   function closeAllModals(){
     document.querySelectorAll(".rent-modal.active").forEach(m => m.classList.remove("active"));
     document.body.style.overflow = "";
   }
 
-    function openModalById(id){
+  function openModalById(id){
+    showOnlyModal(id);
+  }
+
+  function showOnlyModal(id){
     closeAllModals();
     const modal = document.getElementById(id);
     if(!modal) return;
@@ -1057,83 +1061,79 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // OPENERS
   document.querySelectorAll(".open-royal-gallery").forEach(b =>
-    b.addEventListener("click", () => openModalById("royalGalleryModal"))
+    b.addEventListener("click", () => showOnlyModal("royalGalleryModal"))
   );
   document.querySelectorAll(".open-royal-info").forEach(b =>
-    b.addEventListener("click", () => openModalById("royalInfoModal"))
+    b.addEventListener("click", () => showOnlyModal("royalInfoModal"))
   );
   document.querySelectorAll(".open-rent-modal").forEach(b =>
-    b.addEventListener("click", () => openModalById("rentModal"))
+    b.addEventListener("click", () => showOnlyModal("rentModal"))
   );
   document.querySelectorAll(".open-rent-info").forEach(b =>
-    b.addEventListener("click", () => openModalById("rentInfoModal"))
+    b.addEventListener("click", () => showOnlyModal("rentInfoModal"))
   );
 
   // CLOSE (X + overlay)
   document.addEventListener("click", (e)=>{
-    if(e.target.closest(".rent-modal-close") || e.target.classList.contains("rent-modal-overlay")){
+    if(
+      e.target.closest(".rent-modal-close") ||
+      e.target.classList.contains("rent-modal-overlay")
+    ){
       closeAllModals();
     }
   });
 
-// VIEWER STATE (aislado por key)
-const state = {
-  royal: {
-    index: 0,
-    images: [
-      { src: "images/rca1.png", zoom: "images/rca1.png" },
-      { src: "images/rca2.png", zoom: "images/rca2.png" },
-     { src: "images/rca3.png?v=2", zoom: "images/rca3.png?v=2" },
-      { src: "images/rca4.jpg", zoom: "images/rca4.jpg" },
-      { src: "images/rca5.jpg", zoom: "images/rca5.jpg" },
-      { src: "images/rca6.jpg", zoom: "images/rca6.jpg" }
-    ]
-  },
+  // VIEWER STATE
+  const state = {
+    royal: {
+      index: 0,
+      images: [
+        { src: "images/rca1.png", zoom: "images/rca1.png" },
+        { src: "images/rca2.png", zoom: "images/rca2.png" },
+        { src: "images/rca3.png?v=2", zoom: "images/rca3.png?v=2" },
+        { src: "images/rca4.jpg", zoom: "images/rca4.jpg" },
+        { src: "images/rca5.jpg", zoom: "images/rca5.jpg" },
+        { src: "images/rca6.jpg", zoom: "images/rca6.jpg" }
+      ]
+    },
 
-  rent: {
-  index: 0,
-  images: [
-    { src: "images/house1/house1.jpg",  zoom: "images/house1/house1.jpg" },
-    { src: "images/house1/house2.jpg",  zoom: "images/house1/house2.jpg" },
-    { src: "images/house1/house3.jpg",  zoom: "images/house1/house3.jpg" },
-    { src: "images/house1/house4.jpg",  zoom: "images/house1/house4.jpg" },
-    { src: "images/house1/house6.jpg",  zoom: "images/house1/house6.jpg" },
-    { src: "images/house1/house9.jpg",  zoom: "images/house1/house9.jpg" },
-    { src: "images/house1/house10.jpg", zoom: "images/house1/house10.jpg" },
-    { src: "images/house1/house15.jpg", zoom: "images/house1/house15.jpg" },
-    { src: "images/house1/house17.jpg", zoom: "images/house1/house17.jpg" },
-    { src: "images/house1/house18.jpg", zoom: "images/house1/house18.jpg" },
-    { src: "images/house1/house20.jpg", zoom: "images/house1/house20.jpg" }
-  ]
-}
-
-};
+    rent: {
+      index: 0,
+      images: [
+        { src: "images/house1/house1.jpg",  zoom: "images/house1/house1.jpg" },
+        { src: "images/house1/house2.jpg",  zoom: "images/house1/house2.jpg" },
+        { src: "images/house1/house3.jpg",  zoom: "images/house1/house3.jpg" },
+        { src: "images/house1/house4.jpg",  zoom: "images/house1/house4.jpg" },
+        { src: "images/house1/house6.jpg",  zoom: "images/house1/house6.jpg" },
+        { src: "images/house1/house9.jpg",  zoom: "images/house1/house9.jpg" },
+        { src: "images/house1/house10.jpg", zoom: "images/house1/house10.jpg" },
+        { src: "images/house1/house15.jpg", zoom: "images/house1/house15.jpg" },
+        { src: "images/house1/house17.jpg", zoom: "images/house1/house17.jpg" },
+        { src: "images/house1/house18.jpg", zoom: "images/house1/house18.jpg" },
+        { src: "images/house1/house20.jpg", zoom: "images/house1/house20.jpg" }
+      ]
+    }
+  };
 
   function getModalId(key){
     return key === "rent" ? "rentModal" : "royalGalleryModal";
   }
 
   function render(key){
-  const modal = document.getElementById(getModalId(key));
-  if(!modal) return;
+    const modal = document.getElementById(getModalId(key));
+    if(!modal) return;
 
-  const imgEl = modal.querySelector(`[data-img="${key}"]`);
-  const counter = modal.querySelector(`[data-counter="${key}"]`);
-  const s = state[key];
+    const imgEl = modal.querySelector(`[data-img="${key}"]`);
+    const counter = modal.querySelector(`[data-counter="${key}"]`);
+    const s = state[key];
 
-  if(!imgEl || !counter || !s || !s.images || !s.images.length) return;
+    if(!imgEl || !counter || !s?.images?.length) return;
 
-  const current = s.images[s.index];
-  if(!current) return;
-
-  // ✅ FIX: state.images es array de objetos { src, zoom }
-  imgEl.src = current.src;
-
-  // ✅ Guardar fuente para zoom (manteniendo compatibilidad con tu engine actual)
-  imgEl.dataset.zoomSrc = current.zoom || current.src;
-
-  counter.textContent = `${s.index + 1} / ${s.images.length}`;
-}
+    const current = s.images[s.index];
+    imgEl.src = current.src;
+    imgEl.dataset.zoomSrc = current.zoom || current.src;
+    counter.textContent = `${s.index + 1} / ${s.images.length}`;
+  }
 
   function prev(key){
     const s = state[key];
@@ -1151,40 +1151,32 @@ const state = {
     const modal = document.getElementById(getModalId(key));
     if(!modal) return;
 
-    const prevBtn = modal.querySelector(`[data-prev="${key}"]`);
-    const nextBtn = modal.querySelector(`[data-next="${key}"]`);
-    const stage  = modal.querySelector(".viewer-stage");
+    modal.querySelector(`[data-prev="${key}"]`)?.addEventListener("click", () => prev(key));
+    modal.querySelector(`[data-next="${key}"]`)?.addEventListener("click", () => next(key));
 
-    prevBtn?.addEventListener("click", () => prev(key));
-    nextBtn?.addEventListener("click", () => next(key));
-
-        // SWIPE SOLO si NO hay zoom activo
+    const stage = modal.querySelector(".viewer-stage");
     let startX = 0;
 
-    stage?.addEventListener("touchstart", (e) => {
-      if(document.body.classList.contains("zoom-active")) return;
+    stage?.addEventListener("touchstart", e => {
       startX = e.touches[0].clientX;
     }, {passive:true});
 
-    stage?.addEventListener("touchend", (e) => {
-      if(document.body.classList.contains("zoom-active")) return;
-
+    stage?.addEventListener("touchend", e => {
       const diff = startX - e.changedTouches[0].clientX;
       if(Math.abs(diff) > 50){
         diff > 0 ? next(key) : prev(key);
       }
     }, {passive:true});
 
-    // primera render
     render(key);
   }
 
   bind("royal");
   bind("rent");
-})();
 
-<script>
-  
+})();
+</script>
+
 <script>
 /* ================= IMAGE ZOOM ENGINE (SINGLE — FINAL) ================= */
 (() => {
@@ -1197,7 +1189,6 @@ const state = {
   function openZoom(src){
     if (!src) return;
 
-    // Cierra cualquier modal activo (galería/info)
     document.querySelectorAll(".rent-modal.active").forEach(m => {
       if (m !== zoomModal) m.classList.remove("active");
     });
@@ -1213,19 +1204,16 @@ const state = {
     document.body.style.overflow = "";
   }
 
-  // Click / tap sobre imagen del viewer
   document.addEventListener("click", e => {
     const img =
       e.target.closest(".viewer-img") ||
       e.target.closest("[data-zoom-src]");
 
     if (img) {
-      const src = img.dataset.zoomSrc || img.dataset.zoom || img.src;
-      openZoom(src);
+      openZoom(img.dataset.zoomSrc || img.src);
       return;
     }
 
-    // Cerrar zoom
     if (
       e.target.closest("#imageZoomModal .rent-modal-close") ||
       e.target.classList.contains("rent-modal-overlay")
