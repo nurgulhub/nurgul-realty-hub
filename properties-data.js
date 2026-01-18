@@ -88,25 +88,27 @@ window.PROPERTIES = [
       }
     },
 
-    contacts: [
+   contacts: [
       { name: "Нургуль", phone: "0559500551" },
       { name: "Нагима", phone: "0706315903" }
     ]
+  },
+
+  {
+    id: "house2",
+    placeholder: true
+  },
+  {
+    id: "house3",
+    placeholder: true
+  },
+  {
+    id: "house4",
+    placeholder: true
   }
 ];
 
-{
-  id: "house2",
-  placeholder: true
-},
-{
-  id: "house3",
-  placeholder: true
-},
-{
-  id: "house4",
-  placeholder: true
-}
+
 
 /* ============================================================
    🔜 HOUSE 2–7
