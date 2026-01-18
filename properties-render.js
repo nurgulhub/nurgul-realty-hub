@@ -58,13 +58,13 @@ document.addEventListener("DOMContentLoaded", () => {
     card.querySelector("[data-prop-desc]").textContent = t.shortDesc || "";
     card.querySelector("[data-prop-price]").textContent = t.price || "";
 
-    /* ===== ESTADO (SALE / SOLD / RENT / RENTED) ===== */
+    /* ===== ESTADO ===== */
     const stateEl = card.querySelector("[data-prop-state]");
     if (stateEl) {
       stateEl.textContent = getPropertyStateLabel(property);
     }
 
-    /* ===== IMAGEN PRINCIPAL ===== */
+    /* ===== IMAGEN ===== */
     const img = card.querySelector("[data-prop-img]");
     if (img) {
       img.src = `images/${property.imagesFolder}/house1.jpg`;
@@ -88,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ============================================================
      🟧 2.3 — PROPERTY CARD ACTIONS
-     (Information / Details)
      ============================================================ */
   grid.addEventListener("click", e => {
     const btn = e.target.closest("[data-action]");
@@ -109,63 +108,63 @@ document.addEventListener("DOMContentLoaded", () => {
     if (btn.dataset.action === "info") {
       if (!t.fullInfo) return;
 
-      if (typeof window.openPropertyInfo === "function") {
-        window.openPropertyInfo(
-          t.title,
-          t.fullInfo,
-          property.contacts || []
-        );
-      } else {
-        console.warn("openPropertyInfo() not defined");
-      }
+      window.openPropertyInfo(
+        t.title,
+        t.fullInfo,
+        property.contacts || []
+      );
     }
 
-    /* ===== DETAILS (GALERÍA) ===== */
+    /* ===== DETAILS (GALERÍA FUTURA) ===== */
     if (btn.dataset.action === "details") {
       if (typeof window.openPropertyGallery === "function") {
         window.openPropertyGallery(property);
-      } else {
-        console.warn("openPropertyGallery() not defined");
       }
     }
   });
 
-}); // 🔒 CIERRE CORRECTO DOMContentLoaded
+}); // 🔒 FIN DOMContentLoaded
 
 /* ============================================================
-   🟧 2.4.2 — PROPERTY INFO MODAL ENGINE
+   🟧 2.4.2 — PROPERTY INFO MODAL ENGINE (FIXED)
    ============================================================ */
 
-window.openPropertyInfo = function(title, text, contacts){
+window.openPropertyInfo = function(title, text, contacts = []) {
   const modal = document.getElementById("propertyInfoModal");
-  if(!modal) return;
+  if (!modal) return;
 
-  document.getElementById("propertyInfoTitle").textContent = title;
-  document.getElementById("propertyInfoText").textContent = text;
+  const titleEl   = modal.querySelector("[data-info-title]");
+  const textEl    = modal.querySelector("[data-info-text]");
+  const contactsEl= modal.querySelector("[data-info-contacts]");
 
-  const contactsBox = document.getElementById("propertyInfoContacts");
-  contactsBox.innerHTML = "";
+  if (titleEl) titleEl.textContent = title || "";
+  if (textEl)  textEl.textContent  = text || "";
 
-  (contacts || []).forEach(c => {
-    const a = document.createElement("a");
-    a.href = `https://wa.me/${c.phone.replace(/\D/g,"")}`;
-    a.target = "_blank";
-    a.textContent = `${c.name}: ${c.phone}`;
-    contactsBox.appendChild(a);
-  });
+  if (contactsEl) {
+    contactsEl.innerHTML = "";
+    contacts.forEach(c => {
+      const p = document.createElement("p");
+      p.textContent = `${c.name}: ${c.phone}`;
+      contactsEl.appendChild(p);
+    });
+  }
 
   modal.classList.add("active");
   document.body.style.overflow = "hidden";
 };
 
-/* ===== CLOSE ===== */
+/* ============================================================
+   🟧 MODAL CLOSE HANDLER (GENÉRICO)
+   ============================================================ */
+
 document.addEventListener("click", e => {
-  if(
-    e.target.classList.contains("property-modal-overlay") ||
-    e.target.classList.contains("property-modal-close")
-  ){
-    const modal = document.getElementById("propertyInfoModal");
-    modal?.classList.remove("active");
+  if (
+    e.target.classList.contains("rent-modal-overlay") ||
+    e.target.classList.contains("rent-modal-close")
+  ) {
+    document.querySelectorAll(".rent-modal.active").forEach(m => {
+      m.classList.remove("active");
+    });
     document.body.style.overflow = "";
   }
 });
