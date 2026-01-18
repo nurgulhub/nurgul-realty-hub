@@ -95,6 +95,19 @@ window.PROPERTIES = [
   }
 ];
 
+{
+  id: "house2",
+  placeholder: true
+},
+{
+  id: "house3",
+  placeholder: true
+},
+{
+  id: "house4",
+  placeholder: true
+}
+
 /* ============================================================
    🔜 HOUSE 2–7
    ------------------------------------------------------------
