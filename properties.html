@@ -875,6 +875,27 @@
   </div>
 </div>
 
+<!-- ================= GENERIC PROPERTY GALLERY MODAL ================= -->
+  
+<div class="rent-modal" id="propertyGalleryModal">
+  <div class="rent-modal-overlay"></div>
+
+  <div class="rent-modal-content viewer-content">
+    <button class="rent-modal-close">✕</button>
+
+    <div class="viewer-stage">
+      <img class="viewer-img" id="propertyGalleryImage" />
+    </div>
+
+    <div class="viewer-controls">
+      <button class="viewer-btn" id="galleryPrev">‹</button>
+      <span class="viewer-counter" id="galleryCounter">1 / 1</span>
+      <button class="viewer-btn" id="galleryNext">›</button>
+    </div>
+  </div>
+</div>
+
+  
 
 <script src="properties-data.js"></script>
 <script src="properties-render.js"></script>
@@ -1220,6 +1241,81 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       closeZoom();
     }
+  });
+
+})();
+</script>
+
+<script>
+/* ================= GENERIC PROPERTY GALLERY ENGINE ================= */
+(() => {
+
+  let images = [];
+  let index = 0;
+
+  const modal   = document.getElementById("propertyGalleryModal");
+  const imgEl   = document.getElementById("propertyGalleryImage");
+  const counter = document.getElementById("galleryCounter");
+
+  if (!modal || !imgEl || !counter) return;
+
+  function open(imagesArray){
+    images = imagesArray || [];
+    index = 0;
+    if (!images.length) return;
+
+    render();
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+  }
+
+  function close(){
+    modal.classList.remove("active");
+    document.body.style.overflow = "";
+  }
+
+  function render(){
+    const src = images[index];
+    imgEl.src = src;
+    imgEl.dataset.zoomSrc = src; // 🔗 conecta con el ZOOM ENGINE
+    counter.textContent = `${index + 1} / ${images.length}`;
+  }
+
+  function prev(){
+    index = (index - 1 + images.length) % images.length;
+    render();
+  }
+
+  function next(){
+    index = (index + 1) % images.length;
+    render();
+  }
+
+  document.getElementById("galleryPrev")?.addEventListener("click", prev);
+  document.getElementById("galleryNext")?.addEventListener("click", next);
+
+  modal.addEventListener("click", e => {
+    if (
+      e.target.classList.contains("rent-modal-overlay") ||
+      e.target.closest(".rent-modal-close")
+    ) {
+      close();
+    }
+  });
+
+  /* === CONEXIÓN CON TARJETAS === */
+  document.addEventListener("click", e => {
+    const btn = e.target.closest('[data-action="details"]');
+    if (!btn) return;
+
+    const card = btn.closest("[data-property-id]");
+    if (!card) return;
+
+    const id = card.dataset.propertyId;
+    const property = window.PROPERTIES?.find(p => p.id === id);
+    if (!property || !property.gallery) return;
+
+    open(property.gallery);
   });
 
 })();
