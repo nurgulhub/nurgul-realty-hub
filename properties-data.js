@@ -26,7 +26,7 @@ window.PROPERTIES = [
 
     imagesFolder: "house1",
 
-    texts: {
+  texts: {
   ru: {
     title: "Продаются новые таунхаусы в Бишкеке",
     location: "Вторая линия от Жибек-Жолу, рядом с церковью",
@@ -86,7 +86,7 @@ window.PROPERTIES = [
 0559 500 551 — Nurgul
 0706 315 903 — Nagima`
   }
-}
+},
 
       ky: {
         title: "",
