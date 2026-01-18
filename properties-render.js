@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     card.querySelector("[data-prop-title]").textContent = title;
 
     // Location (línea suelta)
-    card.querySelector("[data-prop-location]").textContent = t.location || "";
+    card.querySelector("[data-prop-location]").textContent = "";
 
     // Address (label + value)
     const addrEl = card.querySelector("[data-prop-address]");
