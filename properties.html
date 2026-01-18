@@ -1183,70 +1183,21 @@ const state = {
   bind("rent");
 })();
 
-/* ================= IMAGE ZOOM ENGINE (SEPARATED VIEW) ================= */
-(() => {
-
-  const zoomModal = document.getElementById("imageZoomModal");
-  const zoomImg   = document.getElementById("zoomImage");
-
-  if(!zoomModal || !zoomImg) return;
-
-  function openZoom(src){
-    if(!src) return;
-    zoomImg.src = src;
-    zoomModal.classList.add("active");
-    document.body.classList.add("zoom-active"); // 🔒 bloquea swipe
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeZoom(){
-    zoomModal.classList.remove("active");
-    document.body.classList.remove("zoom-active");
-    zoomImg.src = "";
-    document.body.style.overflow = "";
-  }
-
-  /* ✅ TAP DIRECTO SOBRE IMAGEN DEL VIEWER */
-  document.addEventListener("touchend", e => {
-    const img = e.target.closest(".viewer-img");
-    if(!img) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    const zoomSrc = img.dataset.zoomSrc || img.src;
-    openZoom(zoomSrc);
-  }, { passive:false });
-
-  /* cerrar zoom */
-  zoomModal.addEventListener("click", e => {
-    if(
-      e.target.classList.contains("rent-modal-overlay") ||
-      e.target.classList.contains("rent-modal-close")
-    ){
-      closeZoom();
-    }
-  });
-
-})();
-
-</script>
-
 <script>
-/* ================= IMAGE ZOOM ENGINE (SEPARATED VIEW) ================= */
+/* ================= IMAGE ZOOM ENGINE (SINGLE — FINAL) ================= */
 (() => {
 
   const zoomModal = document.getElementById("imageZoomModal");
   const zoomImg   = document.getElementById("zoomImage");
 
-  if(!zoomModal || !zoomImg) return;
+  if (!zoomModal || !zoomImg) return;
 
   function openZoom(src){
-    if(!src) return;
+    if (!src) return;
 
-    // 🔥 cerrar cualquier modal activo (viewer fuera)
+    // Cierra cualquier modal activo (galería/info)
     document.querySelectorAll(".rent-modal.active").forEach(m => {
-      if(m.id !== "imageZoomModal") m.classList.remove("active");
+      if (m !== zoomModal) m.classList.remove("active");
     });
 
     zoomImg.src = src;
@@ -1257,74 +1208,26 @@ const state = {
   function closeZoom(){
     zoomModal.classList.remove("active");
     zoomImg.src = "";
-
-    // 🔁 volver exactamente al modal anterior
-    if(window.lastModalId){
-      const modal = document.getElementById(window.lastModalId);
-      if(modal){
-        modal.classList.add("active");
-        document.body.style.overflow = "hidden";
-      }
-    } else {
-      document.body.style.overflow = "";
-    }
-  }
-
-  /* ✅ TAP REAL: sale del modal y abre zoom */
-  document.addEventListener("touchend", e => {
-    const img = e.target.closest(".viewer-img");
-    if(!img) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    const zoomSrc = img.dataset.zoomSrc || img.src;
-    openZoom(zoomSrc);
-  }, { passive:false });
-
-  /* cerrar zoom */
-  zoomModal.addEventListener("click", e => {
-    if(
-      e.target.classList.contains("rent-modal-overlay") ||
-      e.target.classList.contains("rent-modal-close")
-    ){
-      closeZoom();
-    }
-  });
-
-})();
-
-</script>
-
-<script>
-/* ================= IMAGE ZOOM ENGINE (SEPARATED VIEW) ================= */
-(() => {
-
-  const zoomModal = document.getElementById("imageZoomModal");
-  const zoomImg = document.getElementById("zoomImage");
-
-  function openZoom(src){
-    zoomImg.src = src;
-    zoomModal.classList.add("active");
-    document.body.style.overflow = "hidden";
-  }
-
-  function closeZoom(){
-    zoomModal.classList.remove("active");
-    zoomImg.src = "";
     document.body.style.overflow = "";
   }
 
+  // Click / tap sobre imagen del viewer
   document.addEventListener("click", e => {
-    const img = e.target.closest("[data-zoom-src]");
-    if(img){
-      closeAllModals();   // 🔑 CIERRA GALERÍA
-      openZoom(img.dataset.zoomSrc);
+    const img =
+      e.target.closest(".viewer-img") ||
+      e.target.closest("[data-zoom-src]");
+
+    if (img) {
+      const src = img.dataset.zoomSrc || img.dataset.zoom || img.src;
+      openZoom(src);
       return;
     }
 
-    if(e.target.closest("#imageZoomModal .rent-modal-close") ||
-       e.target.classList.contains("rent-modal-overlay")){
+    // Cerrar zoom
+    if (
+      e.target.closest("#imageZoomModal .rent-modal-close") ||
+      e.target.classList.contains("rent-modal-overlay")
+    ) {
       closeZoom();
     }
   });
