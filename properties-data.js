@@ -26,14 +26,14 @@ window.PROPERTIES = [
 
     imagesFolder: "house1",
 
-  texts: {
-  ru: {
-    title: "Продаются новые таунхаусы в Бишкеке",
-    location: "Вторая линия от Жибек-Жолу, рядом с церковью",
-    address: "Вторая линия от Жибек-Жолу, рядом с церковью",
-    shortDesc: "Новые таунхаусы, 230 м², газовое отопление, центральные коммуникации.",
-    price: "660 000 $ (возможна продажа отдельно)",
-    fullInfo: `🏡 Продаются новые таунхаусы в Бишкеке
+    texts: {
+      ru: {
+        title: "Продаются новые таунхаусы в Бишкеке",
+        location: "Вторая линия от Жибек-Жолу, рядом с церковью",
+        address: "Вторая линия от Жибек-Жолу, рядом с церковью",
+        shortDesc: "Новые таунхаусы, 230 м², газовое отопление, центральные коммуникации.",
+        price: "660 000 $ (возможна продажа отдельно)",
+        fullInfo: `🏡 Продаются новые таунхаусы в Бишкеке
 📍 Вторая линия от Жибек-Жолу, рядом с церковью
 
 ✨ Характеристики:
@@ -45,15 +45,15 @@ window.PROPERTIES = [
 📞 Контакты:
 0559 500 551 — Нургуль
 0706 315 903 — Нагима`
-  },
+      },
 
-  ky: {
-    title: "Бишкекте жаңы таунхаустар сатылат",
-    location: "Жибек-Жолу көчөсүнөн экинчи катар, чиркөөнүн жанында",
-    address: "Жибек-Жолу көчөсүнөн экинчи катар, чиркөөнүн жанында",
-    shortDesc: "Жаңы таунхаустар, 230 м², газ менен жылытуу, борбордук коммуникациялар.",
-    price: "660 000 $ (өзүнчө сатууга мүмкүн)",
-    fullInfo: `🏡 Бишкекте жаңы таунхаустар сатылат
+      ky: {
+        title: "Бишкекте жаңы таунхаустар сатылат",
+        location: "Жибек-Жолу көчөсүнөн экинчи катар, чиркөөнүн жанында",
+        address: "Жибек-Жолу көчөсүнөн экинчи катар, чиркөөнүн жанында",
+        shortDesc: "Жаңы таунхаустар, 230 м², газ менен жылытуу, борбордук коммуникациялар.",
+        price: "660 000 $ (өзүнчө сатууга мүмкүн)",
+        fullInfo: `🏡 Бишкекте жаңы таунхаустар сатылат
 📍 Жибек-Жолу көчөсүнөн экинчи катар, чиркөөнүн жанында
 
 ✨ Мүнөздөмөлөрү:
@@ -65,15 +65,15 @@ window.PROPERTIES = [
 📞 Байланыш:
 0559 500 551 — Нургуль
 0706 315 903 — Нагима`
-  },
+      },
 
-  en: {
-    title: "New townhouses for sale in Bishkek",
-    location: "Second line from Zhibek-Zholu, near the church",
-    address: "Second line from Zhibek-Zholu, near the church",
-    shortDesc: "New townhouses, 230 m², gas heating, central utilities.",
-    price: "$660,000 (possible individual sale)",
-    fullInfo: `🏡 New townhouses for sale in Bishkek
+      en: {
+        title: "New townhouses for sale in Bishkek",
+        location: "Second line from Zhibek-Zholu, near the church",
+        address: "Second line from Zhibek-Zholu, near the church",
+        shortDesc: "New townhouses, 230 m², gas heating, central utilities.",
+        price: "$660,000 (possible individual sale)",
+        fullInfo: `🏡 New townhouses for sale in Bishkek
 📍 Second line from Zhibek-Zholu, near the church
 
 ✨ Highlights:
@@ -85,21 +85,6 @@ window.PROPERTIES = [
 📞 Contact:
 0559 500 551 — Nurgul
 0706 315 903 — Nagima`
-  }
-},
-
-      ky: {
-        title: "",
-        location: "",
-        shortDesc: "",
-        price: ""
-      },
-
-      en: {
-        title: "",
-        location: "",
-        shortDesc: "",
-        price: ""
       }
     },
 
@@ -110,16 +95,15 @@ window.PROPERTIES = [
   }
 ];
 
-  /* ============================================================
-     🔜 HOUSE 2–7
-     ------------------------------------------------------------
-     Copiar este bloque y cambiar:
-     - id
-     - imagesFolder
-     - textos
-     - estado
-     ============================================================ */
-
+/* ============================================================
+   🔜 HOUSE 2–7
+   ------------------------------------------------------------
+   Copiar este bloque y cambiar:
+   - id
+   - imagesFolder
+   - textos
+   - estado
+   ============================================================ */
 
 /* ============================================================
    🔐 NOTA IMPORTANTE
