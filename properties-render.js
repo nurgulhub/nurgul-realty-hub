@@ -108,33 +108,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* ================= ACTIONS ================= */
   grid.addEventListener("click", e => {
-    const btn = e.target.closest("[data-action]");
-    if (!btn) return;
+  const btn = e.target.closest("[data-action]");
+  if (!btn) return;
 
-    const card = btn.closest("[data-property-id]");
-    if (!card) return;
+  const card = btn.closest("[data-property-id]");
+  if (!card) return;
 
-    const propertyId = card.dataset.propertyId;
-    const property = window.PROPERTIES.find(p => p.id === propertyId);
-    if (!property) return;
+  const propertyId = card.dataset.propertyId;
+  const property = window.PROPERTIES.find(p => p.id === propertyId);
+  if (!property) return;
 
-    const t = pickTexts(property);
-    if (!t) return;
+  const lang =
+    localStorage.getItem("nurgul_lang") ||
+    document.documentElement.lang ||
+    "ru";
 
-    if (btn.dataset.action === "info") {
-      const title = (t.title && t.title.trim()) ? t.title : "Royal";
-      const info  = t.fullInfo || t.shortDesc || "";
-      window.openPropertyInfo(title, info, property.contacts || []);
+  const t = property.texts?.[lang];
+  if (!t) return;
+
+  if (btn.dataset.action === "info") {
+    window.openPropertyInfo(
+      t.title,
+      t.fullInfo,
+      property.contacts || []
+    );
+  }
+
+  if (btn.dataset.action === "details") {
+    if (typeof window.openPropertyGallery === "function") {
+      window.openPropertyGallery(property);
     }
-
-    if (btn.dataset.action === "details") {
-      if (typeof window.openPropertyGallery === "function") {
-        window.openPropertyGallery(property);
-      }
-    }
-  });
-
+  }
 });
+
 
 /* ============================================================
    🟧 PROPERTY INFO MODAL ENGINE (MATCHES HTML)
