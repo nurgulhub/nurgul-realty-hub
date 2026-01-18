@@ -994,7 +994,7 @@ const translations = {
 </script>
 
 <script>  
-  
+
 function applyLang(lang, doReload = false) {
   if (!translations[lang]) lang = "ky";
 
@@ -1011,8 +1011,9 @@ function applyLang(lang, doReload = false) {
   const activeBtn = document.querySelector(`.lang-item[data-lang="${lang}"]`);
   if (activeBtn) activeBtn.classList.add("active");
 
-  /* ✅ FIX: en click de idioma, recarga para re-render seguro */
+  /* ===== SAVE SCROLL + RELOAD ===== */
   if (doReload) {
+    localStorage.setItem("nurgul_scroll", window.scrollY);
     location.reload();
   }
 }
@@ -1023,6 +1024,13 @@ document.querySelectorAll(".lang-item").forEach(btn => {
 
 document.addEventListener("DOMContentLoaded", () => {
   applyLang(localStorage.getItem("nurgul_lang") || "ky", false);
+
+  /* ===== RESTORE SCROLL AFTER RELOAD ===== */
+  const savedScroll = localStorage.getItem("nurgul_scroll");
+  if (savedScroll !== null) {
+    window.scrollTo(0, parseInt(savedScroll, 10));
+    localStorage.removeItem("nurgul_scroll");
+  }
 });
 </script>
 
