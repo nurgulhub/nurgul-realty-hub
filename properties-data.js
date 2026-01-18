@@ -19,7 +19,6 @@
    ============================================================ */
 
 window.PROPERTIES = [
-
   {
     id: "house1",
     type: "sale",
@@ -36,16 +35,26 @@ window.PROPERTIES = [
         price: "660 000 $ (возможна продажа отдельно)"
       },
 
-      ky: { title: "", location: "", shortDesc: "", price: "" },
-      en: { title: "", location: "", shortDesc: "", price: "" }
+      ky: {
+        title: "",
+        location: "",
+        shortDesc: "",
+        price: ""
+      },
+
+      en: {
+        title: "",
+        location: "",
+        shortDesc: "",
+        price: ""
+      }
     },
 
     contacts: [
       { name: "Нургуль", phone: "0559500551" },
-      { name: "Нагима",  phone: "0706315903" }
+      { name: "Нагима", phone: "0706315903" }
     ]
   }
-
 ];
 
   /* ============================================================
