@@ -102,12 +102,22 @@ window.PROPERTIES.forEach(property => {
     const pubEl = card.querySelector("[data-prop-date]");
     if (pubEl) pubEl.textContent = property.published || "—";
 
-   // Image (usa carpeta propia de cada propiedad)
-   const img = card.querySelector("[data-prop-img]");
-   if (img) {
-   img.src = `images/${property.imagesFolder}/apt1.jpg`;
-   img.alt = title;
+  // Image (usa portada correcta por propiedad)
+const img = card.querySelector("[data-prop-img]");
+if (img) {
+
+  // portada por defecto según carpeta
+  let cover = "house1.jpg";
+
+  // HOUSE 3 usa apt1.jpg como portada
+  if (property.imagesFolder === "house3") {
+    cover = "apt1.jpg";
   }
+
+  img.src = `images/${property.imagesFolder}/${cover}`;
+  img.alt = title;
+}
+
 
     // WhatsApp — NÚMERO FIJO OFICIAL NURGUL
    const wa = card.querySelector("[data-prop-whatsapp]");
