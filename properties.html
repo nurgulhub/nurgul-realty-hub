@@ -1190,8 +1190,8 @@ function applyLang(lang, doReload = false) {
   if (activeBtn) activeBtn.classList.add("active");
 
   /* 🔧 ACTUALIZAR TARJETAS AL CAMBIAR IDIOMA */
-  if (typeof renderProperties === "function") {
-    renderProperties();
+  if (typeof window.NURGUL_refreshProperties === "function") {
+    window.NURGUL_refreshProperties();
   }
 }
 
@@ -1206,13 +1206,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* 1️⃣ Aplicar idioma */
   applyLang(lang, false);
 
-  /* 2️⃣ Renderizar tarjetas al cargar página */
-  if (typeof renderProperties === "function") {
-    renderProperties();
-  }
-
 });
-
 
 </script>
 
