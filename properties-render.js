@@ -102,19 +102,18 @@ window.PROPERTIES.forEach(property => {
     const pubEl = card.querySelector("[data-prop-date]");
     if (pubEl) pubEl.textContent = property.published || "—";
 
-    // Image
-    const img = card.querySelector("[data-prop-img]");
-    if (img) {
-      img.src = `images/${property.imagesFolder}/house1.jpg`;
-      img.alt = title;
-    }
+   // Image (usa carpeta propia de cada propiedad)
+   const img = card.querySelector("[data-prop-img]");
+   if (img) {
+   img.src = `images/${property.imagesFolder}/house1.jpg`;
+   img.alt = title;
+  }
 
-    // WhatsApp
-    const wa = card.querySelector("[data-prop-whatsapp]");
-    const contact = property.contacts?.[0];
-    if (wa && contact?.phone) {
-      wa.href = `https://wa.me/${String(contact.phone).replace(/\D/g, "")}`;
-    }
+    // WhatsApp — NÚMERO FIJO OFICIAL NURGUL
+   const wa = card.querySelector("[data-prop-whatsapp]");
+   if (wa) {
+   wa.href = "https://wa.me/996559500551";
+  }
 
     if (property.status === "sold") card.classList.add("property-sold");
 
