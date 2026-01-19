@@ -98,9 +98,11 @@ window.PROPERTIES.forEach(property => {
     // Price
     card.querySelector("[data-prop-price]").textContent = t.price || "";
 
-    // Published
-    const pubEl = card.querySelector("[data-prop-date]");
-    if (pubEl) pubEl.textContent = property.published || "—";
+    // Published — FECHA MANUAL FIJA (AYER)
+const pubEl = card.querySelector("[data-prop-date]");
+if (pubEl) {
+  pubEl.textContent = "18.01.2026";
+}
 
   // Image (usa portada correcta por propiedad)
 const img = card.querySelector("[data-prop-img]");
