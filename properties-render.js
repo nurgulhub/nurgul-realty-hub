@@ -96,7 +96,10 @@ window.PROPERTIES.forEach(property => {
     card.querySelector("[data-prop-desc]").textContent = t.shortDesc || "";
 
     // Price
-    card.querySelector("[data-prop-price]").textContent = t.price || "";
+    const priceEl = card.querySelector("[data-prop-price]");
+    if (priceEl) {
+    priceEl.textContent = t.price || "";
+    }
 
     // Published
     const pubEl = card.querySelector("[data-prop-date]");
