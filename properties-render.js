@@ -92,34 +92,11 @@ window.PROPERTIES.forEach(property => {
     const stEl = card.querySelector("[data-prop-status]");
     if (stEl) stEl.textContent = getStatusLabel(property);
 
-   /* ============================================================
-   🟧 PRICE — MULTIIDIOMA DIRECTO DESDE DATA (CANÓNICO)
-   ============================================================ */
-
+// Price (directo desde DATA, multiidioma real)
 const priceEl = card.querySelector("[data-prop-price]");
 if (priceEl) {
   priceEl.textContent = t.price || "";
 }
-
-    /* ============================================================
-   🟧 FIX — PRICE + NEGOTIABLE MULTIIDIOMA (NO ROMPE NADA)
-   ============================================================ */
-
-const priceEl = card.querySelector("[data-prop-price]");
-
-if (priceEl) {
-  const basePrice = t.price || "";
-
-  const lang = localStorage.getItem("nurgul_lang") || "ky";
-  const negotiableText = translations[lang]?.prop_negotiable || "";
-
-  if (p.status === "available") {
-    priceEl.textContent = `${basePrice} ${negotiableText}`;
-  } else {
-    priceEl.textContent = basePrice;
-  }
-}
-
 
     // Published
     const pubEl = card.querySelector("[data-prop-date]");
