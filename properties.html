@@ -1171,35 +1171,58 @@ const translations = {
 };
 </script>
 
-<script>  
+<script>
+/* ============================================================
+   🌐 LANGUAGE SWITCH — FIX DEFINITIVO (EVENT DELEGATION)
+   ------------------------------------------------------------
+   - Click en banderas siempre funciona
+   - Actualiza textos data-i18n
+   - Actualiza window.NURGUL_LANG
+   - Re-render tarjetas si existe window.renderProperties()
+   ============================================================ */
 
-function applyLang(lang, doReload = false) {
+function applyLang(lang) {
   if (!translations[lang]) lang = "ky";
 
   document.documentElement.lang = lang;
   localStorage.setItem("nurgul_lang", lang);
 
-  // 🔒 IDIOMA GLOBAL PARA TARJETAS DINÁMICAS
+  // ✅ Idioma global para tarjetas dinámicas
   window.NURGUL_LANG = lang;
 
-  // Traduce textos fijos
+  // ✅ Textos fijos
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.dataset.i18n;
     const value = translations[lang][key];
     if (value !== undefined) el.textContent = value;
   });
 
-  // Activa bandera
+  // ✅ Estado activo banderas
   document.querySelectorAll(".lang-item").forEach(b => b.classList.remove("active"));
   const activeBtn = document.querySelector(`.lang-item[data-lang="${lang}"]`);
   if (activeBtn) activeBtn.classList.add("active");
 
-  // 🔥 RE-RENDER DE TARJETAS (ESTO ES LO CRÍTICO)
+  // ✅ Re-render tarjetas dinámicas
   if (typeof window.renderProperties === "function") {
     window.renderProperties();
   }
 }
 
+// ✅ Binding robusto: funciona siempre aunque el DOM cambie
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".lang-item[data-lang]");
+  if (!btn) return;
+
+  e.preventDefault();
+  e.stopPropagation();
+
+  applyLang(btn.dataset.lang);
+});
+
+// ✅ Inicialización segura
+document.addEventListener("DOMContentLoaded", () => {
+  applyLang(localStorage.getItem("nurgul_lang") || "ky");
+});
 </script>
 
 <script>
