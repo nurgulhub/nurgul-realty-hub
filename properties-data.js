@@ -95,51 +95,24 @@ window.PROPERTIES = [
   },
 
  /* ============================================================
-   🟧 BLOQUE 1 — NUEVA TARJETA VENTA APARTAMENTO (HOUSE3)
-   Centro de Bishkek — 83 m² — Elite
+   🟧 BLOQUE 1 — HOUSE3 VENTA APARTAMENTO CENTRO (83 m² ELITE)
    ============================================================ */
 
 {
-  id: "house2",
+  id: "house3",
   type: "sale",
+  status: "available",
 
-  title: {
-    ky: "Бишкек борборунда 2 бөлмөлүү батир",
-    ru: "2-комнатная квартира в центре Бишкека",
-    en: "2-bedroom apartment in Bishkek city center"
-  },
+  imagesFolder: "house3",
 
-  location: "Bishkek, Kyrgyzstan",
-
-  address: {
-    ky: "Панфилов паркынын жанында",
-    ru: "Рядом с парком Панфилова",
-    en: "Near Panfilov Park"
-  },
-
-  status: {
-    ky: "Сатылат",
-    ru: "Продаётся",
-    en: "For sale"
-  },
-
-  desc: {
-    ky: "83 м², элитка, евро ремонт, борбор",
-    ru: "83 м², элитка, евроремонт, центр",
-    en: "83 m², elite class, renovated, city center"
-  },
-
-  price: "155 000 $",
-
-  date: "—",
-
-  folder: "house3",
-
-  whatsapp: "996559500551",
-
-  infoText: {
-    ru:
-`✨ 83 м² комфорта и продуманной планировки
+  texts: {
+    ru: {
+      title: "2-комнатная квартира в центре Бишкека",
+      location: "Рядом с парком Панфилова",
+      address: "Центр города, рядом с парком Панфилова",
+      shortDesc: "83 м², элитка, евроремонт, 10 этаж, продаётся с мебелью.",
+      price: "155 000 $ (торг уместен)",
+      fullInfo: `✨ 83 м² комфорта и продуманной планировки
 ▫️ 10 этаж из 13
 ▫️ Кирпичный дом, 2016 г.
 ▫️ Класс: элитка
@@ -166,19 +139,86 @@ window.PROPERTIES = [
 📞 Звоните / пишите:  
 0559 500 551 — Нургуль  
 0706 315 903 — Нагима`
+    },
+
+    ky: {
+      title: "Бишкек борборунда 2 бөлмөлүү батир",
+      location: "Панфилов паркынын жанында",
+      address: "Шаардын борбору, Панфилов паркынын жанында",
+      shortDesc: "83 м², элитка, евро ремонт, 10-кабат, эмерек менен сатылат.",
+      price: "155 000 $ (соодалашууга болот)",
+      fullInfo: `✨ Ыңгайлуу жана ойлонулган 83 м² батир
+▫️ 13 кабаттуу үйдүн 10-кабаты
+▫️ Кыштан салынган үй, 2016-жыл
+▫️ Классы: элитка
+▫️ Сапаттуу евро ремонт
+▫️ Борбордук жылытуу
+▫️ Панорамалык терезеси бар 17 м² ашкана
+▫️ Бөлмөлөр өз-өзүнчө
+▫️ Кең кире бериш, шкаф-купе бар
+▫️ Даараткана өз-өзүнчө
+▫️ Батир эмерек менен сатылат
+
+🍽 Ашкана толук жабдылган:
+газ плитасы, духовка, вытяжка, муздаткыч жана микротолкундуу меш
+
+🌳 Жайгашкан жери:
+Панфилов паркы, Дубовый парк, дүкөндөр, ресторандар жакын
+
+📄 Документтер: техпаспорт  
+👤 Ээси өзү  
+
+💰 Баасы: 155 000 $  
+🤝 Соодалашууга болот  
+
+📞 Байланыш:  
+0559 500 551 — Нургуль  
+0706 315 903 — Нагима`
+    },
+
+    en: {
+      title: "2-bedroom apartment in Bishkek city center",
+      location: "Near Panfilov Park",
+      address: "City center, near Panfilov Park",
+      shortDesc: "83 m², elite class, renovated, 10th floor, sold with furniture.",
+      price: "$155,000 (negotiable)",
+      fullInfo: `✨ 83 m² of comfort with a smart layout
+▫️ 10th floor out of 13
+▫️ Brick building, 2016
+▫️ Class: elite
+▫️ High-quality renovation
+▫️ Central heating
+▫️ 17 m² kitchen with dining area and panoramic window
+▫️ Isolated rooms
+▫️ Spacious hallway with built-in wardrobe
+▫️ Separate bathrooms
+▫️ Apartment sold fully furnished
+
+🍽 Fully equipped kitchen:
+gas cooktop, oven, hood, built-in refrigerator and microwave
+
+🌳 Location:
+walking distance to Panfilov Park, Dubovy Park, restaurants, shops, banks, clinic
+
+📄 Documents: technical passport  
+👤 Private owner  
+
+💰 Price: $155,000  
+🤝 Negotiable  
+
+📞 Contact:  
+0559 500 551 — Nurgul  
+0706 315 903 — Nagima`
+    }
   },
 
   contacts: [
-    { name: "Нургуль", phone: "996559500551" },
-    { name: "Нагима",  phone: "996706315903" }
+    { name: "Нургуль", phone: "0559500551" },
+    { name: "Нагима",  phone: "0706315903" }
   ]
 },
 
-  {
-    id: "house3",
-    placeholder: true
-  }
-];
+
 
 
 
