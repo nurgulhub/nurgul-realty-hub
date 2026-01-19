@@ -1179,24 +1179,26 @@ function applyLang(lang, doReload = false) {
   document.documentElement.lang = lang;
   localStorage.setItem("nurgul_lang", lang);
 
+  // 🔒 IDIOMA GLOBAL PARA TARJETAS DINÁMICAS
+  window.NURGUL_LANG = lang;
+
+  // Traduce textos fijos
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.dataset.i18n;
     const value = translations[lang][key];
     if (value !== undefined) el.textContent = value;
   });
 
+  // Activa bandera
   document.querySelectorAll(".lang-item").forEach(b => b.classList.remove("active"));
   const activeBtn = document.querySelector(`.lang-item[data-lang="${lang}"]`);
   if (activeBtn) activeBtn.classList.add("active");
+
+  // 🔥 RE-RENDER DE TARJETAS (ESTO ES LO CRÍTICO)
+  if (typeof window.renderProperties === "function") {
+    window.renderProperties();
+  }
 }
-
-document.querySelectorAll(".lang-item").forEach(btn => {
-  btn.addEventListener("click", () => applyLang(btn.dataset.lang, false));
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  applyLang(localStorage.getItem("nurgul_lang") || "ky", false);
-});
 
 </script>
 
