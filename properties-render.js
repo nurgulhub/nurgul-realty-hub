@@ -105,7 +105,7 @@ window.PROPERTIES.forEach(property => {
    // Image (usa carpeta propia de cada propiedad)
    const img = card.querySelector("[data-prop-img]");
    if (img) {
-   img.src = `images/${property.imagesFolder}/house1.jpg`;
+   img.src = `images/${property.imagesFolder}/apt1.jpg`;
    img.alt = title;
   }
 
