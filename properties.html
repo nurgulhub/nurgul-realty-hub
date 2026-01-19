@@ -917,15 +917,22 @@
           class="property-btn"
           data-action="details"
         >
-          View details
-        </button>
+         <button
+        class="property-btn"
+        data-action="details"
+        data-i18n="btn_details"
+       >
+      View details
+     </button>
 
-        <button
-          class="property-btn"
-          data-action="info"
-        >
-          Information
-        </button>
+     <button
+     class="property-btn"
+     data-action="info"
+     data-i18n="btn_info"
+      >
+     Information
+     </button>
+
       </div>
     </div>
 
@@ -1184,28 +1191,16 @@ function applyLang(lang, doReload = false) {
   document.querySelectorAll(".lang-item").forEach(b => b.classList.remove("active"));
   const activeBtn = document.querySelector(`.lang-item[data-lang="${lang}"]`);
   if (activeBtn) activeBtn.classList.add("active");
-
-  /* ===== SAVE SCROLL + RELOAD ===== */
-  if (doReload) {
-    localStorage.setItem("nurgul_scroll", window.scrollY);
-    location.reload();
-  }
 }
 
 document.querySelectorAll(".lang-item").forEach(btn => {
-  btn.addEventListener("click", () => applyLang(btn.dataset.lang, true));
+  btn.addEventListener("click", () => applyLang(btn.dataset.lang, false));
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   applyLang(localStorage.getItem("nurgul_lang") || "ky", false);
-
-  /* ===== RESTORE SCROLL AFTER RELOAD ===== */
-  const savedScroll = localStorage.getItem("nurgul_scroll");
-  if (savedScroll !== null) {
-    window.scrollTo(0, parseInt(savedScroll, 10));
-    localStorage.removeItem("nurgul_scroll");
-  }
 });
+
 </script>
 
 <script>
