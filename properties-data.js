@@ -111,7 +111,7 @@ window.PROPERTIES = [
       location: "Рядом с парком Панфилова",
       address: "Центр города, рядом с парком Панфилова",
       shortDesc: "83 м², элитка, евроремонт, 10 этаж, продаётся с мебелью.",
-      price: "155 000 $ (торг уместен)",
+      price: "155 000 $",
       fullInfo: `✨ 83 м² комфорта и продуманной планировки
 ▫️ 10 этаж из 13
 ▫️ Кирпичный дом, 2016 г.
@@ -146,7 +146,7 @@ window.PROPERTIES = [
       location: "Панфилов паркынын жанында",
       address: "Шаардын борбору, Панфилов паркынын жанында",
       shortDesc: "83 м², элитка, евро ремонт, 10-кабат, эмерек менен сатылат.",
-      price: "155 000 $ (соодалашууга болот)",
+      price: "155 000 $",
       fullInfo: `✨ Ыңгайлуу жана ойлонулган 83 м² батир
 ▫️ 13 кабаттуу үйдүн 10-кабаты
 ▫️ Кыштан салынган үй, 2016-жыл
@@ -181,7 +181,7 @@ window.PROPERTIES = [
       location: "Near Panfilov Park",
       address: "City center, near Panfilov Park",
       shortDesc: "83 m², elite class, renovated, 10th floor, sold with furniture.",
-      price: "$155,000 (negotiable)",
+      price: "$155,000",
       fullInfo: `✨ 83 m² of comfort with a smart layout
 ▫️ 10th floor out of 13
 ▫️ Brick building, 2016
