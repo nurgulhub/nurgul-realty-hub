@@ -1456,7 +1456,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /* === CONEXIÓN CON TARJETAS (SIN DATA) === */
+/* === CONEXIÓN CON TARJETAS (DINÁMICO POR CARPETA) === */
 document.addEventListener("click", e => {
   const btn = e.target.closest('[data-action="details"]');
   if (!btn) return;
@@ -1467,19 +1467,43 @@ document.addEventListener("click", e => {
   const folder = card.dataset.propertyId;
   if (!folder) return;
 
-  const images = [
-  `images/${folder}/house1.jpg`,
-  `images/${folder}/house2.jpg`,
-  `images/${folder}/house3.jpg`,
-  `images/${folder}/house4.jpg`,
-  `images/${folder}/house6.jpg`,
-  `images/${folder}/house9.jpg`,
-  `images/${folder}/house10.jpg`,
-  `images/${folder}/house15.jpg`,
-  `images/${folder}/house17.jpg`,
-  `images/${folder}/house18.jpg`,
-  `images/${folder}/house20.jpg`
-];
+  let images = [];
+
+  // 🔹 HOUSE 1 (formato house*.jpg)
+  if (folder === "house1") {
+    images = [
+      `images/${folder}/house1.jpg`,
+      `images/${folder}/house2.jpg`,
+      `images/${folder}/house3.jpg`,
+      `images/${folder}/house4.jpg`,
+      `images/${folder}/house6.jpg`,
+      `images/${folder}/house9.jpg`,
+      `images/${folder}/house10.jpg`,
+      `images/${folder}/house15.jpg`,
+      `images/${folder}/house17.jpg`,
+      `images/${folder}/house18.jpg`,
+      `images/${folder}/house20.jpg`
+    ];
+  }
+
+  // 🔹 HOUSE 3 (formato apt*.jpg)
+  else if (folder === "house3") {
+    images = [
+      `images/${folder}/apt1.jpg`,
+      `images/${folder}/apt2.jpg`,
+      `images/${folder}/apt3.jpg`,
+      `images/${folder}/apt4.jpg`,
+      `images/${folder}/apt5.jpg`,
+      `images/${folder}/apt6.jpg`,
+      `images/${folder}/apt7.jpg`
+    ];
+  }
+
+  // 🔹 FUTURO (si una carpeta no está definida, no rompe nada)
+  else {
+    console.warn("No gallery config for:", folder);
+    return;
+  }
 
   open(images);
 });
