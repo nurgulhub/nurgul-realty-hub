@@ -1189,7 +1189,8 @@ function applyLang(lang, doReload = false) {
   const activeBtn = document.querySelector(`.lang-item[data-lang="${lang}"]`);
   if (activeBtn) activeBtn.classList.add("active");
 
-  /* ===== REFRESH PROPERTIES (MULTI-IDIOMA REAL) ===== */
+  /* 🔧 REFRESH PROPERTIES AFTER LANGUAGE CHANGE */
+  
   if (typeof window.NURGUL_refreshProperties === "function") {
     window.NURGUL_refreshProperties();
   }
@@ -1200,7 +1201,17 @@ document.querySelectorAll(".lang-item").forEach(btn => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  applyLang(localStorage.getItem("nurgul_lang") || "ky", false);
+
+  const lang = localStorage.getItem("nurgul_lang") || "ky";
+
+  /* 🔧 PRIMERO: aplicar idioma */
+  applyLang(lang, false);
+
+  /* 🔧 SEGUNDO: renderizar tarjetas por primera vez */
+  if (typeof window.NURGUL_refreshProperties === "function") {
+    window.NURGUL_refreshProperties();
+  }
+
 });
 
 </script>
