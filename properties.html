@@ -1188,11 +1188,6 @@ function applyLang(lang, doReload = false) {
   document.querySelectorAll(".lang-item").forEach(b => b.classList.remove("active"));
   const activeBtn = document.querySelector(`.lang-item[data-lang="${lang}"]`);
   if (activeBtn) activeBtn.classList.add("active");
-
-  /* 🔧 ACTUALIZAR TARJETAS AL CAMBIAR IDIOMA */
-  if (typeof window.NURGUL_refreshProperties === "function") {
-    window.NURGUL_refreshProperties();
-  }
 }
 
 document.querySelectorAll(".lang-item").forEach(btn => {
@@ -1200,12 +1195,7 @@ document.querySelectorAll(".lang-item").forEach(btn => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-
-  const lang = localStorage.getItem("nurgul_lang") || "ky";
-
-  /* 1️⃣ Aplicar idioma */
-  applyLang(lang, false);
-
+  applyLang(localStorage.getItem("nurgul_lang") || "ky", false);
 });
 
 </script>
