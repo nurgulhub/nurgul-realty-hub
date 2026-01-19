@@ -1,8 +1,9 @@
 /* ============================================================
-   🏠 NURGUL REALTY — PROPERTIES RENDER ENGINE (FIX)
+   🏠 NURGUL REALTY — PROPERTIES RENDER ENGINE (FIX FINAL)
    ------------------------------------------------------------
    - Respeta idioma dinámico (window.NURGUL_LANG)
    - Re-render al cambiar idioma
+   - NO borra la tarjeta Royal fija
    - Llena Address / Status / Details / Price / Published
    - Botón Information abre el modal genérico total
    ============================================================ */
@@ -62,16 +63,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.renderProperties = function renderProperties() {
 
-    // limpiar tarjetas actuales (menos template)
-    grid.querySelectorAll(".property-card:not(.property-template)")
+    // 🔥 LIMPIAR SOLO TARJETAS DINÁMICAS
+    // ❌ NO toca Royal fija (no tiene data-property-id)
+    grid.querySelectorAll('.property-card[data-property-id]:not(.property-template)')
         .forEach(card => card.remove());
 
     window.PROPERTIES.forEach(property => {
 
-      // ⬅️ permitir placeholders
+      // permitir placeholders
       if (!property.placeholder && property.type !== "sale") return;
 
-      // ⬅️ no exigir textos a placeholders
+      // no exigir textos a placeholders
       const t = property.placeholder ? null : pickTexts(property);
       if (!property.placeholder && !t) return;
 
@@ -142,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // 🔥 Render inicial al cargar página
+  // 🔥 Render inicial
   window.renderProperties();
 
   /* ================= ACTIONS ================= */
