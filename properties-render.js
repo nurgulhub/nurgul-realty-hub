@@ -3,7 +3,7 @@
    ------------------------------------------------------------
    - Respeta idioma (localStorage: nurgul_lang)
    - Llena Address / Status / Details / Price / Published
-   - Botón Information abre el modal genérico
+   - Botón Information abre el modal genérico total
    ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
