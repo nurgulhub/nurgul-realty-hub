@@ -95,11 +95,25 @@ window.PROPERTIES.forEach(property => {
     // Details
     card.querySelector("[data-prop-desc]").textContent = t.shortDesc || "";
 
-    // Price
-    const priceEl = card.querySelector("[data-prop-price]");
-    if (priceEl) {
-    priceEl.textContent = t.price || "";
-    }
+    /* ============================================================
+   🟧 FIX — PRICE + NEGOTIABLE MULTIIDIOMA (NO ROMPE NADA)
+   ============================================================ */
+
+const priceEl = card.querySelector("[data-prop-price]");
+
+if (priceEl) {
+  const basePrice = t.price || "";
+
+  const lang = localStorage.getItem("nurgul_lang") || "ky";
+  const negotiableText = translations[lang]?.prop_negotiable || "";
+
+  if (p.status === "available") {
+    priceEl.textContent = `${basePrice} ${negotiableText}`;
+  } else {
+    priceEl.textContent = basePrice;
+  }
+}
+
 
     // Published
     const pubEl = card.querySelector("[data-prop-date]");
