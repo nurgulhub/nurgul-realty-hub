@@ -92,11 +92,11 @@ window.PROPERTIES.forEach(property => {
     const stEl = card.querySelector("[data-prop-status]");
     if (stEl) stEl.textContent = getStatusLabel(property);
 
-// Price (directo desde DATA, multiidioma real)
-const priceEl = card.querySelector("[data-prop-price]");
-if (priceEl) {
-  priceEl.textContent = t.price || "";
-}
+    // Details
+    card.querySelector("[data-prop-desc]").textContent = t.shortDesc || "";
+
+    // Price
+    card.querySelector("[data-prop-price]").textContent = t.price || "";
 
     // Published
     const pubEl = card.querySelector("[data-prop-date]");
