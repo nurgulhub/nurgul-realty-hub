@@ -92,8 +92,14 @@ window.PROPERTIES.forEach(property => {
     const stEl = card.querySelector("[data-prop-status]");
     if (stEl) stEl.textContent = getStatusLabel(property);
 
-    // Details
-    card.querySelector("[data-prop-desc]").textContent = t.shortDesc || "";
+   /* ============================================================
+   🟧 PRICE — MULTIIDIOMA DIRECTO DESDE DATA (CANÓNICO)
+   ============================================================ */
+
+const priceEl = card.querySelector("[data-prop-price]");
+if (priceEl) {
+  priceEl.textContent = t.price || "";
+}
 
     /* ============================================================
    🟧 FIX — PRICE + NEGOTIABLE MULTIIDIOMA (NO ROMPE NADA)
