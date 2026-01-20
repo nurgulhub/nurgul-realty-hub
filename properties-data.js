@@ -216,8 +216,7 @@ walking distance to Panfilov Park, Dubovy Park, restaurants, shops, banks, clini
     { name: "Нургуль", phone: "0559500551" },
     { name: "Нагима",  phone: "0706315903" }
   ]
- }
-},
+},   // ✅ AQUÍ QUITÉ LA LLAVE EXTRA Y DEJÉ SOLO LA COMA CORRECTA
 
 {
   id: "house4",
