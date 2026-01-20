@@ -137,11 +137,65 @@ document.addEventListener("DOMContentLoaded", () => {
         img.alt = title;
       }
 
-      // WhatsApp — número oficial
-      const wa = card.querySelector("[data-prop-whatsapp]");
-      if (wa) {
-        wa.href = "https://wa.me/996559500551";
-      }
+
+      // ================= WHATSAPP AUTO MESSAGE (PER CARD + MULTI LANGUAGE) =================
+
+const wa = card.querySelector("[data-prop-whatsapp]");
+if (wa) {
+
+  const lang = window.NURGUL_LANG || "ky";
+
+  const title   = t.title || "";
+  const address = t.address || t.location || "";
+  const price   = t.price || "";
+
+  let message = "";
+
+  // 🇷🇺 RUSO
+  if (lang === "ru") {
+    message =
+`Здравствуйте!
+Меня интересует этот объект:
+
+🏡 ${title}
+📍 ${address}
+💰 ${price}
+
+Пожалуйста, отправьте больше информации. Спасибо!`;
+  }
+
+  // 🇬🇧 INGLÉS
+  else if (lang === "en") {
+    message =
+`Hello!
+I am interested in this property:
+
+🏡 ${title}
+📍 ${address}
+💰 ${price}
+
+Could you please send me more information? Thank you!`;
+  }
+
+  // 🇰🇬 KIRGUÍС
+  else {
+    message =
+`Саламатсызбы!
+Бул объект мага кызык болуп жатат:
+
+🏡 ${title}
+📍 ${address}
+💰 ${price}
+
+Кошумча маалымат берсеңиз, рахмат!`;
+  }
+
+  const encodedMessage = encodeURIComponent(message);
+
+  // 🔒 LINK ÚNICO PARA ESTA TARJETA
+  wa.href = `https://wa.me/996559500551?text=${encodedMessage}`;
+}
+
 
       if (property.status === "sold") card.classList.add("property-sold");
 
