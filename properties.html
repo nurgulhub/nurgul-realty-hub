@@ -1516,6 +1516,22 @@ document.addEventListener("click", e => {
     ];
   }
 
+// 🔹 HOUSE 4 (formato house2*.jpg)
+else if (folder === "house4") {
+  images = [
+    `images/${folder}/house21.jpg`,
+    `images/${folder}/house22.jpg`,
+    `images/${folder}/house23.jpg`,
+    `images/${folder}/house24.jpg`,
+    `images/${folder}/house25.jpg`,
+    `images/${folder}/house26.jpg`,
+    `images/${folder}/house27.jpg`,
+    `images/${folder}/house28.jpg`,
+    `images/${folder}/house29.jpg`,
+    `images/${folder}/house210.jpg`
+  ];
+}
+    
   // 🔹 FUTURO (si una carpeta no está definida, no rompe nada)
   else {
     console.warn("No gallery config for:", folder);
