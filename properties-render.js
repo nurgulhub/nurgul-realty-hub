@@ -136,8 +136,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // BURAN usa buran1.jpg como portada
         if (property.imagesFolder === "buran") {
         cover = "buran1.jpg";
+        img.classList.add("buran-cover");   // 👈 ESTA LÍNEA NUEVA
         }
-         
+       
         img.src = `images/${property.imagesFolder}/${cover}`;
         img.alt = title;
       }
