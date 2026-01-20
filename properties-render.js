@@ -128,6 +128,11 @@ document.addEventListener("DOMContentLoaded", () => {
           cover = "apt1.jpg";
         }
 
+        // HOUSE 4 usa house21.jpg como portada
+        if (property.imagesFolder === "house4") {
+        cover = "house21.jpg";
+        }
+         
         img.src = `images/${property.imagesFolder}/${cover}`;
         img.alt = title;
       }
