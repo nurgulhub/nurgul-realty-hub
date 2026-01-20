@@ -132,6 +132,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (property.imagesFolder === "house4") {
         cover = "house21.jpg";
         }
+
+        // BURAN usa buran1.jpg como portada
+        if (property.imagesFolder === "buran") {
+        cover = "buran1.jpg";
+        }
          
         img.src = `images/${property.imagesFolder}/${cover}`;
         img.alt = title;
