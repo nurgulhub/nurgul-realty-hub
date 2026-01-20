@@ -354,6 +354,114 @@ Negotiable for real buyer`
   }
 },
 
+{
+  id: "buran",
+  type: "sale",
+  status: "available",
+  imagesFolder: "buran",
+
+  contacts: [
+    { name: "Нургуль", phone: "0559 500 551" }
+  ],
+
+  texts: {
+
+    ru: {
+      title: "Бизнес-центр класса A+",
+      address: "г. Бишкек, ул. Жумабека 117 (за цирком)",
+      shortDesc: "Премиальный бизнес-центр A+ с готовыми офисами и парковкой.",
+      price: "от 3200 $ / м²",
+
+      fullInfo:
+`Бизнес-центр класса A+ в Бишкеке
+
+Современный бизнес-центр, созданный по международным стандартам комфорта и безопасности.
+
+Характеристики:
+- 64 офисных пространства
+- 65 парковочных мест
+- Ввод в эксплуатацию — июль следующего года
+- Каждый офис с готовым ремонтом и премиальной мебелью
+- Система рекуперации воздуха (очистка и обновление воздуха)
+
+Преимущества:
+- Архитектура современного уровня
+- Высокое качество строительства
+- Заходите и начинайте работать с первого дня
+- Без дополнительных вложений и ремонта
+
+Адрес:
+г. Бишкек, ул. Жумабека 117 (за цирком)
+
+Цена:
+от 3200 $ за м²`
+    },
+
+    ky: {
+      title: "A+ класстагы бизнес-борбор",
+      address: "Бишкек ш., Жумабека көч. 117 (цирктин артында)",
+      shortDesc: "Даяр кеңселер жана унаа токтотуучу жайы бар премиум бизнес-борбор.",
+      price: "3200 $ / м² баштап",
+
+      fullInfo:
+`Бишкек шаарындагы A+ класстагы бизнес-борбор
+
+Эл аралык стандарттарга ылайык курулган заманбап бизнес-борбор.
+
+Мүнөздөмөлөрү:
+- 64 кеңсе бөлмө
+- 65 унаа токтотуучу орун
+- Колдонууга берүү — кийинки жылдын июль айы
+- Ар бир кеңсе даяр ремонт жана премиум эмерек менен
+- Аба рекуперация системасы орнотулган
+
+Артыкчылыктары:
+- Заманбап архитектура
+- Жогорку сапаттагы курулуш
+- Дароо иш баштоого даяр
+- Кошумча чыгымдар жок
+
+Дарек:
+Бишкек ш., Жумабека көч. 117 (цирктин артында)
+
+Баасы:
+3200 $ / м² баштап`
+    },
+
+    en: {
+      title: "A+ Class Business Center",
+      address: "Bishkek, Zhumabek Street 117 (behind the circus)",
+      shortDesc: "Premium A+ class business center with ready-to-use offices.",
+      price: "from 3,200 USD / m²",
+
+      fullInfo:
+`A+ Class Business Center in Bishkek
+
+A modern business center built according to international comfort and safety standards.
+
+Key features:
+- 64 office spaces
+- 65 parking spaces
+- Commissioning: July next year
+- Each office fully renovated and furnished with premium furniture
+- Air recuperation system for continuous fresh air circulation
+
+Advantages:
+- Contemporary architecture
+- High-quality construction
+- Ready to start working from day one
+- No additional renovation or investment required
+
+Address:
+Bishkek, Zhumabek Street 117 (behind the circus)
+
+Price:
+from 3,200 USD per m²`
+    }
+
+  }
+},
+   
 ];   // ✅ AQUÍ Y SOLO AQUÍ SE CIERRA window.PROPERTIES
    
  /* ============================================================
