@@ -179,6 +179,11 @@ function getPriorityLabel(property){
         if (property.imagesFolder === "house5") {
         cover = "apt51.jpg";
         }
+
+        // HOUSE 6 usa apt61.jpg como portada
+        if (property.imagesFolder === "house6") {
+        cover = "apt61.jpg";
+        }
          
         img.src = `images/${property.imagesFolder}/${cover}`;
         img.alt = title;
