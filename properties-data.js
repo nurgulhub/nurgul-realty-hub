@@ -743,6 +743,139 @@ schools, kindergartens, universities, sports centers, supermarkets, hospitals ne
     { name: "Нагима",  phone: "0706315903" }
   ]
 },
+
+{
+  id: "house7",
+  type: "sale",
+  status: "available",
+  priority: "normal",
+  imagesFolder: "house7",
+
+  contacts: [
+    { name: "Нургуль", phone: "0559 500 551" },
+    { name: "Нагима", phone: "0706 315 903" }
+  ],
+
+  texts: {
+
+    ru: {
+      title: "1-комнатная квартира (Пишпек)",
+      address: "г. Бишкек, ул. Термечикова / Льва Толстого",
+      shortDesc: "Новая элитная квартира 43,5 м² с ремонтом и мебелью. Вид на Royal Central Park.",
+      price: "66 000 $",
+
+      fullInfo:
+`Продаётся 1-комнатная квартира, элитка
+
+Адрес:
+г. Бишкек, район Пишпек  
+ул. Термечикова / Льва Толстого  
+
+Характеристики:
+- Площадь — 43,5 м²  
+- Этаж — 5 из 9  
+- Год постройки — 2025  
+- Окна на юг, вид на Royal Central Park  
+- Балкон утеплённый, отдельный  
+- Санузел совмещённый  
+
+Состояние:
+- Квартира абсолютно новая  
+- Никто не проживал  
+- Качественный ремонт  
+- Полностью меблирована  
+- Газовое отопление  
+- Все коммуникации центральные  
+
+Документы:
+ДДУ (через Госрегистр)  
+
+Цена: 66 000 $  
+
+Контакты:
+0706 31 59 03  
+0559 50 05 51`
+    },
+
+    ky: {
+      title: "1 бөлмөлүү батир (Пишпек району)",
+      address: "Бишкек ш., Термечикова / Льва Толстого",
+      shortDesc: "Жаңы элиталык батир 43,5 м², ремонт жана эмерек менен. Royal Central Park көрүнүшү.",
+      price: "66 000 $",
+
+      fullInfo:
+`Пишпек районунда 1 бөлмөлүү батир сатылат (элитка)
+
+Дарек:
+Бишкек ш., Термечикова / Льва Толстого  
+
+Мүнөздөмөлөрү:
+- Аянты — 43,5 м²  
+- Кабат — 5 / 9  
+- Курулган жылы — 2025  
+- Терезелер түштүк тарапка, Royal Central Park көрүнүшү  
+- Балкон өзүнчө, жылууланган  
+- Санузел бириккен  
+
+Абалы:
+- Батир таптакыр жаңы  
+- Эч ким жашаган эмес  
+- Сапаттуу ремонт  
+- Толук эмерек менен  
+- Газ менен жылытуу  
+- Бардык коммуникациялар борбордук  
+
+Документтер:
+ДДУ (Госрегистр аркылуу)  
+
+Баасы: 66 000 $  
+
+Байланыш:
+0706 31 59 03  
+0559 50 05 51`
+    },
+
+    en: {
+      title: "1-bedroom apartment (Pishpek area)",
+      address: "Bishkek, Termechikova / Lev Tolstoy Street",
+      shortDesc: "New elite 43.5 m² apartment with renovation and furniture. View of Royal Central Park.",
+      price: "66,000 USD",
+
+      fullInfo:
+`1-bedroom apartment for sale (elite class)
+
+Address:
+Bishkek, Pishpek district  
+Termechikova / Lev Tolstoy Street  
+
+Main features:
+- Area — 43.5 m²  
+- Floor — 5 of 9  
+- Year built — 2025  
+- South-facing windows, view of Royal Central Park  
+- Insulated separate balcony  
+- Combined bathroom  
+
+Condition:
+- Brand new apartment  
+- Never lived in  
+- High-quality renovation  
+- Fully furnished  
+- Gas heating  
+- All central communications  
+
+Documents:
+Equity participation agreement (via State Register)  
+
+Price: 66,000 USD  
+
+Contacts:
++996 706 31 59 03  
++996 559 50 05 51`
+    }
+
+  }
+},
    
 ];   // ✅ AQUÍ Y SOLO AQUÍ SE CIERRA window.PROPERTIES
    
