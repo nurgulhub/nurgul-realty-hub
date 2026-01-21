@@ -611,6 +611,138 @@ Money needed for surgery in Turkey — price below market
 
   }
 },
+
+{
+  id: "house6",
+  type: "sale",
+  status: "available",
+  priority: "normal",          // luego puedes subir a medium o high
+
+  imagesFolder: "house6",
+
+  texts: {
+
+    ru: {
+      title: "1-комнатная квартира в ЖК IHLAS-Джал",
+      location: "15-й микрорайон (Джал)",
+      address: "Бишкек, 15-й микрорайон (Джал)",
+      shortDesc: "Новая квартира 41,48 м², элитка, с ремонтом, готова к заселению.",
+      price: "71 000 $",
+
+      fullInfo:
+`🏡 Продается 1-комнатная квартира в ЖК IHLAS-Джал
+✨ Новая | С ремонтом | Готова к заселению
+
+📍 15-й микрорайон (Джал)
+
+Характеристики:
+▫️ Площадь: 41,48 м²
+▫️ Этаж: 3 из 14
+▫️ Серия: элитка
+▫️ Год постройки: 2025
+▫️ Окна: западная сторона 🌇
+▫️ Балкон есть
+▫️ Санузел: совмещённый
+▫️ Отопление: газовое
+▫️ Документы: ДДУ
+
+✅ Абсолютно новая квартира  
+✅ Качественный ремонт  
+✅ Встроенная кухня — заезжай и живи  
+
+🏙 Инфраструктура:
+школы, детские сады, ВУЗы, спорткомплексы, супермаркеты, больницы — всё рядом  
+
+💰 Цена: 71 000 $  
+
+📞 Контакты:
+0706 31 59 03  
+0559 50 05 51`
+    },
+
+    ky: {
+      title: "IHLAS-Джал ЖКда 1 бөлмөлүү батир",
+      location: "15-микрорайон (Джал)",
+      address: "Бишкек, 15-микрорайон (Джал)",
+      shortDesc: "41,48 м² жаңы батир, элитка, ремонт менен, кирип жашоого даяр.",
+      price: "71 000 $",
+
+      fullInfo:
+`🏡 IHLAS-Джал ЖКда 1 бөлмөлүү батир сатылат
+✨ Жаңы | Ремонт менен | Кирип жашоого даяр
+
+📍 15-микрорайон (Джал)
+
+Мүнөздөмөлөрү:
+▫️ Аянты: 41,48 м²
+▫️ Кабат: 3 / 14
+▫️ Сериясы: элитка
+▫️ Курулган жылы: 2025
+▫️ Терезелер: батыш тарабы 🌇
+▫️ Балкон бар
+▫️ Санузел: бириккен
+▫️ Жылытуу: газ менен
+▫️ Документтер: ДДУ
+
+✅ Толук жаңы батир  
+✅ Сапаттуу ремонт  
+✅ Ашкана орнотулган — кирип жашай берсе болот  
+
+🏙 Инфраструктура:
+мектептер, бакчалар, университеттер, спорт, дүкөндөр, ооруканалар жакын  
+
+💰 Баасы: 71 000 $  
+
+📞 Байланыш:
+0706 31 59 03  
+0559 50 05 51`
+    },
+
+    en: {
+      title: "1-bedroom apartment in IHLAS-Dzhal complex",
+      location: "15th microdistrict (Dzhal)",
+      address: "Bishkek, 15th microdistrict (Dzhal)",
+      shortDesc: "New 41.48 m² apartment, elite class, renovated, ready to move in.",
+      price: "$71,000",
+
+      fullInfo:
+`🏡 1-bedroom apartment for sale in IHLAS-Dzhal complex
+✨ New | Renovated | Ready to move in
+
+📍 15th microdistrict (Dzhal)
+
+Main features:
+▫️ Area: 41.48 m²
+▫️ Floor: 3 out of 14
+▫️ Class: elite
+▫️ Year built: 2025
+▫️ Windows: west side 🌇
+▫️ Balcony available
+▫️ Bathroom: combined
+▫️ Heating: gas
+▫️ Documents: DDU
+
+✅ Brand new apartment  
+✅ High-quality renovation  
+✅ Built-in kitchen — move in and live  
+
+🏙 Infrastructure:
+schools, kindergartens, universities, sports centers, supermarkets, hospitals nearby  
+
+💰 Price: $71,000  
+
+📞 Contacts:
+0706 31 59 03  
+0559 50 05 51`
+    }
+
+  },
+
+  contacts: [
+    { name: "Нургуль", phone: "0559500551" },
+    { name: "Нагима",  phone: "0706315903" }
+  ]
+},
    
 ];   // ✅ AQUÍ Y SOLO AQUÍ SE CIERRA window.PROPERTIES
    
