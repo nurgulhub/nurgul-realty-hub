@@ -138,7 +138,12 @@ document.addEventListener("DOMContentLoaded", () => {
         cover = "buran1.jpg";
         img.classList.add("buran-cover");   // 👈 ESTA LÍNEA NUEVA
         }
-       
+
+         // HOUSE 5 usa apt51.jpg como portada
+        if (property.imagesFolder === "house5") {
+        cover = "apt51.jpg";
+        }
+         
         img.src = `images/${property.imagesFolder}/${cover}`;
         img.alt = title;
       }
