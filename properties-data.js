@@ -23,7 +23,7 @@ window.PROPERTIES = [
     id: "house1",
     type: "sale",
     status: "available",
-
+    priority: "normal",
     imagesFolder: "house1",
 
     texts: {
@@ -102,7 +102,7 @@ window.PROPERTIES = [
   id: "house3",
   type: "sale",
   status: "available",
-
+  priority: "normal",
   imagesFolder: "house3",
 
   texts: {
@@ -222,6 +222,7 @@ walking distance to Panfilov Park, Dubovy Park, restaurants, shops, banks, clini
   id: "house4",
   type: "sale",
   status: "available",
+  priority: "normal",
   imagesFolder: "house4",
 
   contacts: [
@@ -466,7 +467,7 @@ from 3,200 USD per m²`
   id: "house5",
   type: "sale",
   status: "available",
-
+  priority: "high",
   imagesFolder: "house5",
 
   contacts: [
