@@ -149,7 +149,11 @@ function getPriorityLabel(property){
      const yyyy = today.getFullYear();
      pubEl.textContent = `${dd}.${mm}.${yyyy}`;
      }
-
+ 
+     // Priority
+     const prEl = card.querySelector("[data-prop-priority]");
+     if (prEl) prEl.textContent = getPriorityLabel(property);
+       
       // Image (portada por carpeta)
       const img = card.querySelector("[data-prop-img]");
       if (img) {
