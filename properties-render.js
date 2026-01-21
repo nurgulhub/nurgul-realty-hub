@@ -114,9 +114,16 @@ document.addEventListener("DOMContentLoaded", () => {
       // Price
       card.querySelector("[data-prop-price]").textContent = t.price || "";
 
-      // Published — FECHA FIJA
-      const pubEl = card.querySelector("[data-prop-date]");
-      if (pubEl) pubEl.textContent = "18.01.2026";
+   
+     // Published — FECHA AUTOMÁTICA (OPCIÓN A)
+     const pubEl = card.querySelector("[data-prop-date]");
+     if (pubEl) {
+     const today = new Date();
+     const dd = String(today.getDate()).padStart(2, "0");
+     const mm = String(today.getMonth() + 1).padStart(2, "0");
+     const yyyy = today.getFullYear();
+     pubEl.textContent = `${dd}.${mm}.${yyyy}`;
+     }
 
       // Image (portada por carpeta)
       const img = card.querySelector("[data-prop-img]");
