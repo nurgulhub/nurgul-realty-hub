@@ -748,7 +748,7 @@ schools, kindergartens, universities, sports centers, supermarkets, hospitals ne
   id: "house7",
   type: "sale",
   status: "available",
-  priority: "normal",
+  priority: "high",
   imagesFolder: "house7",
 
   contacts: [
