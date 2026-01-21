@@ -461,6 +461,155 @@ from 3,200 USD per m²`
 
   }
 },
+
+{
+  id: "house5",
+  type: "sale",
+  status: "available",
+
+  imagesFolder: "house5",
+
+  contacts: [
+    { name: "Нургуль", phone: "0559500551" },
+    { name: "Нагима", phone: "0706315903" }
+  ],
+
+  texts: {
+
+    ru: {
+      title: "3-комнатная квартира в центре (Золотой квадрат)",
+      location: "Панфилова / Боконбаева",
+      address: "г. Бишкек, Панфилова / Боконбаева",
+      shortDesc: "96 м², 3 комнаты, 9 этаж, дом 2020 года, срочная продажа.",
+      price: "210 000 $",
+
+      fullInfo:
+`🔥 СРОЧНАЯ ПРОДАЖА В ЦЕНТРЕ | ЗОЛОТОЙ КВАДРАТ 🔥
+
+Продаётся 3-комнатная квартира 96 м²  
+📍 Панфилова / Боконбаева  
+🏢 Застройщик Памир, дом 2020 года  
+
+Характеристики:
+- Этаж 9 из 12  
+- Площадь — 96 м²  
+- Все коммуникации центральные  
+- Окна на север и запад  
+- Раздельный санузел  
+- Кухня совмещена с балконом  
+- Квартира с мебелью — можно заехать и жить  
+
+Документы:
+техпаспорт, договор купли-продажи  
+
+Локация — ЗОЛОТОЙ КВАДРАТ  
+В шаговой доступности:
+— школы и детские сады  
+— магазины и сервисы  
+— бульвар Эркиндик  
+— ЖД вокзал  
+— удобная транспортная развязка  
+
+⚠️ Срочная продажа  
+Деньги нужны на операцию в Турции — цена ниже рынка  
+
+💰 Цена: 210 000 $  
+
+📞 Контакты:  
+0559 500 551 — Нургуль  
+0706 315 903 — Нагима`
+    },
+
+    ky: {
+      title: "Бишкек борборунда 3 бөлмөлүү батир (Алтын квадрат)",
+      location: "Панфилов / Боконбаев",
+      address: "Бишкек ш., Панфилов / Боконбаев",
+      shortDesc: "96 м², 3 бөлмө, 9-кабат, 2020-жылкы үй, шашылыш сатуу.",
+      price: "210 000 $",
+
+      fullInfo:
+`🔥 БОРБОРДО ШАШЫЛЫШ САТУУ | АЛТЫН КВАДРАТ 🔥
+
+Бишкек шаарында 3 бөлмөлүү батир сатылат  
+📍 Панфилов / Боконбаев  
+🏢 Памир курулуш компаниясы, 2020-жыл  
+
+Мүнөздөмөлөрү:
+- 12 кабаттын 9-кабаты  
+- Аянты — 96 м²  
+- Бардык коммуникациялар борбордук  
+- Терезелер түндүк жана батыш тарапка карайт  
+- Даараткана өз-өзүнчө  
+- Ашкана балкон менен бириккен  
+- Эмерек менен — кирип жашай берсе болот  
+
+Документтер:
+техпаспорт, сатып алуу келишими  
+
+Жайгашкан жери — АЛТЫН КВАДРАТ  
+Жакын жерде:
+— мектептер, бала бакчалар  
+— дүкөндөр, кызматтар  
+— Эркиндик бульвары  
+— темир жол вокзалы  
+— ыңгайлуу транспорт  
+
+⚠️ Шашылыш сатуу  
+Түркияда операция үчүн акча керек — баа рыноктон төмөн  
+
+💰 Баасы: 210 000 $  
+
+📞 Байланыш:  
+0559 500 551 — Нургуль  
+0706 315 903 — Нагима`
+    },
+
+    en: {
+      title: "3-bedroom apartment in city center (Golden Square)",
+      location: "Panfilov / Bokonbaev",
+      address: "Bishkek, Panfilov / Bokonbaev",
+      shortDesc: "96 m², 3 rooms, 9th floor, building 2020, urgent sale.",
+      price: "210,000 USD",
+
+      fullInfo:
+`🔥 URGENT SALE IN CITY CENTER | GOLDEN SQUARE 🔥
+
+3-bedroom apartment for sale — 96 m²  
+📍 Panfilov / Bokonbaev  
+🏢 Developer: Pamir, building 2020  
+
+Main features:
+- 9th floor out of 12  
+- Total area — 96 m²  
+- All central communications  
+- Windows facing north and west  
+- Separate bathroom  
+- Kitchen combined with balcony  
+- Fully furnished — ready to move in  
+
+Documents:
+technical passport, sale contract  
+
+Location — GOLDEN SQUARE  
+Walking distance to:
+— schools and kindergartens  
+— shops and services  
+— Erkindik boulevard  
+— railway station  
+— convenient transport access  
+
+⚠️ Urgent sale  
+Money needed for surgery in Turkey — price below market  
+
+💰 Price: 210,000 USD  
+
+📞 Contact:  
+0559 500 551 — Nurgul  
+0706 315 903 — Nagima`
+    }
+
+  }
+},
    
 ];   // ✅ AQUÍ Y SOLO AQUÍ SE CIERRA window.PROPERTIES
    
