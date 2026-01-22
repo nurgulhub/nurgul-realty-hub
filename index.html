@@ -148,8 +148,11 @@
     }
 
     .hero-content{
-      max-width:760px;
-      margin:0 auto;
+     max-width:760px;
+     margin:0 auto;
+     display:flex;
+     flex-direction:column;
+     align-items:center;
     }
 
     .hero h1{
@@ -387,116 +390,6 @@
   }
 }
 
-    /* ============================================================
-       🕰 CRYSTAL WORLD CLOCK PANEL — ULTRA LUXURY (ADD ONLY)
-       ============================================================ */
-
-    .world-clock-panel{
-      width: min(1200px, 96vw);
-      margin: 0 auto 26px;
-      padding: 14px 22px;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap: 12px;
-
-      background:
-        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
-        radial-gradient(circle at 20% 30%, rgba(242,201,76,0.10), transparent 55%),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06), transparent 55%);
-
-      border: 1px solid rgba(242,201,76,0.28);
-      border-radius: 999px;
-
-      backdrop-filter: blur(18px);
-      box-shadow:
-        0 18px 45px rgba(0,0,0,0.42),
-        inset 0 0 0 1px rgba(255,255,255,0.06),
-        inset 0 2px 10px rgba(242,201,76,0.10);
-
-      position:relative;
-      overflow:hidden;
-    }
-
-    .world-clock-panel::after{
-      content:"";
-      position:absolute;
-      top:-60%;
-      left:-40%;
-      width:180%;
-      height:180%;
-      background: linear-gradient(
-        120deg,
-        rgba(255,255,255,0.22),
-        rgba(255,255,255,0.08),
-        rgba(255,255,255,0)
-      );
-      opacity:0.35;
-      transform: rotate(8deg);
-      animation: crystalSweep 7.5s linear infinite;
-      pointer-events:none;
-    }
-
-    @keyframes crystalSweep{
-      0%   { transform: translate(-20%, -20%) rotate(8deg); }
-      100% { transform: translate(20%, 20%) rotate(8deg); }
-    }
-
-    .clock-item{
-      display:flex;
-      align-items:baseline;
-      gap: 6px;
-      white-space: nowrap;
-      position:relative;
-      z-index:1;
-    }
-
-    .clock-city{
-      font-size: 13px;
-      letter-spacing: 1px;
-      color: rgba(242,201,76,0.98);
-      text-transform: none;
-    }
-
-    .clock-time{
-      font-size: 16px;
-      font-weight: 600;
-      color: rgba(245,247,246,0.98);
-      text-shadow: 0 2px 10px rgba(0,0,0,0.35);
-    }
-
-    .clock-ampm{
-      font-size: 10.5px;
-      color: rgba(242,201,76,0.72);
-      margin-left: 2px;
-      letter-spacing: 1px;
-    }
-
-    .clock-sep{
-      position:relative;
-      z-index:1;
-      color: rgba(242,201,76,0.40);
-      font-size: 16px;
-      margin: 0 2px;
-      user-select:none;
-    }
-
-    @media (max-width: 900px){
-      .world-clock-panel{
-        flex-wrap: wrap;
-        row-gap: 10px;
-        column-gap: 10px;
-        padding: 14px 18px;
-      }
-    }
-
-    @media (max-width: 520px){
-      .clock-city{ font-size: 12px; }
-      .clock-time{ font-size: 15px; }
-      .clock-ampm{ font-size: 10px; }
-    }
-
 /* ============================================================
    🕰 GLOBAL TIME PANEL — NURGUL SIGNATURE (ULTRA LUXURY)
    ============================================================ */
@@ -607,6 +500,13 @@
     gap:14px;
   }
 }
+
+/* Kill any emoji clocks or legacy inline clocks */
+.hero-content .clock,
+.hero-content .emoji,
+.hero-content span[role="img"]{
+  display:none !important;
+}
     
 </style>
 </head>
@@ -632,23 +532,6 @@
 
 <section class="hero">
   <div class="hero-content">
-
-    <!-- ============================================================
-         🕰 [ PANEL DE RELOJES DE CRISTAL ] (ADD ONLY)
-         ============================================================ -->
-    <div class="world-clock-panel" id="worldClockPanel">
-      <div class="clock-item" data-city="bishkek"></div>
-      <div class="clock-sep">—</div>
-      <div class="clock-item" data-city="istanbul"></div>
-      <div class="clock-sep">—</div>
-      <div class="clock-item" data-city="moscow"></div>
-      <div class="clock-sep">—</div>
-      <div class="clock-item" data-city="dubai"></div>
-      <div class="clock-sep">—</div>
-      <div class="clock-item" data-city="newyork"></div>
-      <div class="clock-sep">—</div>
-      <div class="clock-item" data-city="japan"></div>
-    </div>
 
 <!-- 🟦 GLOBAL TIME PANEL — NURGUL SIGNATURE -->
 <div class="global-time-panel" id="globalTimePanel">
