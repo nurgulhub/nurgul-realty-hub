@@ -418,10 +418,7 @@
     inset 0 0 18px rgba(255,255,255,0.12);
 
   position: relative;
-  overflow: hidden;
-  
-  transform: translateX(-36px);
-  
+  overflow: hidden;  
 }
 
 /* Crystal sweep */
@@ -509,6 +506,13 @@
 .hero-content .emoji,
 .hero-content span[role="img"]{
   display:none !important;
+}
+
+/* 🕰 OPTICAL CENTERING — DESKTOP ONLY */
+@media (min-width: 1024px){
+  .global-time-panel{
+    transform: translateX(-40px);
+  }
 }
     
 </style>
