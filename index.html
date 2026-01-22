@@ -496,6 +496,117 @@
       .clock-time{ font-size: 15px; }
       .clock-ampm{ font-size: 10px; }
     }
+
+/* ============================================================
+   🕰 GLOBAL TIME PANEL — NURGUL SIGNATURE (ULTRA LUXURY)
+   ============================================================ */
+
+.global-time-panel{
+  margin: 0 auto 42px;
+  max-width: 980px;
+  padding: 14px 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+
+  border-radius: 60px;
+  border: 1px solid rgba(242,201,76,0.45);
+
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
+    rgba(15,42,36,0.55);
+
+  backdrop-filter: blur(18px);
+
+  box-shadow:
+    0 0 24px rgba(242,201,76,0.25),
+    inset 0 0 18px rgba(255,255,255,0.12);
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Crystal sweep */
+.global-time-panel::after{
+  content:"";
+  position:absolute;
+  top:-120%;
+  left:-120%;
+  width:300%;
+  height:300%;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0)
+  );
+  opacity:.35;
+  animation: panelCrystal 9s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes panelCrystal{
+  0%{transform:translate(-30%,-30%)}
+  100%{transform:translate(30%,30%)}
+}
+
+/* Time block */
+.time-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-width:110px;
+}
+
+/* City name */
+.time-item .city{
+  font-size:11px;
+  letter-spacing:2px;
+  color:var(--yellow-soft);
+  opacity:.85;
+  margin-bottom:4px;
+}
+
+/* Time */
+.time-item .time{
+  font-size:20px;
+  font-weight:500;
+  letter-spacing:1px;
+  color:#fff;
+  transition:opacity .25s ease;
+}
+
+/* AM PM */
+.time-item .ampm{
+  font-size:10px;
+  letter-spacing:1px;
+  color:var(--yellow-main);
+  margin-top:2px;
+  opacity:.85;
+}
+
+/* Separator */
+.sep{
+  width:1px;
+  height:42px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(242,201,76,0.8),
+    transparent
+  );
+  box-shadow: 0 0 6px rgba(242,201,76,0.6);
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .global-time-panel{
+    flex-wrap:wrap;
+    gap:14px;
+  }
+}
     
 </style>
 </head>
@@ -539,6 +650,55 @@
       <div class="clock-item" data-city="japan"></div>
     </div>
 
+<!-- 🟦 GLOBAL TIME PANEL — NURGUL SIGNATURE -->
+<div class="global-time-panel" id="globalTimePanel">
+  <div class="time-item" data-city="bishkek">
+    <span class="city" data-i18n="city_bishkek">Bishkek</span>
+    <span class="time" id="time-bishkek">--:--</span>
+    <span class="ampm" id="ampm-bishkek">--</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="time-item" data-city="istanbul">
+    <span class="city" data-i18n="city_istanbul">Istanbul</span>
+    <span class="time" id="time-istanbul">--:--</span>
+    <span class="ampm" id="ampm-istanbul">--</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="time-item" data-city="moscow">
+    <span class="city" data-i18n="city_moscow">Moscow</span>
+    <span class="time" id="time-moscow">--:--</span>
+    <span class="ampm" id="ampm-moscow">--</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="time-item" data-city="dubai">
+    <span class="city" data-i18n="city_dubai">Dubai</span>
+    <span class="time" id="time-dubai">--:--</span>
+    <span class="ampm" id="ampm-dubai">--</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="time-item" data-city="newyork">
+    <span class="city" data-i18n="city_newyork">New York</span>
+    <span class="time" id="time-newyork">--:--</span>
+    <span class="ampm" id="ampm-newyork">--</span>
+  </div>
+
+  <div class="sep"></div>
+
+  <div class="time-item" data-city="japan">
+    <span class="city" data-i18n="city_japan">Japan</span>
+    <span class="time" id="time-japan">--:--</span>
+    <span class="ampm" id="ampm-japan">--</span>
+  </div>
+</div>
+    
     <h1 data-i18n="hero_title">
       Ишеним — бул стиль.<br>Тандоо — бул сапат.
     </h1>
@@ -662,6 +822,104 @@ document.querySelectorAll(".lang-item").forEach(btn=>{
   });
 
 })();
+
+/* ============================================================
+   🕰 GLOBAL TIME ENGINE — NURGUL SIGNATURE
+   ============================================================ */
+
+function updateWorldTimes(){
+
+  const zones = {
+    bishkek: "Asia/Bishkek",
+    istanbul: "Europe/Istanbul",
+    moscow: "Europe/Moscow",
+    dubai: "Asia/Dubai",
+    newyork: "America/New_York",
+    japan: "Asia/Tokyo"
+  };
+
+  Object.keys(zones).forEach(city => {
+    const now = new Date().toLocaleString("en-US", {
+      timeZone: zones[city],
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true
+    });
+
+    const [time, ampm] = now.split(" ");
+
+    const timeEl = document.getElementById(`time-${city}`);
+    const ampmEl = document.getElementById(`ampm-${city}`);
+
+    if(timeEl){
+      timeEl.style.opacity = 0;
+      setTimeout(()=>{
+        timeEl.textContent = time;
+        ampmEl.textContent = ampm;
+        timeEl.style.opacity = 1;
+      },150);
+    }
+  });
+}
+
+/* Initial load */
+updateWorldTimes();
+
+/* Update every minute */
+setInterval(updateWorldTimes, 60000);
+
+
+/* ================= MULTI LANGUAGE CITIES ================= */
+
+const cityTranslations = {
+  ky:{
+    city_bishkek:"Бишкек",
+    city_istanbul:"Стамбул",
+    city_moscow:"Москва",
+    city_dubai:"Дубай",
+    city_newyork:"Нью-Йорк",
+    city_japan:"Япония"
+  },
+  ru:{
+    city_bishkek:"Бишкек",
+    city_istanbul:"Стамбул",
+    city_moscow:"Москва",
+    city_dubai:"Дубай",
+    city_newyork:"Нью-Йорк",
+    city_japan:"Япония"
+  },
+  en:{
+    city_bishkek:"Bishkek",
+    city_istanbul:"Istanbul",
+    city_moscow:"Moscow",
+    city_dubai:"Dubai",
+    city_newyork:"New York",
+    city_japan:"Japan"
+  }
+};
+
+/* Hook into your existing language switch */
+function updateCityLang(lang){
+  document.querySelectorAll("[data-i18n^='city_']").forEach(el=>{
+    const key = el.dataset.i18n;
+    if(cityTranslations[lang] && cityTranslations[lang][key]){
+      el.textContent = cityTranslations[lang][key];
+    }
+  });
+}
+
+/* Extend your existing lang switch */
+document.querySelectorAll(".lang-item").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const lang = btn.dataset.lang;
+    updateCityLang(lang);
+  });
+});
+
+/* Load saved language on refresh */
+const savedLang = localStorage.getItem("nurgul_lang") || "ky";
+updateCityLang(savedLang);
+  
 </script>
 
 </body>
