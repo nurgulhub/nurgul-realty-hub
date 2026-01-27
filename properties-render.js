@@ -189,6 +189,11 @@ function getPriorityLabel(property){
         if (property.imagesFolder === "house7") {
         cover = "apt71.jpg";
         }
+
+        // 🔹 HOUSE 8
+        if (property.imagesFolder === "house8") {
+        cover = "apt80.jpg";
+        }
          
         img.src = `images/${property.imagesFolder}/${cover}`;
         img.alt = title;
