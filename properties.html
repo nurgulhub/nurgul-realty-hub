@@ -820,7 +820,70 @@
   padding: 0;
 }
 
-    
+/* ================= STATUS BADGE — QATAR LUXURY ================= */
+
+.status-badge{
+  position:absolute;
+  top:18px;
+  right:18px;
+  padding:8px 18px;
+  border-radius:22px;
+  font-size:12px;
+  letter-spacing:1.5px;
+  font-weight:600;
+  backdrop-filter: blur(10px);
+  border:1px solid;
+  box-shadow:
+    0 0 12px rgba(0,0,0,0.35),
+    inset 0 1px 2px rgba(255,255,255,0.25);
+  z-index:10;
+}
+
+/* AVAILABLE — GOLD */
+
+.status-available{
+  color:#F2C94C;
+  border-color:rgba(242,201,76,0.9);
+  background:linear-gradient(
+    135deg,
+    rgba(242,201,76,0.18),
+    rgba(15,42,36,0.55)
+  );
+  box-shadow:
+    0 0 16px rgba(242,201,76,0.45),
+    inset 0 1px 3px rgba(255,255,255,0.35);
+}
+
+/* LEASE — EMERALD */
+
+.status-lease{
+  color:#6EE7B7;
+  border-color:rgba(110,231,183,0.9);
+  background:linear-gradient(
+    135deg,
+    rgba(110,231,183,0.22),
+    rgba(15,42,36,0.55)
+  );
+  box-shadow:
+    0 0 14px rgba(110,231,183,0.45),
+    inset 0 1px 3px rgba(255,255,255,0.35);
+}
+
+/* RESERVED — PEARL / SILVER */
+
+.status-reserved{
+  color:#E5E7EB;
+  border-color:rgba(229,231,235,0.9);
+  background:linear-gradient(
+    135deg,
+    rgba(229,231,235,0.22),
+    rgba(15,42,36,0.55)
+  );
+  box-shadow:
+    0 0 14px rgba(229,231,235,0.45),
+    inset 0 1px 3px rgba(255,255,255,0.35);
+}
+
 </style>
 </head>
 
@@ -1185,6 +1248,27 @@ const translations = {
     royal_price: "Availability & pricing on request · Contact via WhatsApp"
   }
 };
+  
+/* ================= STATUS LABELS — MULTI LANGUAGE ================= */
+
+const statusLabels = {
+  available: {
+    en: "AVAILABLE",
+    ru: "В ПРОДАЖЕ",
+    ky: "САТЫЛАТ"
+  },
+  lease: {
+    en: "LEASE",
+    ru: "В АРЕНДУ",
+    ky: "ИЖАРАГА"
+  },
+  reserved: {
+    en: "RESERVED",
+    ru: "ЗАБРОНИРОВАНО",
+    ky: "БРОНДОЛГОН"
+  }
+};
+    
 </script>
 
 <script>
