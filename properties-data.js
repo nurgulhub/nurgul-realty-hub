@@ -876,6 +876,130 @@ Contacts:
 
   }
 },
+
+/* ============================================================
+   🟧 HOUSE 8 — PREMIUM 2 ROOMS · ROYAL CENTRAL PARK VIEW
+   ============================================================ */
+
+{
+  id: "house8",
+  type: "sale",
+  status: "available",
+  priority: "high",
+  imagesFolder: "house8",
+
+  contacts: [
+    { name: "Нургуль", phone: "0559500551" },
+    { name: "Нагима",  phone: "0771630051" }
+  ],
+
+  texts: {
+
+    ru: {
+      title: "Премиальная 2-комнатная квартира с видом на Royal Central Park",
+      location: "Термечикова / Льва Толстого",
+      address: "г. Бишкек, Термечикова / Льва Толстого",
+      shortDesc: "Элитная квартира 67 м² с панорамным видом на Royal Central Park.",
+      price: "110 000 $ (торг уместен)",
+
+      fullInfo:
+`💎 Премиальная 2-комнатная квартира с видом на Royal Central Park
+Застройщик: ОсОО Ньюс (класс Элитка)
+
+✨ Основные характеристики:
+- Площадь: 67 м²
+- Этаж: 9 из 9
+- Панорамные окна на юг — вид на Royal Central Park
+- Высота потолков: 2,8 м
+- 2 кондиционера
+- Утеплённый балкон
+- Раздельный санузел
+
+🔥 Газовое отопление — комфорт и экономия круглый год
+
+Интерьер:
+- Современный дизайн
+- Тёплые полы (прихожая, ванная, санузел)
+- Встроенная мебель и техника (газ-плита, вытяжка)
+
+Инфраструктура:
+школы, детские сады, магазины, транспорт — всё рядом
+
+📄 Документы:
+ДДУ через Госрегистр (юридически чисто)
+
+💰 Цена: 110 000 $
+🤝 Торг уместен`
+    },
+
+    ky: {
+      title: "Royal Central Park көрүнүшү бар премиум 2 бөлмөлүү батир",
+      location: "Термечикова / Льва Толстой",
+      address: "Бишкек ш., Термечикова / Льва Толстой",
+      shortDesc: "67 м² элит батир, Royal Central Park көрүнүшү менен.",
+      price: "110 000 $ (соодалашууга болот)",
+
+      fullInfo:
+`💎 Royal Central Park көрүнүшү бар премиум батир
+
+Негизги мүнөздөмөлөрү:
+- Аянты: 67 м²
+- Кабат: 9 / 9
+- Түштүк тараптагы панорамалык терезелер
+- Потолок бийиктиги: 2,8 м
+- 2 кондиционер
+- Утеплённый балкон
+- Санузел өз-өзүнчө
+
+🔥 Газ менен жылытуу — үнөмдүү жана ыңгайлуу
+
+Интерьер:
+- Заманбап дизайн
+- Жылуу полдор
+- Камтылган эмерек жана техника
+
+Документтер:
+ДДУ, Госрегистр аркылуу
+
+💰 Баасы: 110 000 $
+🤝 Соодалашууга болот`
+    },
+
+    en: {
+      title: "Premium 2-bedroom apartment with Royal Central Park view",
+      location: "Termechikova / Lev Tolstoy",
+      address: "Bishkek, Termechikova / Lev Tolstoy",
+      shortDesc: "Elite 67 m² apartment with panoramic south view to Royal Central Park.",
+      price: "110,000 USD (negotiable)",
+
+      fullInfo:
+`💎 Premium 2-bedroom apartment with Royal Central Park view
+
+Main features:
+- Area: 67 m²
+- Floor: 9 of 9
+- South panoramic windows with park view
+- Ceiling height: 2.8 m
+- 2 air conditioners
+- Insulated balcony
+- Separate bathroom
+
+🔥 Gas heating — comfort and efficiency all year round
+
+Interior:
+- Modern design
+- Heated floors
+- Built-in furniture and appliances
+
+Documents:
+DDU via State Register (legally clean)
+
+💰 Price: 110,000 USD
+🤝 Negotiable`
+    }
+
+  }
+},
    
 ];   // ✅ AQUÍ Y SOLO AQUÍ SE CIERRA window.PROPERTIES
    
