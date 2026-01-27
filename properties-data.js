@@ -837,7 +837,7 @@ schools, kindergartens, universities, sports centers, supermarkets, hospitals ne
 
     en: {
       title: "1-bedroom apartment (Pishpek area)",
-      address: "Bishkek, Termechikova / Lev Tolstoy Street",
+      address: "Bishkek, Termechikova / Lev Tolstoy",
       shortDesc: "New elite 43.5 m² apartment with renovation and furniture. View of Royal Central Park.",
       price: "66,000 USD",
 
