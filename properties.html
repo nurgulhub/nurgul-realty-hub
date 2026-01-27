@@ -820,10 +820,67 @@
   padding: 0;
 }
 
+/* ============================================================
+   🟧 PROPERTY STATUS BADGE — QATAR LUXURY / DUBAI BROKER STYLE
+   ============================================================ */
+
+.image-status{
+  position:absolute;
+  top:14px;
+  left:14px;
+  padding:6px 14px;
+  border-radius:999px;
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:600;
+  text-transform:uppercase;
+  backdrop-filter:blur(6px);
+  border:1px solid rgba(242,201,76,0.55);
+  background:rgba(12,30,26,0.75);
+  color:#F2C94C;
+  z-index:10;
+  box-shadow:
+    0 0 12px rgba(242,201,76,0.25),
+    inset 0 1px 2px rgba(255,255,255,0.25);
+}
+
+/* AVAILABLE — Emerald Luxury */
+.image-status.available{
+  border-color:rgba(80, 200, 120, 0.65);
+  color:#7CFFB2;
+  box-shadow:
+    0 0 12px rgba(80,200,120,0.35),
+    inset 0 1px 2px rgba(255,255,255,0.25);
+}
+
+/* LEASE — Pure Gold */
+.image-status.lease{
+  border-color:rgba(242,201,76,0.75);
+  color:#F2C94C;
+}
+
+/* RESERVED — Royal Blue */
+.image-status.reserved{
+  border-color:rgba(120,160,255,0.75);
+  color:#AFC6FF;
+  box-shadow:
+    0 0 12px rgba(120,160,255,0.35),
+    inset 0 1px 2px rgba(255,255,255,0.25);
+}
+
+/* SOLD — Smoke Grey */
+.image-status.sold{
+  border-color:rgba(180,180,180,0.55);
+  color:#D0D0D0;
+  background:rgba(20,20,20,0.65);
+  box-shadow:
+    0 0 8px rgba(180,180,180,0.25),
+    inset 0 1px 2px rgba(255,255,255,0.15);
+}
     
 </style>
+  
 </head>
-
 <body>
 
 <header>
