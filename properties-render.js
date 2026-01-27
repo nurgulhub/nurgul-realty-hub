@@ -83,6 +83,33 @@ function getPriorityLabel(property){
 
   return map[lang]?.[p] || map.en[p];
 }
+
+/* ============================================================
+   🌐 PROPERTY STATUS LABELS — MULTI LANGUAGE
+   ============================================================ */
+
+const STATUS_LABELS = {
+  available: {
+    en: "AVAILABLE",
+    ru: "ДОСТУПНО",
+    ky: "САТУУДА"
+  },
+  lease: {
+    en: "LEASE",
+    ru: "АРЕНДА",
+    ky: "ИЖАРА"
+  },
+  reserved: {
+    en: "RESERVED",
+    ru: "РЕЗЕРВ",
+    ky: "РЕЗЕРВДЕ"
+  },
+  sold: {
+    en: "SOLD",
+    ru: "ПРОДАНО",
+    ky: "САТЫЛДЫ"
+  }
+};
    
   /* ================= RENDER FUNCTION (GLOBAL) ================= */
 
@@ -199,8 +226,33 @@ function getPriorityLabel(property){
         img.alt = title;
       }
 
+      /* ================= STATUS BADGE (DUBAI BROKER STYLE) ================= */
 
-      // ================= WHATSAPP AUTO MESSAGE (PER CARD + MULTI LANGUAGE) =================
+const imgBox = card.querySelector(".property-image");
+if (imgBox && property.status) {
+
+  // eliminar badge anterior si existe
+  imgBox.querySelectorAll(".image-status").forEach(e => e.remove());
+
+  const lang =
+    window.NURGUL_LANG ||
+    document.documentElement.lang ||
+    "ru";
+
+  const statusKey = property.status;
+  const label =
+    STATUS_LABELS[statusKey]?.[lang] ||
+    STATUS_LABELS[statusKey]?.en ||
+    statusKey.toUpperCase();
+
+  const badge = document.createElement("div");
+  badge.className = `image-status ${statusKey}`;
+  badge.textContent = label;
+
+  imgBox.appendChild(badge);
+}
+
+// ================= WHATSAPP AUTO MESSAGE (PER CARD + MULTI LANGUAGE) =================
 
 const wa = card.querySelector("[data-prop-whatsapp]");
 if (wa) {
