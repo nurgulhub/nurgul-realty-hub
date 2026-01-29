@@ -75,31 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
   return map[lang]?.[property.status] || "AVAILABLE";
 }
 
-function getPriorityLabel(property){
-  const lang = window.NURGUL_LANG || "en";
-  const p = property.priority || "normal";
-
-  const map = {
-    en: {
-      normal: "✅ Priority: Normal",
-      medium: "⚠️ Priority: Medium",
-      high:   "🔥 Priority: High"
-    },
-    ru: {
-      normal: "✅ Приоритет: Обычный",
-      medium: "⚠️ Приоритет: Средний",
-      high:   "🔥 Приоритет: Срочно"
-    },
-    ky: {
-      normal: "✅ Мааниси: Нормалдуу",
-      medium: "⚠️ Мааниси: Орточо",
-      high:   "🔥 Мааниси: Шашылыш"
-    }
-  };
-
-  return map[lang]?.[p] || map.en[p];
-}
-   
   /* ================= RENDER FUNCTION (GLOBAL) ================= */
 
   window.renderProperties = function renderProperties() {
@@ -272,8 +247,14 @@ Could you please send me more information? Thank you!`;
   wa.href = `https://wa.me/996559500551?text=${encodedMessage}`;
 }
 
+     card.classList.remove(
+    "status-available",
+    "status-lease",
+    "status-reserved",
+    "status-sold"
+   );
 
-      if (property.status === "sold") card.classList.add("property-sold");
+    card.classList.add(`status-${property.status}`);
 
       grid.appendChild(card);
     });
