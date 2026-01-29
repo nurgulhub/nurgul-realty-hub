@@ -1000,6 +1000,189 @@ DDU via State Register (legally clean)
 
   }
 },
+
+/* ============================================================
+   🟧 HOUSE 9 — HOUSE + SEWING WORKSHOP · TURNKEY BUSINESS
+   ============================================================ */
+
+{
+  id: "house9",
+  type: "sale",
+  status: "available",
+  priority: "high",
+  imagesFolder: "house9",
+
+  contacts: [
+    { name: "Нургуль", phone: "0559500551" },
+    { name: "Нагима",  phone: "0771630051" }
+  ],
+
+  texts: {
+
+    ru: {
+      title: "Дом со швейным цехом в Ак-Босого — готовый бизнес под ключ",
+      location: "Ак-Босого",
+      address: "г. Бишкек, район Ак-Босого",
+      shortDesc: "Дом 107 м² + тёплый швейный цех 100 м² на участке 6 соток. Заезжай и начинай зарабатывать с первого дня.",
+      price: "Цена: договорная",
+
+      fullInfo:
+`🏡🏭 Продается дом со швейным цехом в Ак-Босого — готовый бизнес под ключ
+
+📍 Район: Ак-Босого
+📐 Участок: 6 соток
+🏠 Дом: 107 м²
+🏭 Швейный цех: 100 м²
+
+Идеальный вариант для тех, кто хочет сразу начать бизнес без дополнительных вложений.
+
+📑 Документы: Красная книга, техпаспорт
+
+В доме есть всё для комфортного проживания:
+— Видеонаблюдение
+— Кухонный гарнитур
+— Холодильник, микроволновка
+— Шкаф
+— Сейф
+— Душ и туалет в доме
+— Есть уличный туалет
+— Отопление: электрическое и твердотопливное
+
+🏭 Швейный цех (тёплый, с отоплением):
+— Столы для кроя: 10,5 м × 2,10 м
+— 15 швейных машин
+— Станок для петель
+— Станок для пуговиц
+— 3 станка для наклеек
+— Станки для кроя (ножи), электрические ножницы
+— 1 «Найман»
+— 2 контейнера для хранения материалов
+
+⚡ Дополнительно:
+— Солнечная батарея 5 кВт
+— 2 счётчика по 5 кВт
+
+Готовое производство + жильё в одном месте — редкое и выгодное предложение!
+
+💰 Цена: договорная
+
+📞 Контакты:
+0771 63 00 51
+0559 50 05 51
+
+Заезжай и начинай зарабатывать с первого дня!`
+    },
+
+    ky: {
+      title: "Ак-Босогодо тигүү цехи бар үй — даяр бизнес (под ключ)",
+      location: "Ак-Босого",
+      address: "Бишкек ш., Ак-Босого району",
+      shortDesc: "107 м² үй + 100 м² жылуу тигүү цехи, участок 6 соток. Кошумча салымсыз эле кирип иштей берсе болот.",
+      price: "Баасы: келишим боюнча",
+
+      fullInfo:
+`🏡🏭 Ак-Босогодо тигүү цехи бар үй — даяр бизнес (под ключ)
+
+📍 Район: Ак-Босого
+📐 Участок: 6 соток
+🏠 Үй: 107 м²
+🏭 Тигүү цехи: 100 м²
+
+Кошумча салымсыз эле бизнес баштагысы келгендер үчүн идеалдуу вариант.
+
+📑 Документтер: кызыл китеп, техпаспорт
+
+Үйдө жашоого керектүү шарттар:
+— Видеокөзөмөл
+— Ашкана гарнитуру
+— Муздаткыч, микротолкундуу меш
+— Шкаф
+— Сейф
+— Үйдүн ичинде душ жана туалет
+— Сырттагы туалет да бар
+— Жылытуу: электр жана катуу отун
+
+🏭 Тигүү цехи (жылуу, жылытуу бар):
+— Кесүү үстөлдөрү: 10,5 м × 2,10 м
+— 15 тигүү машинасы
+— Иймек (петля) станогу
+— Түймө станогу
+— 3 наклейка станогу
+— Кесүү жабдуулары (бычак), электр кайчы
+— 1 «Найман»
+— Материал сактоочу 2 контейнер
+
+⚡ Кошумча:
+— 5 кВт күн батареясы
+— 5 кВттан 2 эсептегич
+
+Бир жерде — жашоо + өндүрүш. Сейрек жана пайдалуу сунуш!
+
+💰 Баасы: келишим боюнча
+
+📞 Байланыш:
+0771 63 00 51
+0559 50 05 51
+
+Кирип эле биринчи күндөн баштап иштеп баштаңыз!`
+    },
+
+    en: {
+      title: "House with sewing workshop in Ak-Bosogo — turnkey business",
+      location: "Ak-Bosogo",
+      address: "Bishkek, Ak-Bosogo area",
+      shortDesc: "107 m² house + 100 m² heated sewing workshop on 6 ares. Fully equipped — start operating from day one.",
+      price: "Price: on request",
+
+      fullInfo:
+`🏡🏭 House with sewing workshop in Ak-Bosogo — turnkey business
+
+📍 Area: Ak-Bosogo (Bishkek)
+📐 Land: 6 ares
+🏠 House: 107 m²
+🏭 Sewing workshop: 100 m²
+
+A perfect option for those who want to start a business immediately with no extra investment.
+
+📑 Documents: Red Book, technical passport
+
+House features:
+— Video surveillance
+— Kitchen furniture
+— Fridge, microwave
+— Wardrobe
+— Safe
+— Shower and toilet inside the house
+— Outdoor toilet
+— Heating: electric + solid-fuel
+
+🏭 Sewing workshop (heated):
+— Cutting tables: 10.5 m × 2.10 m
+— 15 sewing machines
+— Buttonhole machine
+— Button machine
+— 3 sticker/label machines
+— Cutting tools (knives), electric scissors
+— 1 “Naiman”
+— 2 storage containers for materials
+
+⚡ Additional:
+— 5 kW solar panel system
+— Two 5 kW meters
+
+Production + living in one place — a rare and strong offer.
+
+💰 Price: on request
+
+📞 Contacts:
+0771 63 00 51
+0559 50 05 51
+
+Move in and start earning from day one!`
+    }
+
+  }
+},
    
 ];   // ✅ AQUÍ Y SOLO AQUÍ SE CIERRA window.PROPERTIES
    
