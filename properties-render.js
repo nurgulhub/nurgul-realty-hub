@@ -138,18 +138,7 @@ function getPriorityLabel(property){
 
       // Price
       card.querySelector("[data-prop-price]").textContent = t.price || "";
-
-   
-     // Published — FECHA AUTOMÁTICA (OPCIÓN A)
-     const pubEl = card.querySelector("[data-prop-date]");
-     if (pubEl) {
-     const today = new Date();
-     const dd = String(today.getDate()).padStart(2, "0");
-     const mm = String(today.getMonth() + 1).padStart(2, "0");
-     const yyyy = today.getFullYear();
-     pubEl.textContent = `${dd}.${mm}.${yyyy}`;
-     }
- 
+       
      // Priority
      const prEl = card.querySelector("[data-prop-priority]");
      if (prEl) prEl.textContent = getPriorityLabel(property);
