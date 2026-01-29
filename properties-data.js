@@ -25,7 +25,8 @@ window.PROPERTIES = [
     status: "available",
     priority: "normal",
     imagesFolder: "house1",
-
+    dateAdded: "18.01.2026",
+    
     texts: {
       ru: {
         title: "Продаются новые таунхаусы в Бишкеке",
