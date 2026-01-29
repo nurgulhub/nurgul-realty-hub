@@ -75,6 +75,30 @@ document.addEventListener("DOMContentLoaded", () => {
   return map[lang]?.[property.status] || "AVAILABLE";
 }
 
+function getPriorityLabel(property){
+  const lang = window.NURGUL_LANG || "en";
+  const p = property.priority || "normal";
+
+  const map = {
+    en: {
+      normal: "✅ Priority: Normal",
+      medium: "⚠️ Priority: Medium",
+      high:   "🔥 Priority: High"
+    },
+    ru: {
+      normal: "✅ Приоритет: Обычный",
+      medium: "⚠️ Приоритет: Средний",
+      high:   "🔥 Приоритет: Срочно"
+    },
+    ky: {
+      normal: "✅ Мааниси: Нормалдуу",
+      medium: "⚠️ Мааниси: Орточо",
+      high:   "🔥 Мааниси: Шашылыш"
+    }
+  };
+
+  return map[lang]?.[p] || map.en[p];
+}   
   /* ================= RENDER FUNCTION (GLOBAL) ================= */
 
   window.renderProperties = function renderProperties() {
