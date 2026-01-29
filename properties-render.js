@@ -49,15 +49,31 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function getStatusLabel(property){
-    const lang = getCurrentLang();
-    const map = {
-      ky: { available:"Сатууда", sold:"Сатылды" },
-      ru: { available:"В продаже", sold:"Продано" },
-      en: { available:"On sale", sold:"Sold" }
-    };
-    const key = (property.status === "sold") ? "sold" : "available";
-    return map[lang]?.[key] || map.en[key];
-  }
+  const lang = window.NURGUL_LANG || "en";
+
+  const map = {
+    ky: {
+      available: "AVAILABLE",
+      lease: "LEASE",
+      reserved: "RESERVED",
+      sold: "SOLD OUT"
+    },
+    ru: {
+      available: "AVAILABLE",
+      lease: "LEASE",
+      reserved: "RESERVED",
+      sold: "SOLD OUT"
+    },
+    en: {
+      available: "AVAILABLE",
+      lease: "LEASE",
+      reserved: "RESERVED",
+      sold: "SOLD OUT"
+    }
+  };
+
+  return map[lang]?.[property.status] || "AVAILABLE";
+}
 
 function getPriorityLabel(property){
   const lang = window.NURGUL_LANG || "en";
