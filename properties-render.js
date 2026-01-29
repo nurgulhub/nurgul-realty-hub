@@ -138,6 +138,10 @@ function getPriorityLabel(property){
 
       // Price
       card.querySelector("[data-prop-price]").textContent = t.price || "";
+
+      // Date (MANUAL — desde data)
+      const dateEl = card.querySelector("[data-prop-date]");
+      if (dateEl) dateEl.textContent = property.dateAdded || "—";
        
      // Priority
      const prEl = card.querySelector("[data-prop-priority]");
