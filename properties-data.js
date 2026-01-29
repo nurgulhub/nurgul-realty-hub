@@ -105,8 +105,9 @@ window.PROPERTIES = [
   status: "available",
   priority: "normal",
   imagesFolder: "house3",
-
-  texts: {
+  dateAdded: "18.01.2026",
+   
+   texts: {
     ru: {
       title: "2-комнатная квартира в центре Бишкека",
       location: "Рядом с парком Панфилова",
@@ -225,7 +226,8 @@ walking distance to Panfilov Park, Dubovy Park, restaurants, shops, banks, clini
   status: "available",
   priority: "normal",
   imagesFolder: "house4",
-
+  dateAdded: "18.01.2026",
+   
   contacts: [
     { name: "Нургуль", phone: "0559 500 551" },
     { name: "Нагима", phone: "0706 315 903" }
@@ -361,7 +363,8 @@ Negotiable for real buyer`
   type: "sale",
   status: "available",
   imagesFolder: "buran",
-
+  dateAdded: "18.01.2026",
+   
   contacts: [
     { name: "Нургуль", phone: "0559 500 551" }
   ],
@@ -470,7 +473,8 @@ from 3,200 USD per m²`
   status: "available",
   priority: "high",
   imagesFolder: "house5",
-
+  dateAdded: "20.01.2026",  
+   
   contacts: [
     { name: "Нургуль", phone: "0559500551" },
     { name: "Нагима", phone: "0706315903" }
@@ -618,9 +622,9 @@ Money needed for surgery in Turkey — price below market
   type: "sale",
   status: "available",
   priority: "normal",          // luego puedes subir a medium o high
-
   imagesFolder: "house6",
-
+  dateAdded: "21.01.2026",
+   
   texts: {
 
     ru: {
@@ -751,7 +755,8 @@ schools, kindergartens, universities, sports centers, supermarkets, hospitals ne
   status: "available",
   priority: "high",
   imagesFolder: "house7",
-
+  dateAdded: "26.01.2026",
+   
   contacts: [
     { name: "Нургуль", phone: "0559 500 551" },
     { name: "Нагима", phone: "0706 315 903" }
@@ -888,7 +893,8 @@ Contacts:
   status: "available",
   priority: "high",
   imagesFolder: "house8",
-
+  dateAdded: "28.01.2026",
+   
   contacts: [
     { name: "Нургуль", phone: "0559500551" },
     { name: "Нагима",  phone: "0771630051" }
@@ -1012,7 +1018,8 @@ DDU via State Register (legally clean)
   status: "available",
   priority: "high",
   imagesFolder: "house9",
-
+  dateAdded: "29.01.2026",
+   
   contacts: [
     { name: "Нургуль", phone: "0559500551" },
     { name: "Нагима",  phone: "0771630051" }
