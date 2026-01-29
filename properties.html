@@ -872,6 +872,21 @@
 .property-status{
   margin:4px 0 10px;
 }
+
+.property-status{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:6px 0 12px;
+}
+
+.property-status .status-label{
+  font-size:13px;
+  color:var(--text-muted);
+  letter-spacing:0.6px;
+  font-weight:500;
+  white-space:nowrap;
+}
     
 </style>
 </head>
@@ -954,9 +969,11 @@
       <span data-prop-address></span>
     </p>
 
-    <p class="property-status">
+   <p class="property-status">
+  <span class="status-label">🏷️ Status:</span>
   <span data-prop-status></span>
-    </p>
+</p>
+
 
     <p class="property-price">
       <strong data-i18n="prop_price_label"></strong>
