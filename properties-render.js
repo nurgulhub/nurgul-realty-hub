@@ -5,7 +5,7 @@
    - Re-render al cambiar idioma
    - NO borra la tarjeta Royal fija
    - Llena Address / Status / Details / Price / Published
-   - Botón Information abre el modal genérico total
+   - Botón Information abre el modal genérico total Total
    ============================================================ */
 
 /* ============================================================
