@@ -149,7 +149,8 @@ function getPriorityLabel(property){
       if (stEl) stEl.textContent = getStatusLabel(property);
 
       // Details
-      card.querySelector("[data-prop-desc]").textContent = t.shortDesc || "";
+      const descEl = card.querySelector("[data-prop-desc]");
+      if (descEl) descEl.textContent = t.shortDesc || "";
 
       // Price
       card.querySelector("[data-prop-price]").textContent = t.price || "";
