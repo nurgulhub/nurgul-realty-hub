@@ -53,26 +53,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const map = {
     ky: {
-      available: "AVAILABLE",
-      lease: "LEASE",
-      reserved: "RESERVED",
-      sold: "SOLD OUT"
+      available: "САТУУДА",
+      lease: "ИЖАРАГА",
+      reserved: "РЕЗЕРВ",
+      sold: "САТЫЛДЫ"
     },
     ru: {
-      available: "AVAILABLE",
-      lease: "LEASE",
-      reserved: "RESERVED",
-      sold: "SOLD OUT"
+      available: "В ПРОДАЖЕ",
+      lease: "АРЕНДА",
+      reserved: "РЕЗЕРВ",
+      sold: "ПРОДАНО"
     },
     en: {
       available: "AVAILABLE",
-      lease: "LEASE",
+      lease: "FOR LEASE",
       reserved: "RESERVED",
       sold: "SOLD OUT"
     }
   };
 
-  return map[lang]?.[property.status] || "AVAILABLE";
+  return map[lang]?.[property.status] || map.en.available;
 }
 
 function getPriorityLabel(property){
