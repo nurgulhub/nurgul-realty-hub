@@ -22,7 +22,7 @@ window.PROPERTIES = [
   {
     id: "house1",
     type: "sale",
-    status: "available",
+    status: "sold",
     priority: "normal",
     imagesFolder: "house1",
     dateAdded: "18.01.2026",
