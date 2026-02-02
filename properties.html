@@ -1954,14 +1954,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const addressEl = card.querySelector("[data-prop-address]");
     if (!addressEl) return;
 
-    const address = addressEl.textContent.trim();
-    if (!address) return;
+    // 🔍 Prioridad: data-map-query → fallback: texto visible
+const mapQuery =
+  addressEl.dataset.mapQuery?.trim() ||
+  addressEl.textContent.trim();
 
-    // 🔗 Construcción segura del link 2GIS
-    const encodedAddress = encodeURIComponent(address);
-    const gisUrl = `https://2gis.kg/search/${encodedAddress}`;
+if (!mapQuery) return;
 
-    tile.href = gisUrl;
+// 🔗 Construcción segura del link 2GIS
+const encodedQuery = encodeURIComponent(mapQuery);
+const gisUrl = `https://2gis.kg/search/${encodedQuery}`;
+
+tile.href = gisUrl;
+
   });
 
 });
