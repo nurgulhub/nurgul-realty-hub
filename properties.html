@@ -1948,28 +1948,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(TILE_SELECTOR).forEach(tile => {
 
-    const card = tile.closest(".property-card");
-    if (!card) return;
+  const card = tile.closest(".property-card");
+  if (!card) return;
 
-    const addressEl = card.querySelector("[data-prop-address]");
-    if (!addressEl) return;
+  const addressEl = card.querySelector("[data-prop-address]");
+  if (!addressEl) return;
 
-    // 🔍 Prioridad: data-map-query → fallback: texto visible
-const mapQuery =
-  addressEl.dataset.mapQuery?.trim() ||
-  addressEl.textContent.trim();
+  const mapQuery =
+    addressEl.dataset.mapQuery?.trim() ||
+    addressEl.textContent.trim();
 
-if (!mapQuery) return;
+  if (!mapQuery) {
+    tile.removeAttribute("href");
+    return;
+  }
 
-// 🔗 Construcción segura del link 2GIS
-const encodedQuery = encodeURIComponent(mapQuery);
-const gisUrl = `https://2gis.kg/search/${encodedQuery}`;
+  const encodedQuery = encodeURIComponent(mapQuery);
+  const gisUrl = `https://2gis.kg/search/${encodedQuery}`;
 
-tile.href = gisUrl;
+  // 🔒 Set link once and block default hash behavior
+  tile.href = gisUrl;
 
+  tile.addEventListener("click", (e) => {
+    e.stopPropagation(); // no afecta la card
   });
-
 });
+
 </script>
   
 </body>
