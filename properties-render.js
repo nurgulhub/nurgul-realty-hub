@@ -144,6 +144,13 @@ function getPriorityLabel(property){
       const addrEl = card.querySelector("[data-prop-address]");
       if (addrEl) addrEl.textContent = t.address || t.location || "";
 
+       // 🟧 2GIS MAP QUERY (precisión de zoom)
+      if (addrEl && property.mapQuery) {
+      addrEl.dataset.mapQuery = property.mapQuery;
+      } else if (addrEl) {
+      addrEl.removeAttribute("data-map-query"); // limpio si no existe
+      }
+       
       // Status
       const stEl = card.querySelector("[data-prop-status]");
       if (stEl) stEl.textContent = getStatusLabel(property);
