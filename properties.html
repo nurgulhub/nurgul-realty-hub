@@ -1932,6 +1932,40 @@ else if (folder === "house9") {
     </div>
   </div>
 </div>
+
+<script>
+/* ============================================================
+   🟧 SIGNATURE MAP TILE — 2GIS LINK ENGINE
+   ------------------------------------------------------------
+   - Usa la dirección existente (data-prop-address)
+   - Genera link dinámico a 2GIS
+   - Funciona desktop + mobile (app si existe)
+   ============================================================ */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const TILE_SELECTOR = ".signature-map-tile";
+
+  document.querySelectorAll(TILE_SELECTOR).forEach(tile => {
+
+    const card = tile.closest(".property-card");
+    if (!card) return;
+
+    const addressEl = card.querySelector("[data-prop-address]");
+    if (!addressEl) return;
+
+    const address = addressEl.textContent.trim();
+    if (!address) return;
+
+    // 🔗 Construcción segura del link 2GIS
+    const encodedAddress = encodeURIComponent(address);
+    const gisUrl = `https://2gis.kg/search/${encodedAddress}`;
+
+    tile.href = gisUrl;
+  });
+
+});
+</script>
   
 </body>
 </html>
