@@ -961,6 +961,82 @@
       0 0 6px rgba(212,175,55,0.25);
   }
 }
+
+/* ============================================================
+   🟧 SIGNATURE MAP TILE — DUBAI BROKER EDITION
+   ============================================================ */
+
+.property-image{
+  position: relative; /* 🔒 necesario para el tile */
+}
+
+/* Tile base */
+.signature-map-tile{
+  position:absolute;
+  bottom:14px;
+  right:14px;
+  width:68px;
+  height:68px;
+  border-radius:16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:rgba(10,30,26,0.75);
+  backdrop-filter:blur(8px);
+
+  border:1px solid rgba(242,201,76,0.45);
+
+  text-decoration:none;
+  cursor:pointer;
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.25),
+    0 8px 22px rgba(0,0,0,0.45);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease;
+}
+
+/* Pin icon */
+.signature-map-tile .map-pin{
+  font-size:26px;
+  line-height:1;
+  color:#F2C94C;
+
+  filter:
+    drop-shadow(0 0 4px rgba(242,201,76,0.45))
+    drop-shadow(0 0 10px rgba(242,201,76,0.25));
+}
+
+/* Hover — jewelry glow */
+.signature-map-tile:hover{
+  background:rgba(12,34,28,0.85);
+  transform:translateY(-2px);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.35),
+    0 0 0 1px rgba(242,201,76,0.55),
+    0 12px 28px rgba(0,0,0,0.55),
+    0 0 18px rgba(242,201,76,0.35);
+}
+
+/* Mobile fine-tune */
+@media (max-width:768px){
+  .signature-map-tile{
+    width:62px;
+    height:62px;
+    bottom:12px;
+    right:12px;
+  }
+
+  .signature-map-tile .map-pin{
+    font-size:24px;
+  }
+}
     
 </style>
 </head>
@@ -1026,12 +1102,25 @@
 <article class="property-card rental-card property-template" data-property-id="">
 
   <div class="property-image property-cover">
-    <img
-      data-prop-img
-      src=""
-      alt=""
-    >
-  </div>
+  <img
+    data-prop-img
+    src=""
+    alt=""
+  >
+
+  <!-- 🟧 SIGNATURE MAP TILE — DUBAI BROKER STYLE -->
+  <a
+    class="signature-map-tile"
+    href="#"
+    target="_blank"
+    rel="noopener"
+    aria-label="View location on map"
+  >
+    <span class="map-pin">📍</span>
+  </a>
+
+</div>
+
 
   <div class="property-content">
     <h3 data-prop-title></h3>
