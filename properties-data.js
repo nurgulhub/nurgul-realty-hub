@@ -24,9 +24,7 @@ window.PROPERTIES = [
 type: "sale",
 status: "available",
 priority: "normal",
-
-mapQuery: "Бишкек, Жибек-Жолу, церковь",
-
+mapQuery: "Бишкек, проспект Жибек-Жолу, церковь, Фрунзенский район",
 imagesFolder: "house1",
 dateAdded: "18.01.2026",
     
@@ -107,7 +105,7 @@ dateAdded: "18.01.2026",
   type: "sale",
   status: "available",
   priority: "normal",
-  mapQuery: "Бишкек, парк Панфилова", 
+  mapQuery: "Бишкек, парк Панфилова, улица Фрунзе, 370",
   imagesFolder: "house3",
   dateAdded: "18.01.2026",
    
@@ -229,7 +227,7 @@ walking distance to Panfilov Park, Dubovy Park, restaurants, shops, banks, clini
   type: "sale",
   status: "available",
   priority: "normal",
-  mapQuery: "Бишкек, улица Ахунбаева",
+  mapQuery: "Бишкек, улица Ахунбаева, пересечение с улицей Абдрахманова",
   imagesFolder: "house4",
   dateAdded: "18.01.2026",
    
@@ -478,7 +476,7 @@ from 3,200 USD per m²`
   type: "sale",
   status: "available",
   priority: "high",
-  mapQuery: "Бишкек, Золотой квадрат",
+  mapQuery: "Бишкек, Золотой квадрат, улица Чуй",
   imagesFolder: "house5",
   dateAdded: "20.01.2026",  
    
@@ -629,7 +627,7 @@ Money needed for surgery in Turkey — price below market
   type: "sale",
   status: "available",
   priority: "normal",
-  mapQuery: "Бишкек, площадь Ала-Тоо",
+  mapQuery: "Бишкек, площадь Ала-Тоо, улица Абдрахманова",
   imagesFolder: "house6",
   dateAdded: "21.01.2026",
    
@@ -762,7 +760,7 @@ schools, kindergartens, universities, sports centers, supermarkets, hospitals ne
   type: "sale",
   status: "available",
   priority: "high",
-  mapQuery: "Бишкек, микрорайон",
+  mapQuery: "Бишкек, микрорайон, улица Ахунбаева, жилой дом",
   imagesFolder: "house7",
   dateAdded: "26.01.2026",
    
@@ -901,7 +899,7 @@ Contacts:
   type: "sale",
   status: "available",
   priority: "high",
-  mapQuery: "Бишкек, жилой комплекс",
+  mapQuery: "Бишкек, жилой комплекс, улица Жумабека",
   imagesFolder: "house8",
   dateAdded: "28.01.2026",
    
@@ -1027,7 +1025,7 @@ DDU via State Register (legally clean)
   type: "sale",
   status: "available",
   priority: "high",
-  mapQuery: "Бишкек, центр города",
+  mapQuery: "Бишкек, центр города, проспект Чуй",
   imagesFolder: "house9",
   dateAdded: "29.01.2026",
    
