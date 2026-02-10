@@ -1482,12 +1482,19 @@ document.addEventListener("click", (e) => {
   e.stopPropagation();
 
   applyLang(btn.dataset.lang);
+
+  // 🔁 notificar cambio de idioma (NECESARIO)
+  document.dispatchEvent(new Event("nurgul:langChanged"));
 });
 
 // ✅ Inicialización segura
 document.addEventListener("DOMContentLoaded", () => {
   applyLang(localStorage.getItem("nurgul_lang") || "ky");
+
+  // 🔁 notificar cambio de idioma al iniciar
+  document.dispatchEvent(new Event("nurgul:langChanged"));
 });
+  
 </script>
 
 <script>
@@ -1957,15 +1964,15 @@ else if (folder === "house9") {
 
 <script>
 /* ============================================================
-   🟧 SIGNATURE MAP TILE — 2GIS LINK ENGINE (FINAL)
+   🟧 SIGNATURE MAP TILE — 2GIS LINK ENGINE (RE-BIND SAFE)
    ------------------------------------------------------------
    - Navegación controlada por JS
-   - Sin refresh
-   - Sin doble click
-   - Funciona con render dinámico
+   - Funciona tras cambio de idioma
+   - SIN refresh
+   - SIN doble click
    ============================================================ */
 
-document.addEventListener("DOMContentLoaded", () => {
+function bindSignatureMapTiles() {
 
   document.querySelectorAll(".signature-map-tile").forEach(tile => {
 
@@ -1988,16 +1995,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const encoded = encodeURIComponent(mapQuery);
     const url = `https://2gis.kg/search/${encoded}`;
 
-    // 🔒 navegación manual — clave
-    tile.addEventListener("click", (e) => {
+    // 🔒 limpiar listeners anteriores (clave)
+    const cleanTile = tile.cloneNode(true);
+    tile.replaceWith(cleanTile);
+
+    cleanTile.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
       window.open(url, "_blank", "noopener");
     });
 
   });
+}
 
-});
+// ✅ inicial
+document.addEventListener("DOMContentLoaded", bindSignatureMapTiles);
+
+// 🔁 CLAVE: reactivar después de cambio de idioma
+document.addEventListener("nurgul:langChanged", bindSignatureMapTiles);
+
 </script>
   
 </body>
