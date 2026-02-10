@@ -1006,35 +1006,13 @@
     background .35s ease;
 }
 
-/* ============================================================
-   🟧 3.2 — MAP PIN (CSS ICON — STABLE & PREMIUM)
-   ------------------------------------------------------------
-   - No emoji
-   - Visible en todos los idiomas
-   - Safari / iOS safe
-   ============================================================ */
-
+/* PIN — SILENT BY DEFAULT */
 .signature-map-tile .map-pin{
-  width:14px;
-  height:14px;
-  border-radius:50%;
-  background:var(--yellow-main);
-  box-shadow:
-    0 0 0 3px rgba(242,201,76,0.35),
-    0 0 12px rgba(242,201,76,0.65);
-}
-
-/* PIN STEM */
-.signature-map-tile .map-pin::after{
-  content:"";
-  position:absolute;
-  top:12px;
-  left:50%;
-  transform:translateX(-50%);
-  width:4px;
-  height:10px;
-  background:var(--yellow-main);
-  border-radius:2px;
+  font-size:20px;
+  line-height:1;
+  opacity:0.65;
+  filter:grayscale(100%);
+  transition:all .35s ease;
 }
 
 /* HOVER = REVEAL */
@@ -1068,52 +1046,8 @@
     font-size:18px;
   }
 }
-    
-/* ============================================================
-   🟧 3.1 — MAP TILE VISIBILITY FIX (LANG CHANGE SAFE)
-   ------------------------------------------------------------
-   Fuerza visibilidad tras cambio de idioma / re-render
-   ============================================================ */
 
-.signature-map-tile{
-  background:rgba(10,22,18,0.95); /* más contraste */
-}
 
-.signature-map-tile .map-pin{
-  opacity:1 !important;          /* nunca transparente */
-  filter:none !important;        /* sin grayscale */
-  color:var(--yellow-main);      /* dorado consistente */
-  text-shadow:
-    0 0 6px rgba(242,201,76,0.55),
-    0 0 12px rgba(242,201,76,0.35);
-}
-
-/* ============================================================
-   🟧 3.3 — MAP TILE CONTRAST LOCK (FINAL, NO DESIGN CHANGE)
-   ------------------------------------------------------------
-   - Mantiene el emoji 📍
-   - Evita transparencia en Safari / re-render
-   ============================================================ */
-
-.signature-map-tile{
-  background-color: rgba(10, 22, 18, 0.98) !important;
-  isolation: isolate; /* 🔒 evita herencias raras */
-}
-
-.signature-map-tile::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(10,22,18,0.92);
-  border-radius:inherit;
-  z-index:-1;
-}
-
-.signature-map-tile .map-pin{
-  opacity:1 !important;
-  filter:none !important;
-}
-    
 </style>
 </head>
 
