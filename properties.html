@@ -1964,55 +1964,37 @@ else if (folder === "house9") {
 
 <script>
 /* ============================================================
-   🟧 SIGNATURE MAP TILE — 2GIS LINK ENGINE (RE-BIND SAFE)
+   🟧 SIGNATURE MAP TILE — 2GIS LINK ENGINE (DELEGATION FINAL)
    ------------------------------------------------------------
-   - Navegación controlada por JS
-   - Funciona tras cambio de idioma
-   - SIN refresh
-   - SIN doble click
+   - NO depende del DOM
+   - NO se pierde al cambiar idioma
+   - NO necesita rebind
    ============================================================ */
 
-function bindSignatureMapTiles() {
+document.addEventListener("click", (e) => {
 
-  document.querySelectorAll(".signature-map-tile").forEach(tile => {
+  const tile = e.target.closest(".signature-map-tile");
+  if (!tile) return;
 
-    const card = tile.closest(".property-card");
-    if (!card) return;
+  e.preventDefault();
+  e.stopPropagation();
 
-    const addressEl = card.querySelector("[data-prop-address]");
-    if (!addressEl) return;
+  const card = tile.closest(".property-card");
+  if (!card) return;
 
-    const mapQuery =
-      addressEl.dataset.mapQuery?.trim() ||
-      addressEl.textContent.trim();
+  const addressEl = card.querySelector("[data-prop-address]");
+  if (!addressEl) return;
 
-    if (!mapQuery) {
-      tile.style.pointerEvents = "none";
-      tile.style.opacity = "0.35";
-      return;
-    }
+  const mapQuery =
+    addressEl.dataset.mapQuery?.trim() ||
+    addressEl.textContent.trim();
 
-    const encoded = encodeURIComponent(mapQuery);
-    const url = `https://2gis.kg/search/${encoded}`;
+  if (!mapQuery) return;
 
-    // 🔒 limpiar listeners anteriores (clave)
-    const cleanTile = tile.cloneNode(true);
-    tile.replaceWith(cleanTile);
+  const url = `https://2gis.kg/search/${encodeURIComponent(mapQuery)}`;
+  window.open(url, "_blank", "noopener");
 
-    cleanTile.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      window.open(url, "_blank", "noopener");
-    });
-
-  });
-}
-
-// ✅ inicial
-document.addEventListener("DOMContentLoaded", bindSignatureMapTiles);
-
-// 🔁 CLAVE: reactivar después de cambio de idioma
-document.addEventListener("nurgul:langChanged", bindSignatureMapTiles);
+});
 
 </script>
   
