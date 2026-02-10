@@ -1047,7 +1047,19 @@
   }
 }
 
+/* ============================================================
+   FIX ÚNICO — MAP TILE NO TRANSPARENTE AL CAMBIAR IDIOMA
+   ------------------------------------------------------------
+   - NO cambia diseño
+   - NO cambia colores visibles
+   - Evita bug de Safari con backdrop-filter tras re-render
+   ============================================================ */
 
+.signature-map-tile{
+  background-color: rgba(8,18,15,1) !important; /* 🔒 sólido */
+  backdrop-filter: none !important;             /* 🔒 evita bug */
+}
+    
 </style>
 </head>
 
