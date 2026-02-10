@@ -1088,6 +1088,32 @@
     0 0 12px rgba(242,201,76,0.35);
 }
 
+/* ============================================================
+   🟧 3.3 — MAP TILE CONTRAST LOCK (FINAL, NO DESIGN CHANGE)
+   ------------------------------------------------------------
+   - Mantiene el emoji 📍
+   - Evita transparencia en Safari / re-render
+   ============================================================ */
+
+.signature-map-tile{
+  background-color: rgba(10, 22, 18, 0.98) !important;
+  isolation: isolate; /* 🔒 evita herencias raras */
+}
+
+.signature-map-tile::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(10,22,18,0.92);
+  border-radius:inherit;
+  z-index:-1;
+}
+
+.signature-map-tile .map-pin{
+  opacity:1 !important;
+  filter:none !important;
+}
+    
 </style>
 </head>
 
