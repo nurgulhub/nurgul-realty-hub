@@ -1046,7 +1046,25 @@
     font-size:18px;
   }
 }
+    
+/* ============================================================
+   🟧 3.1 — MAP TILE VISIBILITY FIX (LANG CHANGE SAFE)
+   ------------------------------------------------------------
+   Fuerza visibilidad tras cambio de idioma / re-render
+   ============================================================ */
 
+.signature-map-tile{
+  background:rgba(10,22,18,0.95); /* más contraste */
+}
+
+.signature-map-tile .map-pin{
+  opacity:1 !important;          /* nunca transparente */
+  filter:none !important;        /* sin grayscale */
+  color:var(--yellow-main);      /* dorado consistente */
+  text-shadow:
+    0 0 6px rgba(242,201,76,0.55),
+    0 0 12px rgba(242,201,76,0.35);
+}
 
 </style>
 </head>
