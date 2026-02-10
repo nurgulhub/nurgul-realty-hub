@@ -81,24 +81,25 @@ function getPriorityLabel(property){
 
   const map = {
     en: {
-      normal: "✅ Priority: Normal",
-      medium: "⚠️ Priority: Medium",
-      high:   "🔥 Priority: High"
+      normal: "Priority · Normal",
+      medium: "Priority · Medium",
+      high:   "Priority · High"
     },
     ru: {
-      normal: "✅ Приоритет: Обычный",
-      medium: "⚠️ Приоритет: Средний",
-      high:   "🔥 Приоритет: Срочно"
+      normal: "Приоритет · Обычный",
+      medium: "Приоритет · Средний",
+      high:   "Приоритет · Высокий"
     },
     ky: {
-      normal: "✅ Мааниси: Нормалдуу",
-      medium: "⚠️ Мааниси: Орточо",
-      high:   "🔥 Мааниси: Шашылыш"
+      normal: "Мааниси · Нормалдуу",
+      medium: "Мааниси · Орточо",
+      high:   "Мааниси · Жогорку"
     }
   };
 
   return map[lang]?.[p] || map.en[p];
-}   
+}
+
   /* ================= RENDER FUNCTION (GLOBAL) ================= */
 
   window.renderProperties = function renderProperties() {
