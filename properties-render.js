@@ -169,18 +169,18 @@ function getPriorityLabel(property){
        
      // Priority
      const prEl = card.querySelector("[data-prop-priority]");
-     if (prEl) prEl.textContent = getPriorityLabel(property);
-       
-      // Image (portada por carpeta)
-     const prEl = card.querySelector("[data-prop-priority]");
      if (prEl) {
      prEl.innerHTML = `
-    <span class="property-priority ${property.priority || "normal"}">
+     <span class="property-priority ${property.priority || "normal"}">
       ${getPriorityLabel(property)}
-    </span>
-   `;
-   }
- 
+     </span>
+     `;
+     }
+       
+      // Image (portada por carpeta)
+      const img = card.querySelector("[data-prop-img]");
+      if (img) {
+
         let cover = "house1.jpg";
 
         if (property.imagesFolder === "house3") {
